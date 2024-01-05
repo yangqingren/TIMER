@@ -8,6 +8,9 @@
 import UIKit
 
 class TMTimerManager: NSObject {
+    
+    static let shader = TMTimerManager()
+        
     static func getDate() -> Date {
         let calendar = Calendar.current
         let endDate = Date()
@@ -15,6 +18,19 @@ class TMTimerManager: NSObject {
         return startDate
     }
     
+    static func getWeek(_ dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        dateFormatter.locale = .current
+        let dateString = dateFormatter.string(from: Date())
+        return dateString
+    }
+    
+    ///     var content: AttributedString {
+    ///         var attributedString = AttributedString("Blue text")
+    ///         attributedString.foregroundColor = .blue
+    ///         return attributedString
+    ///     }
 //    static func getDate() -> Date {
 //        let date = Date()
 //        let calendar:Calendar = Calendar.current;

@@ -22,44 +22,92 @@ struct MTLiveWidgetAttributes: ActivityAttributes {
 struct MTLiveWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: MTLiveWidgetAttributes.self) { context in
-            // Lock screen/banner UI goes here
-            VStack {
-                Label {
-                    Text(TMTimerManager.getDate(), style: .timer)
-                }
-                icon: {
-                    Image(systemName: "timer")
-                        .foregroundColor(.indigo)
-                }
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
 
+            LockScreenLiveActivityView(context: context)
+                .background(Color(red: 1, green: 1, blue: 1, opacity: 1))
+            
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
-                DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
-                }
-                DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                DynamicIslandExpandedRegion(.center) {
+                    
+                    HStack {
+                        
+                        Text(TMTimerManager.getDate(), style: .date)
+                            .font(.system(size: 14))
+                            .multilineTextAlignment(.leading)
+                            .shadow(color: .white, radius: 2, x: 0, y: 2)
+                        
+                        Text(TMTimerManager.getWeek("EEE"))
+                            .font(.system(size: 14))
+                            .multilineTextAlignment(.center)
+                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                    }
+
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom")
-                    // more content
+                    Text(TMTimerManager.getDate(), style: .timer)
+                        .font(.custom("TMTimer", size: 85))
+                        .multilineTextAlignment(.center)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 }
             } compactLeading: {
-                Text("L")
+                
+                Text("  \(TMTimerManager.getWeek("MM/dd EEE"))")
+                    .font(.system(size: 11))
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .white, radius: 2, x: 0, y: 2)
+
             } compactTrailing: {
-                Text("T")
-            } minimal: {
+                
                 Text(TMTimerManager.getDate(), style: .timer)
+                    .font(.system(size: 11))
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .white, radius: 2, x: 0, y: 2)
+            } minimal: {
+
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
         }
     }
 }
 
+struct LockScreenLiveActivityView: View {
+    
+    let context: ActivityViewContext <MTLiveWidgetAttributes>
+    
+    var body: some View {
+        
+        ZStack {
+            
+            LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.5), Color.white, Color.white]), startPoint: .top, endPoint: .bottom)
+            
+            VStack {
+                
+                Spacer(minLength: 20)
+                
+                HStack {
+                    
+                    Text(TMTimerManager.getDate(), style: .date)
+                        .font(.system(size: 16))
+                        .multilineTextAlignment(.center)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                    
+                    Text(TMTimerManager.getWeek("EEE"))
+                        .font(.system(size: 16))
+                        .multilineTextAlignment(.center)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
+                }
 
+                
+                Text(TMTimerManager.getDate(), style: .timer)
+                    .font(.custom("TMTimer", size: 85))
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .gray, radius: 2, x: 0, y: 5)
+                
+                Spacer(minLength: 20)
+            }
+        }
+
+
+    }
+}

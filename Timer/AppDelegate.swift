@@ -24,11 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = ViewController()
         let nav = UINavigationController.init(rootViewController: vc)
         self.window?.rootViewController = nav
-
+        
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
+        self.resetDeliveryActivity()
+    }
+
+
+    func resetDeliveryActivity() {
         if let deliveryActivity = self.deliveryActivity {
 //            await deliveryActivity.update(using: updatedDeliveryStatus, alertConfiguration: alertConfiguration)
             return
@@ -42,8 +47,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Error requesting pizza delivery Live Activity \(error.localizedDescription).")
         }
     }
-
-
-
 }
 

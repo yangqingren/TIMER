@@ -22,6 +22,9 @@
 		E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */; };
+		E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820F62B45B8260022368D /* Main.storyboard */; };
+		E8EE88B62B469E8000597769 /* TMTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EE88B52B469E8000597769 /* TMTimer.ttf */; };
+		E8EE88BA2B469F4000597769 /* TMTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EE88B52B469E8000597769 /* TMTimer.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,13 @@
 		E81821312B45B89B0022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81821332B45B89B0022368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E818213B2B45B8B30022368D /* TMTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerManager.swift; sourceTree = "<group>"; };
+		E8579C9A2B46BA0600DCE5E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		E8579C9B2B46BA0700DCE5E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E8579C9E2B46CD5100DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E8579CA02B46CD5C00DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E8EE88B52B469E8000597769 /* TMTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMTimer.ttf; sourceTree = "<group>"; };
+		E8EE88BD2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E8EE88BE2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +141,7 @@
 		E818212A2B45B89A0022368D /* MTLiveWidget */ = {
 			isa = PBXGroup;
 			children = (
+				E8EE88B42B469E8000597769 /* Font */,
 				E818212B2B45B89A0022368D /* MTLiveWidgetBundle.swift */,
 				E818213B2B45B8B30022368D /* TMTimerManager.swift */,
 				E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */,
@@ -139,6 +150,14 @@
 				E81821332B45B89B0022368D /* Info.plist */,
 			);
 			path = MTLiveWidget;
+			sourceTree = "<group>";
+		};
+		E8EE88B42B469E8000597769 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE88B52B469E8000597769 /* TMTimer.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +224,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = E81820E42B45B8260022368D;
 			productRefGroup = E81820EE2B45B8260022368D /* Products */;
@@ -223,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81820FD2B45B8270022368D /* LaunchScreen.storyboard in Resources */,
+				E8EE88B62B469E8000597769 /* TMTimer.ttf in Resources */,
 				E81820FA2B45B8270022368D /* Assets.xcassets in Resources */,
 				E81820F82B45B8260022368D /* Main.storyboard in Resources */,
 			);
@@ -232,6 +254,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */,
+				E8EE88BA2B469F4000597769 /* TMTimer.ttf in Resources */,
 				E81821322B45B89B0022368D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +300,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E81820F72B45B8260022368D /* Base */,
+				E8EE88BD2B46B92C00597769 /* zh-Hans */,
+				E8579C9A2B46BA0600DCE5E8 /* zh-Hant */,
+				E8579C9E2B46CD5100DCE5E8 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -284,6 +311,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E81820FC2B45B8270022368D /* Base */,
+				E8EE88BE2B46B92C00597769 /* zh-Hans */,
+				E8579C9B2B46BA0700DCE5E8 /* zh-Hant */,
+				E8579CA02B46CD5C00DCE5E8 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -296,6 +326,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -343,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -359,6 +390,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -400,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
