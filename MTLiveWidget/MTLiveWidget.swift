@@ -78,7 +78,7 @@ struct MTLiveWidgetEntryView : View {
                 }
                 
                 Text(TMTimerManager.getDate(), style: .timer)
-                    .font(.custom("TMTimer", size: 78))
+                    .font(.custom("TMWidgetTimer", size: 78))
                     .multilineTextAlignment(.center)
                     .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 

@@ -1,0 +1,33 @@
+platform :ios, '16.2'
+
+def pods
+end
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/legokit/Specs.git'
+
+target 'Timer' do
+    
+    pod 'LEGOToast'
+    pod 'LEGOStoreKit', '0.1.3'
+    pod 'LEGONetworking'
+    pod 'SnapKit'
+
+    pod 'AFNetworking/NSURLSession', '3.2.1'
+    pod 'AFNetworking/Reachability', '3.2.1'
+    pod 'AFNetworking/Security', '3.2.1'
+    pod 'AFNetworking/Serialization', '3.2.1'
+    
+    pod 'UMCCommon'
+    pod 'UMCPush'
+
+#post_install do |installer|
+#  installer.pods_project.build_configurations.each do |config|
+#    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+#  end
+#end
+
+
+
+end
+

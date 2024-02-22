@@ -9,8 +9,10 @@ import UIKit
 
 class TMTimerManager: NSObject {
     
-    static let shader = TMTimerManager()
-        
+    static let share = TMTimerManager()
+    
+    var count: Int = 0
+    
     static func getDate() -> Date {
         let calendar = Calendar.current
         let endDate = Date()
@@ -24,6 +26,11 @@ class TMTimerManager: NSObject {
         dateFormatter.locale = .current
         let dateString = dateFormatter.string(from: Date())
         return dateString
+    }
+    
+    func getCount() -> String {
+        self.count += 1
+        return "\(self.count)"
     }
     
     ///     var content: AttributedString {

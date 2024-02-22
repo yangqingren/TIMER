@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AA00B70F738E5448EEE62F6 /* libPods-Timer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */; };
+		E8153BE12B85A3E700D74130 /* TMNeonClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8153BE02B85A3E700D74130 /* TMNeonClockViewController.swift */; };
+		E8153BE42B85A42F00D74130 /* TMTimerRunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8153BE32B85A42F00D74130 /* TMTimerRunManager.swift */; };
+		E8153BE82B85AA4F00D74130 /* TMTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8153BE72B85AA4F00D74130 /* TMTimer.ttf */; };
+		E8153BEB2B85AC6900D74130 /* String+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8153BEA2B85AC6900D74130 /* String+Category.swift */; };
 		E81820F12B45B8260022368D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81820F02B45B8260022368D /* AppDelegate.swift */; };
-		E81820F52B45B8260022368D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81820F42B45B8260022368D /* ViewController.swift */; };
 		E81820F82B45B8260022368D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820F62B45B8260022368D /* Main.storyboard */; };
 		E81820FA2B45B8270022368D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E81820F92B45B8270022368D /* Assets.xcassets */; };
 		E81820FD2B45B8270022368D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820FB2B45B8270022368D /* LaunchScreen.storyboard */; };
@@ -22,9 +26,16 @@
 		E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */; };
+		E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */; };
 		E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820F62B45B8260022368D /* Main.storyboard */; };
-		E8EE88B62B469E8000597769 /* TMTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EE88B52B469E8000597769 /* TMTimer.ttf */; };
-		E8EE88BA2B469F4000597769 /* TMTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EE88B52B469E8000597769 /* TMTimer.ttf */; };
+		E8822EFF2B85D11E00471E5A /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8822EFE2B85D11E00471E5A /* Date+Category.swift */; };
+		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
+		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
+		E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */; };
+		E8F3AE712B85934900B374F1 /* TMMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE702B85934900B374F1 /* TMMainViewController.swift */; };
+		E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */; };
+		E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE742B85976400B374F1 /* TMBasePageViewController.swift */; };
+		E8F3AE782B859ED400B374F1 /* TMBlackWhiteClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE772B859ED400B374F1 /* TMBlackWhiteClockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +63,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		48AD81F4A9DD813C4847ECF9 /* Pods-Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.debug.xcconfig"; path = "Target Support Files/Pods-Timer/Pods-Timer.debug.xcconfig"; sourceTree = "<group>"; };
+		81778ED9ED8BC79E83D9FBCD /* Pods-Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.release.xcconfig"; path = "Target Support Files/Pods-Timer/Pods-Timer.release.xcconfig"; sourceTree = "<group>"; };
+		AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Timer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8153BE02B85A3E700D74130 /* TMNeonClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMNeonClockViewController.swift; sourceTree = "<group>"; };
+		E8153BE32B85A42F00D74130 /* TMTimerRunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerRunManager.swift; sourceTree = "<group>"; };
+		E8153BE72B85AA4F00D74130 /* TMTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMTimer.ttf; sourceTree = "<group>"; };
+		E8153BEA2B85AC6900D74130 /* String+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Category.swift"; sourceTree = "<group>"; };
 		E81820ED2B45B8260022368D /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81820F02B45B8260022368D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E81820F42B45B8260022368D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E81820F72B45B8260022368D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E81820F92B45B8270022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81820FC2B45B8270022368D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,13 +85,21 @@
 		E81821312B45B89B0022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81821332B45B89B0022368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E818213B2B45B8B30022368D /* TMTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerManager.swift; sourceTree = "<group>"; };
+		E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMWidgetTimer.ttf; sourceTree = "<group>"; };
 		E8579C9A2B46BA0600DCE5E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		E8579C9B2B46BA0700DCE5E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E8579C9E2B46CD5100DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E8579CA02B46CD5C00DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		E8EE88B52B469E8000597769 /* TMTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMTimer.ttf; sourceTree = "<group>"; };
+		E8822EFE2B85D11E00471E5A /* Date+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
+		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
+		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
 		E8EE88BD2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E8EE88BE2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseViewController.swift; sourceTree = "<group>"; };
+		E8F3AE702B85934900B374F1 /* TMMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainViewController.swift; sourceTree = "<group>"; };
+		E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMConfigPrefix.swift; sourceTree = "<group>"; };
+		E8F3AE742B85976400B374F1 /* TMBasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBasePageViewController.swift; sourceTree = "<group>"; };
+		E8F3AE772B859ED400B374F1 /* TMBlackWhiteClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBlackWhiteClockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA00B70F738E5448EEE62F6 /* libPods-Timer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +123,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B141F264511127166D3EEE42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48AD81F4A9DD813C4847ECF9 /* Pods-Timer.debug.xcconfig */,
+				81778ED9ED8BC79E83D9FBCD /* Pods-Timer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E8153BE22B85A41700D74130 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E8153BE32B85A42F00D74130 /* TMTimerRunManager.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		E8153BE62B85AA4F00D74130 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				E8153BE72B85AA4F00D74130 /* TMTimer.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		E8153BE92B85AC4100D74130 /* Expand */ = {
+			isa = PBXGroup;
+			children = (
+				E8153BEA2B85AC6900D74130 /* String+Category.swift */,
+				E8822EFE2B85D11E00471E5A /* Date+Category.swift */,
+			);
+			path = Expand;
+			sourceTree = "<group>";
+		};
 		E81820E42B45B8260022368D = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +164,7 @@
 				E818212A2B45B89A0022368D /* MTLiveWidget */,
 				E81821252B45B89A0022368D /* Frameworks */,
 				E81820EE2B45B8260022368D /* Products */,
+				B141F264511127166D3EEE42 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,7 +181,15 @@
 			isa = PBXGroup;
 			children = (
 				E81820F02B45B8260022368D /* AppDelegate.swift */,
-				E81820F42B45B8260022368D /* ViewController.swift */,
+				E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */,
+				E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */,
+				E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */,
+				E8F3AE702B85934900B374F1 /* TMMainViewController.swift */,
+				E8153BE92B85AC4100D74130 /* Expand */,
+				E8153BE62B85AA4F00D74130 /* Font */,
+				E8C7CD7D2B85FCAB00A87087 /* Motion */,
+				E8153BE22B85A41700D74130 /* Timer */,
+				E8F3AE762B859D7E00B374F1 /* Pages */,
 				E81820F62B45B8260022368D /* Main.storyboard */,
 				E81820F92B45B8270022368D /* Assets.xcassets */,
 				E81820FB2B45B8270022368D /* LaunchScreen.storyboard */,
@@ -134,6 +203,7 @@
 			children = (
 				E81821262B45B89A0022368D /* WidgetKit.framework */,
 				E81821282B45B89A0022368D /* SwiftUI.framework */,
+				AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,7 +211,7 @@
 		E818212A2B45B89A0022368D /* MTLiveWidget */ = {
 			isa = PBXGroup;
 			children = (
-				E8EE88B42B469E8000597769 /* Font */,
+				E85626782B86DE9F00053DB9 /* Font */,
 				E818212B2B45B89A0022368D /* MTLiveWidgetBundle.swift */,
 				E818213B2B45B8B30022368D /* TMTimerManager.swift */,
 				E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */,
@@ -152,12 +222,30 @@
 			path = MTLiveWidget;
 			sourceTree = "<group>";
 		};
-		E8EE88B42B469E8000597769 /* Font */ = {
+		E85626782B86DE9F00053DB9 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				E8EE88B52B469E8000597769 /* TMTimer.ttf */,
+				E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		E8C7CD7D2B85FCAB00A87087 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		E8F3AE762B859D7E00B374F1 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E8F3AE742B85976400B374F1 /* TMBasePageViewController.swift */,
+				E8153BE02B85A3E700D74130 /* TMNeonClockViewController.swift */,
+				E8F3AE772B859ED400B374F1 /* TMBlackWhiteClockViewController.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,10 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E81821172B45B8270022368D /* Build configuration list for PBXNativeTarget "Timer" */;
 			buildPhases = (
+				0ABE5BFFA65EB1B9D97E9A94 /* [CP] Check Pods Manifest.lock */,
 				E81820E92B45B8260022368D /* Sources */,
 				E81820EA2B45B8260022368D /* Frameworks */,
 				E81820EB2B45B8260022368D /* Resources */,
 				E818213A2B45B89B0022368D /* Embed Foundation Extensions */,
+				8B63563EA4DF5DFE604CCA0E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -244,7 +334,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81820FD2B45B8270022368D /* LaunchScreen.storyboard in Resources */,
-				E8EE88B62B469E8000597769 /* TMTimer.ttf in Resources */,
+				E8153BE82B85AA4F00D74130 /* TMTimer.ttf in Resources */,
+				E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */,
 				E81820FA2B45B8270022368D /* Assets.xcassets in Resources */,
 				E81820F82B45B8260022368D /* Main.storyboard in Resources */,
 			);
@@ -255,22 +346,73 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */,
-				E8EE88BA2B469F4000597769 /* TMTimer.ttf in Resources */,
 				E81821322B45B89B0022368D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0ABE5BFFA65EB1B9D97E9A94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Timer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B63563EA4DF5DFE604CCA0E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Timer/Pods-Timer-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Timer/Pods-Timer-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Timer/Pods-Timer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E81820E92B45B8260022368D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E81820F52B45B8260022368D /* ViewController.swift in Sources */,
 				E81820F12B45B8260022368D /* AppDelegate.swift in Sources */,
+				E8153BEB2B85AC6900D74130 /* String+Category.swift in Sources */,
+				E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */,
+				E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */,
+				E8153BE42B85A42F00D74130 /* TMTimerRunManager.swift in Sources */,
+				E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */,
+				E8F3AE782B859ED400B374F1 /* TMBlackWhiteClockViewController.swift in Sources */,
+				E8822EFF2B85D11E00471E5A /* Date+Category.swift in Sources */,
+				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
+				E8153BE12B85A3E700D74130 /* TMNeonClockViewController.swift in Sources */,
+				E8F3AE712B85934900B374F1 /* TMMainViewController.swift in Sources */,
 				E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */,
 				E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */,
+				E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +586,7 @@
 		};
 		E81821182B45B8270022368D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48AD81F4A9DD813C4847ECF9 /* Pods-Timer.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -451,14 +594,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,6 +619,7 @@
 		};
 		E81821192B45B8270022368D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81778ED9ED8BC79E83D9FBCD /* Pods-Timer.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -482,14 +627,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

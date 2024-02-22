@@ -40,13 +40,13 @@ struct MTLiveWidgetLiveActivity: Widget {
                         Text(TMTimerManager.getWeek("EEE"))
                             .font(.system(size: 14))
                             .multilineTextAlignment(.center)
-                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                            .shadow(color: .white, radius: 2, x: 0, y: 2)
                     }
 
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     Text(TMTimerManager.getDate(), style: .timer)
-                        .font(.custom("TMTimer", size: 85))
+                        .font(.custom("TMWidgetTimer", size: 85))
                         .multilineTextAlignment(.center)
                         .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 }
@@ -90,17 +90,23 @@ struct LockScreenLiveActivityView: View {
                     Text(TMTimerManager.getDate(), style: .date)
                         .font(.system(size: 16))
                         .multilineTextAlignment(.center)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
                     
                     Text(TMTimerManager.getWeek("EEE"))
                         .font(.system(size: 16))
                         .multilineTextAlignment(.center)
                         .shadow(color: .gray, radius: 2, x: 0, y: 5)
+                    
+                    Text(TMTimerManager.share.getCount())
+                        .font(.system(size: 16))
+                        .multilineTextAlignment(.center)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
+                    
                 }
 
                 
                 Text(TMTimerManager.getDate(), style: .timer)
-                    .font(.custom("TMTimer", size: 85))
+                    .font(.custom("TMWidgetTimer", size: 85))
                     .multilineTextAlignment(.center)
                     .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 
