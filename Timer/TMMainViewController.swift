@@ -31,7 +31,9 @@ class TMMainViewController: TMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // 不息屏
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         self.addChild(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.view.snp.makeConstraints { make in
@@ -40,16 +42,17 @@ class TMMainViewController: TMBaseViewController {
         
         self.pageViewController.setViewControllers([self.pages.first!], direction: .forward, animated: false)
         
-        
         UIScreen.main.brightness = 1.0
         TMMontionManager.share.startMotionUpdates()
         TMTimerRunManager.share.startTimeUpdates()
         
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { [weak self] (notification) in
             guard let `self` = self else { return }
-            UIScreen.main.brightness = 1.0
-            TMMontionManager.share.startMotionUpdates()
-            TMTimerRunManager.share.startTimeUpdates()
+            if let vc = self.pageViewController.viewControllers?.first, vc.isKind(of: TMNeonClockViewController.self) {
+                UIScreen.main.brightness = 1.0
+                TMMontionManager.share.startMotionUpdates()
+                TMTimerRunManager.share.startTimeUpdates()
+            }
         }
 
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: OperationQueue.current) { [weak self] (notification) in

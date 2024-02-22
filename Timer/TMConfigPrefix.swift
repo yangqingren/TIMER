@@ -32,6 +32,10 @@ let IsPhoneXisland: Bool = {
     return isPhoneX
 }()
 
+func TMLocalizedString(_ key: String) -> String {
+    return Bundle.main.localizedString(forKey: key, value: "", table: nil)
+}
+
 let LEGOScreenWidth = UIScreen.main.bounds.width
 let LEGOScreenHeight = UIScreen.main.bounds.height
 let LEGOViewRate = LEGOScreenWidth / 375.0

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Timer
+
+  Created by yangqingren on 2024/2/22.
+  
+*/
+
+CFBundleDisplayName = "TiiMii Clock";

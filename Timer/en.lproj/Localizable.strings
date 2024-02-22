@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Timer
+
+  Created by yangqingren on 2024/2/22.
+  
+*/
+
+"凌 晨" = "Morning";
+"早 安" = "Morning";
+"午 安" = "Noon";
+"下 午" = "Afternoon";
+"傍 晚" = "Evening";
+"晚 安" = "Night";
+
+"好 心 情  ⏎" = "in the Mood  ⏎";
+
+
