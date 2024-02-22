@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TMNeonClockView: UIView {
+class TMNeonClockView: TMBaseView {
 
     lazy var contentView: UIView = {
         let view = UIView()
@@ -118,7 +118,9 @@ class TMNeonClockView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupNeonClockView() {
+    override func timeUpdates() {
+        super.timeUpdates()
+        
         self.setupTimeLabel()
         self.setupDateLabel()
         self.setupWeekLabel()

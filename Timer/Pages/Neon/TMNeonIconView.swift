@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TMNeonIconView: UIView {
+class TMNeonIconView: TMBaseView {
 
     lazy var legoImageView: UIImageView = {
         let view = UIImageView()
@@ -23,7 +23,8 @@ class TMNeonIconView: UIView {
         return view
     }()
     
-    func setupIconByUpdates() {
+    override func timeUpdates() {
+        super.timeUpdates()
 
     }
 

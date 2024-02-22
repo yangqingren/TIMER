@@ -9,7 +9,7 @@ import UIKit
 
 private let kUserDefaultsTextSave = "kUserDefaultsTextSave"
 
-class TMNeonTextFieldView: UIView, UITextFieldDelegate {
+class TMNeonTextFieldView: TMBaseView, UITextFieldDelegate {
 
     lazy var textField: UITextField = {
         let field = UITextField()
@@ -44,7 +44,7 @@ class TMNeonTextFieldView: UIView, UITextFieldDelegate {
     
     @objc func textFieldChanged(_ sender: UITextField) {
         self.text = sender.text
-        self.setupTextByUpdates()
+        self.timeUpdates()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -75,7 +75,9 @@ class TMNeonTextFieldView: UIView, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupTextByUpdates() {
+    override func timeUpdates() {
+        super.timeUpdates()
+
         if let text = self.text, text.count > 0 {
             self.setupTextChanged(text)
         }

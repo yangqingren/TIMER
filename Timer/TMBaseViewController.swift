@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol TMTimeUpdatesProtocol {
+    func motionUpdates(directin: TMMontionDirection)
+    func timeUpdates()
+}
+
 class TMBaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -24,11 +29,30 @@ class TMBaseViewController: UIViewController {
     }
 
     func motionUpdates(directin: TMMontionDirection) {
-        
+                
+        for subView in self.view.subviews {
+            if let view = subView as? TMBaseView {
+                view.motionUpdates(directin: directin)
+            }
+            for subsubView in subView.subviews {
+                if let view = subsubView as? TMBaseView {
+                    view.motionUpdates(directin: directin)
+                }
+            }
+        }
     }
     
     func timeUpdates() {
-        
+        for subView in self.view.subviews {
+            if let view = subView as? TMBaseView {
+                view.timeUpdates()
+            }
+            for subsubView in subView.subviews {
+                if let view = subsubView as? TMBaseView {
+                    view.timeUpdates()
+                }
+            }
+        }
     }
     
     /*

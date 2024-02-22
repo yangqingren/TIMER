@@ -15,13 +15,17 @@ class TMDelegateManager: NSObject {
 
     weak var neon: TMBaseViewController?
     
+    weak var bw: TMBaseViewController?
+    
     var delegates: [TMBaseViewController] {
         get {
             var array = [TMBaseViewController]()
             if let neon = self.neon {
                 array.append(neon)
             }
-            
+            if let bw = self.bw {
+                array.append(bw)
+            }
             return array
         }
     }

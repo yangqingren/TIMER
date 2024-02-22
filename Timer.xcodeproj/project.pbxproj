@@ -25,10 +25,11 @@
 		E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */; };
+		E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8527D662B87418B00CCD428 /* TMBWBaseView.swift */; };
 		E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */; };
 		E856267B2B86E24400053DB9 /* TMWidgetTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */; };
 		E85626802B86E29C00053DB9 /* TMNeonClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856267D2B86E29C00053DB9 /* TMNeonClockViewController.swift */; };
-		E85626812B86E29C00053DB9 /* TMBlackWhiteClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856267F2B86E29C00053DB9 /* TMBlackWhiteClockViewController.swift */; };
+		E85626812B86E29C00053DB9 /* TMBWClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856267F2B86E29C00053DB9 /* TMBWClockViewController.swift */; };
 		E85626832B86E2B800053DB9 /* TMNeonClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85626822B86E2B800053DB9 /* TMNeonClockView.swift */; };
 		E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85626842B86E41800053DB9 /* TMNeonTextFieldView.swift */; };
 		E85626882B86E75A00053DB9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E856268A2B86E75A00053DB9 /* InfoPlist.strings */; };
@@ -36,6 +37,7 @@
 		E85626952B871B4900053DB9 /* TMNeonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85626942B871B4900053DB9 /* TMNeonIconView.swift */; };
 		E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820F62B45B8260022368D /* Main.storyboard */; };
 		E8822EFF2B85D11E00471E5A /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8822EFE2B85D11E00471E5A /* Date+Category.swift */; };
+		E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C068E2B872F4D00E6106F /* TMBaseView.swift */; };
 		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
 		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
 		E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */; };
@@ -90,9 +92,10 @@
 		E81821312B45B89B0022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81821332B45B89B0022368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E818213B2B45B8B30022368D /* TMTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerManager.swift; sourceTree = "<group>"; };
+		E8527D662B87418B00CCD428 /* TMBWBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBWBaseView.swift; sourceTree = "<group>"; };
 		E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMWidgetTimer.ttf; sourceTree = "<group>"; };
 		E856267D2B86E29C00053DB9 /* TMNeonClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMNeonClockViewController.swift; sourceTree = "<group>"; };
-		E856267F2B86E29C00053DB9 /* TMBlackWhiteClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMBlackWhiteClockViewController.swift; sourceTree = "<group>"; };
+		E856267F2B86E29C00053DB9 /* TMBWClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMBWClockViewController.swift; sourceTree = "<group>"; };
 		E85626822B86E2B800053DB9 /* TMNeonClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMNeonClockView.swift; sourceTree = "<group>"; };
 		E85626842B86E41800053DB9 /* TMNeonTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMNeonTextFieldView.swift; sourceTree = "<group>"; };
 		E85626892B86E75A00053DB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		E8579C9E2B46CD5100DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E8579CA02B46CD5C00DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E8822EFE2B85D11E00471E5A /* Date+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
+		E89C068E2B872F4D00E6106F /* TMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseView.swift; sourceTree = "<group>"; };
 		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
 		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
 		E8EE88BD2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				E81820F02B45B8260022368D /* AppDelegate.swift */,
 				E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */,
 				E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */,
+				E89C068E2B872F4D00E6106F /* TMBaseView.swift */,
 				E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */,
 				E8F3AE702B85934900B374F1 /* TMMainViewController.swift */,
 				E8153BE92B85AC4100D74130 /* Expand */,
@@ -261,7 +266,8 @@
 		E856267E2B86E29C00053DB9 /* BW */ = {
 			isa = PBXGroup;
 			children = (
-				E856267F2B86E29C00053DB9 /* TMBlackWhiteClockViewController.swift */,
+				E856267F2B86E29C00053DB9 /* TMBWClockViewController.swift */,
+				E8527D662B87418B00CCD428 /* TMBWBaseView.swift */,
 			);
 			path = BW;
 			sourceTree = "<group>";
@@ -442,17 +448,19 @@
 				E8153BEB2B85AC6900D74130 /* String+Category.swift in Sources */,
 				E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */,
 				E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */,
-				E85626812B86E29C00053DB9 /* TMBlackWhiteClockViewController.swift in Sources */,
+				E85626812B86E29C00053DB9 /* TMBWClockViewController.swift in Sources */,
 				E8153BE42B85A42F00D74130 /* TMTimerRunManager.swift in Sources */,
 				E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */,
 				E85626832B86E2B800053DB9 /* TMNeonClockView.swift in Sources */,
 				E8822EFF2B85D11E00471E5A /* Date+Category.swift in Sources */,
+				E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */,
 				E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */,
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
 				E8F3AE712B85934900B374F1 /* TMMainViewController.swift in Sources */,
 				E85626802B86E29C00053DB9 /* TMNeonClockViewController.swift in Sources */,
 				E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */,
 				E85626952B871B4900053DB9 /* TMNeonIconView.swift in Sources */,
+				E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */,
 				E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */,
 				E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */,
 			);

@@ -8,6 +8,8 @@
 import Foundation
 import SnapKit
 
+let TIIMII = "TIIMII"
+
 let IsPhoneX: Bool = {
     var isPhoneX = false
     if #available(iOS 11.0, *) {

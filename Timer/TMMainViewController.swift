@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension NSNotification.Name {
+    static let kBackgroundColor = NSNotification.Name(rawValue: "kNotifiBackgroundColor")
+}
+
+let kNotifiBackgroundColor = "kNotifiBackgroundColor"
+
 class TMMainViewController: TMBaseViewController {
 
     lazy var pageViewController: UIPageViewController = {
@@ -18,7 +24,8 @@ class TMMainViewController: TMBaseViewController {
     
     lazy var pages: [TMBasePageViewController] = {
         let vc1 = TMNeonClockViewController()
-        return [vc1]
+        let v2 = TMBWClockViewController()
+        return [vc1, v2]
     }()
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,16 +49,15 @@ class TMMainViewController: TMBaseViewController {
         
         self.pageViewController.setViewControllers([self.pages.first!], direction: .forward, animated: false)
         
-        UIScreen.main.brightness = 1.0
         TMMontionManager.share.startMotionUpdates()
         TMTimerRunManager.share.startTimeUpdates()
         
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { [weak self] (notification) in
             guard let `self` = self else { return }
+            TMMontionManager.share.startMotionUpdates()
+            TMTimerRunManager.share.startTimeUpdates()
             if let vc = self.pageViewController.viewControllers?.first, vc.isKind(of: TMNeonClockViewController.self) {
                 UIScreen.main.brightness = 1.0
-                TMMontionManager.share.startMotionUpdates()
-                TMTimerRunManager.share.startTimeUpdates()
             }
         }
 
@@ -62,8 +68,13 @@ class TMMainViewController: TMBaseViewController {
             TMTimerRunManager.share.stopTimeUpdates()
         }
 
-        
 
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.kBackgroundColor, object: nil, queue: .main) { noti in
+            if let color = noti.object as? UIColor {
+                self.view.backgroundColor = color
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     

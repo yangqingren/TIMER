@@ -23,15 +23,10 @@ class TMNeonClockViewController: TMBasePageViewController {
         shadow.shadowColor = UIColor.init(r: 148, g: 226, b: 250, a: 1)
         shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        label.attributedText = String.getExpansionString(text: "TIIMII", expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
+        label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
         return label
     }()
-    
-    lazy var transformView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
+        
     lazy var neonIconView: TMNeonIconView = {
         let view = TMNeonIconView()
         return view
@@ -56,12 +51,7 @@ class TMNeonClockViewController: TMBasePageViewController {
             make.left.equalTo(self.view.safeAreaInsets.left).offset(20.dp)
             make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
         }
-        
-        self.view.addSubview(self.transformView)
-        self.transformView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
+                
         self.transformView.addSubview(self.neonClockView)
         self.neonClockView.snp.makeConstraints { make in
             make.size.equalTo(TMNeonClockView.viewSize())
@@ -90,6 +80,11 @@ class TMNeonClockViewController: TMBasePageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TMDelegateManager.share.neon = self
+        UIScreen.main.brightness = 1.0
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIScreen.main.brightness = 0.5
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -100,30 +95,7 @@ class TMNeonClockViewController: TMBasePageViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    override func motionUpdates(directin: TMMontionDirection) {
-        var transform = CGAffineTransform.identity
-        switch directin {
-        case .original:
-            transform = CGAffineTransform.identity
-        case .left:
-            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
-        case .right:
-            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-        case .down:
-            transform = CGAffineTransform.identity.rotated(by: .pi)
-        }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
-            self.transformView.transform = transform
-        }
-    }
-
-    override func timeUpdates() {
-        self.neonClockView.setupNeonClockView()
-        self.neonTextView.setupTextByUpdates()
-        self.neonIconView.setupIconByUpdates()
-    }
-    
+        
     /*
     // MARK: - Navigation
 
