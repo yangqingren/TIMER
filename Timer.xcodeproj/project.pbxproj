@@ -59,6 +59,7 @@
 		E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A095342B8C6836004EE16D /* TMMainBottomView.swift */; };
 		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
 		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
+		E8E8691C2B8DE94500D8C627 /* LEGOHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */; };
 		E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */; };
 		E8F3AE712B85934900B374F1 /* TMMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE702B85934900B374F1 /* TMMainViewController.swift */; };
 		E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */; };
@@ -152,6 +153,7 @@
 		E8A095342B8C6836004EE16D /* TMMainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainBottomView.swift; sourceTree = "<group>"; };
 		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
 		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
+		E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEGOHighlightButton.swift; sourceTree = "<group>"; };
 		E8EE88BD2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E8EE88BE2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				E8F3AE722B8596CA00B374F1 /* TMConfigPrefix.swift */,
 				E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */,
 				E89C068E2B872F4D00E6106F /* TMBaseView.swift */,
+				E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */,
 				E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */,
 				E8F3AE702B85934900B374F1 /* TMMainViewController.swift */,
 				E8F420DA2B8B61EA001F20EF /* Main */,
@@ -564,6 +567,7 @@
 				E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */,
 				E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */,
 				E8129D262B8DC49D00F2CB3F /* TMMainBottomCell.swift in Sources */,
+				E8E8691C2B8DE94500D8C627 /* LEGOHighlightButton.swift in Sources */,
 				E889093F2B8D780800714237 /* TMElectronViewController.swift in Sources */,
 				E85626812B86E29C00053DB9 /* TMBWClockViewController.swift in Sources */,
 				E88909412B8D785200714237 /* TMElectronView.swift in Sources */,

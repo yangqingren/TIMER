@@ -55,7 +55,8 @@ class TMMainViewController: TMBaseViewController {
             array.insert(TMMainVcItem.init(type: .bw, .white), at: 0)
         }
         else {
-            array.insert(TMMainVcItem.init(type: .bw), at: 0)
+            let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
+            array.insert(TMMainVcItem.init(type: .bw, subType), at: 0)
         }
         return array
     }
@@ -92,6 +93,24 @@ class TMMainViewController: TMBaseViewController {
         return view
     }()
     
+    lazy var upButton: LEGOHighlightButton = {
+        let button = LEGOHighlightButton(type: .custom)
+        button.setImage(UIImage.init(named: "mian_button_up"), for: .normal)
+        button.setImage(UIImage.init(named: "mian_button_up"), for: .highlighted)
+        button.addTarget(self, action: #selector(upButtonClick(_:)), for: .touchUpInside)
+        button.hotspot = 8.dp
+        return button
+    }()
+    
+    lazy var settingButton: LEGOHighlightButton = {
+        let button = LEGOHighlightButton(type: .custom)
+        button.setImage(UIImage.init(named: "mian_button_setting"), for: .normal)
+        button.setImage(UIImage.init(named: "mian_button_setting"), for: .highlighted)
+        button.addTarget(self, action: #selector(settingButtonClick(_:)), for: .touchUpInside)
+        button.hotspot = 8.dp
+        return button
+    }()
+        
     var location = 0.0
     var offsetY = 0.0
     
@@ -133,6 +152,20 @@ class TMMainViewController: TMBaseViewController {
             make.size.equalTo(TMPageMenuView.viewSize())
             make.bottom.equalToSuperview().offset(IsPhoneX ? -23.dp : -15.dp)
             make.right.equalToSuperview().offset(-25.dp)
+        }
+        
+        self.pageViewController.view.addSubview(self.upButton)
+        self.upButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
+            make.left.equalToSuperview().offset(25.dp)
+            make.centerY.equalTo(self.menuView)
+        }
+        
+        self.pageViewController.view.addSubview(self.settingButton)
+        self.settingButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
+            make.left.equalTo(self.upButton.snp.right).offset(16.dp)
+            make.centerY.equalTo(self.menuView)
         }
                 
         let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType)) ?? .bw
@@ -182,6 +215,8 @@ class TMMainViewController: TMBaseViewController {
         if brightness {
             self.menuView.contentView.alpha = 0.65
             self.bottomView.alpha = 0.65
+            self.upButton.alpha = 0.65
+            self.settingButton.alpha = 0.65
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 UIScreen.main.brightness = 1.0
             }
@@ -190,6 +225,8 @@ class TMMainViewController: TMBaseViewController {
             UIScreen.main.brightness = 0.5
             self.menuView.contentView.alpha = 1
             self.bottomView.alpha = 1
+            self.upButton.alpha = 1
+            self.settingButton.alpha = 1
         }
     }
     
@@ -223,7 +260,7 @@ extension TMMainViewController: UIPageViewControllerDataSource, UIPageViewContro
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let vc = pageViewController.viewControllers?.first as? TMBasePageViewController, finished, completed {
-            self.menuView.item = vc.item
+            self.menuView.setupType(vc.item)
         }
     }
 }
@@ -242,7 +279,7 @@ extension TMMainViewController: TMPageMenuViewDelegate {
         if let vc = vc {
             self.pageViewController.setViewControllers([vc], direction: navigation, animated: true)
             if let bwVc = vc as? TMBWClockViewController {
-                bwVc.subType = item.subType ?? .white
+                bwVc.item = item
                 NotificationCenter.default.post(name: NSNotification.Name.kNotifiVcThemeChanged, object: nil)
             }
         }
@@ -264,6 +301,12 @@ extension TMMainViewController: TMPageMenuViewDelegate {
             break
         case .changed:
             offsetY = self.offsetY + (location.y - self.location)
+            if abs(offsetY) > max / 2.0 {
+                self.upButton.isSelected = true
+            }
+            else {
+                self.upButton.isSelected = false
+            }
         case .ended, .cancelled:
             offsetY = self.offsetY + (location.y - self.location)
             if offsetY < -max * 0.5 {
@@ -273,6 +316,7 @@ extension TMMainViewController: TMPageMenuViewDelegate {
                 offsetY = min
             }
             self.offsetY = offsetY
+            self.setupUpButton()
         default:
             break
         }
@@ -282,10 +326,12 @@ extension TMMainViewController: TMPageMenuViewDelegate {
             if velocity.y > 0 {
                 transform = .identity
                 self.offsetY = min
+                self.upButton.isSelected = false
             }
             else {
                 transform = .identity.translatedBy(x: 0, y: -max)
                 self.offsetY = -max
+                self.upButton.isSelected = true
             }
             UIView.animate(withDuration: 0.1, delay: 0, options: .curveLinear) {
                 self.pageViewController.view.transform = transform
@@ -316,4 +362,31 @@ extension TMMainViewController: TMPageMenuViewDelegate {
         }
     }
 
+    @objc func upButtonClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveLinear) {
+            if sender.isSelected {
+                self.pageViewController.view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: -TMMainBottomView.viewSize().height)
+                self.pageViewController.view.layer.cornerRadius = kBottomCornerRadius
+            }
+            else {
+                self.pageViewController.view.transform = CGAffineTransform.identity
+                self.pageViewController.view.layer.cornerRadius = 0
+            }
+        }
+        self.setupUpButton()
+    }
+    
+    func setupUpButton() {
+        if self.upButton.isSelected {
+            self.upButton.transform = CGAffineTransform.identity.rotated(by: .pi)
+        }
+        else {
+            self.upButton.transform = CGAffineTransform.identity
+        }
+    }
+    
+    @objc func settingButtonClick(_ sender: UIButton) {
+        
+    }
 }

@@ -20,8 +20,6 @@ enum TMBwVcThemeType {
 
 class TMBWClockViewController: TMBasePageViewController {
     
-    var subType: TMBwVcTheme = .white
-        
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
@@ -162,7 +160,7 @@ class TMBWClockViewController: TMBasePageViewController {
     }
         
     @objc func setupThemeVcChanged() {
-        let theme = self.subType
+        let theme = self.item.subType ?? .white
         self.view.backgroundColor = TMBWClockViewController.getThemeColor(theme, .vcBg)
         self.bwHHView.setupTheme(theme)
         self.bwMmView.setupTheme(theme)

@@ -9,7 +9,7 @@ import UIKit
 
 class TMBasePageViewController: TMBaseViewController {
     
-    let item: TMMainVcItem
+    var item: TMMainVcItem
     
     let vcType: TMMainVcType
 
