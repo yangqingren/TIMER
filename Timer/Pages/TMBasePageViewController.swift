@@ -9,12 +9,12 @@ import UIKit
 
 class TMBasePageViewController: TMBaseViewController {
     
-    let type: TMPageMenuType
+    let item: TMMainVcItem
     
     let vcType: TMMainVcType
 
-    init(_ type: TMPageMenuType, _ vcType: TMMainVcType) {
-        self.type = type
+    init(_ item: TMMainVcItem, _ vcType: TMMainVcType) {
+        self.item = item
         self.vcType = vcType
         super.init(nibName: nil, bundle: nil)
     }

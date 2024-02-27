@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TMPageMenuViewDelegate {
-    func pageMenuRoundViewCick(_ type: TMPageMenuType, _ navigation : UIPageViewController.NavigationDirection)
+    func pageMenuRoundViewCick(_ item: TMMainVcItem, _ navigation : UIPageViewController.NavigationDirection)
 }
 
 class TMPageMenuView: UIView {
@@ -33,7 +33,7 @@ class TMPageMenuView: UIView {
     lazy var items = [TMPageRoundView]()
     
     override init(frame: CGRect) {
-        self.type = .bw
+        
         super.init(frame: frame)
         
         self.addSubview(self.contentView)
@@ -52,8 +52,8 @@ class TMPageMenuView: UIView {
         
         let itemW = TMPageMenuView.viewSize().width / 6.0
         let itemH = TMPageMenuView.viewSize().height
-        for (index, item) in TMMainViewController.dataArray.enumerated() {
-            let item = TMPageRoundView(frame: .zero, type: item.type)
+        for (index, item) in TMMainViewController.getDataArray().enumerated() {
+            let item = TMPageRoundView(frame: .zero, item: item)
             self.contentView.addSubview(item)
             item.snp.makeConstraints { make in
                 make.size.equalTo(CGSize(width: itemW, height: itemH))
@@ -63,38 +63,47 @@ class TMPageMenuView: UIView {
             item.addTarget(self, action: #selector(roundViewCick(_:)), for: .touchUpInside)
             self.items.append(item)
         }
+        
     }
     
-    var type: TMPageMenuType {
-        didSet {
-            UserDefaults.standard.set(type.rawValue, forKey: kUserDefaultsVcType)
-            for item in self.items {
-                if item.type == type {
-                    item.isSelected = true
-                }
-                else {
-                    item.isSelected = false
-                }
-            }
-        }
-    }
+    var item: TMMainVcItem?
     
     @objc func roundViewCick(_ sender: TMPageRoundView) {
-        self.setupType(sender.type)
-    }
-    
-    func setupType(_ type: TMPageMenuType) {
-        let navigation: UIPageViewController.NavigationDirection = self.type.rawValue > type.rawValue ? .reverse : .forward
-        self.delegate?.pageMenuRoundViewCick(type, navigation)
-        if self.type == type, type == .bw {
-            for item in self.items {
-                if item.type == .bw {
-                    item.bwRound.transform = item.bwRound.transform.rotated(by: .pi)
-                    break
-                }
+        if sender.item.type == .bw, let currItem = self.item {
+            if currItem.subType == .black {
+                sender.item.subType = .white
+            }
+            else {
+                sender.item.subType = .black
             }
         }
-        self.type = type
+        self.setupType(sender.item)
+    }
+    
+    func setupType(_ item: TMMainVcItem) {
+        let navigation: UIPageViewController.NavigationDirection = self.item?.type.rawValue ?? 0 > item.type.rawValue ? .reverse : .forward
+        for obj in self.items {
+            if item.type == .bw && obj.item.type == .bw {
+                if item.subType == .black {
+                    obj.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180 * 45.0 + .pi)
+                }
+                else {
+                    obj.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180 * 45.0)
+                }
+            }
+            if obj.item.type == item.type {
+                obj.isSelected = true
+            }
+            else {
+                obj.isSelected = false
+            }
+        }
+        if item.type == .bw {
+            UserDefaults.standard.set(item.subType?.rawValue ?? 0, forKey: kTMBwVcThemeColor)
+        }
+        UserDefaults.standard.set(item.type.rawValue, forKey: kUserDefaultsVcType)
+        self.item = item
+        self.delegate?.pageMenuRoundViewCick(item, navigation)
     }
     
     required init?(coder: NSCoder) {
@@ -110,7 +119,7 @@ class TMPageMenuView: UIView {
 
 class TMPageRoundView: UIButton {
     
-    var type: TMPageMenuType
+    var item: TMMainVcItem
     
     lazy var round: UIView = {
         let view = UIView()
@@ -130,8 +139,8 @@ class TMPageRoundView: UIButton {
         return view
     }()
     
-    init(frame: CGRect, type: TMPageMenuType) {
-        self.type = type
+    init(frame: CGRect, item: TMMainVcItem) {
+        self.item = item
         super.init(frame: frame)
             
         self.addSubview(self.selectRound)
@@ -159,14 +168,20 @@ class TMPageRoundView: UIButton {
         self.bwRound.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        self.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180.0 * 45.0)
         self.bwRound.layer.cornerRadius = 18.dp / 2.0
         self.bwRound.layer.masksToBounds = true
         
-        switch self.type {
+        switch self.item.type {
         case .bw:
             self.round.backgroundColor = UIColor.init(r: 242, g: 242, b: 242, a: 0)
             self.bwRound.isHidden = false
+            let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
+            if subType == .black {
+                self.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180 * 45.0 + .pi)
+            }
+            else {
+                self.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180 * 45.0)
+            }
         case .shadow:
             self.round.backgroundColor = UIColor.init(r: 116, g: 188, b: 136, a: 1)
             self.bwRound.isHidden = true

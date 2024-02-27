@@ -20,7 +20,10 @@ class TMMainVcItem: NSObject {
     
     let type: TMPageMenuType
     
-    init(type: TMPageMenuType) {
+    var subType: TMBwVcTheme?
+    
+    init(type: TMPageMenuType, _ subType: TMBwVcTheme? = nil) {
         self.type = type
+        self.subType = subType
     }
 }

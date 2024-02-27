@@ -114,6 +114,7 @@ class TMNeonClockViewController: TMBasePageViewController {
         super.viewDidDisappear(animated)
         if self.vcType == .main {
             TMDelegateManager.share.neon = nil
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: false)
         }
     }
     

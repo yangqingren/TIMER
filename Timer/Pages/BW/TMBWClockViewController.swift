@@ -7,8 +7,6 @@
 
 import UIKit
 
-let kTMBwVcThemeColor = "kTMBwVcThemeColor"
-
 enum TMBwVcTheme: Int {
     case white = 0
     case black = 1
@@ -22,6 +20,8 @@ enum TMBwVcThemeType {
 
 class TMBWClockViewController: TMBasePageViewController {
     
+    var subType: TMBwVcTheme = .white
+        
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
@@ -162,8 +162,7 @@ class TMBWClockViewController: TMBasePageViewController {
     }
         
     @objc func setupThemeVcChanged() {
-        let themeInt = UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)
-        let theme = TMBwVcTheme.init(rawValue: themeInt) ?? .white
+        let theme = self.subType
         self.view.backgroundColor = TMBWClockViewController.getThemeColor(theme, .vcBg)
         self.bwHHView.setupTheme(theme)
         self.bwMmView.setupTheme(theme)

@@ -53,6 +53,10 @@ class TMMainBottomView: TMBaseView {
         label.font = .systemFont(ofSize: 18.sp, weight: .medium)
         return label
     }()
+    
+    lazy var dataArray: [TMMainVcItem] = {
+        return TMMainViewController.getDataArray(.bottom)
+    }()
             
     lazy var collectionLayout: TMMainCollectionLayout = {
         let layout = TMMainCollectionLayout()
@@ -63,7 +67,7 @@ class TMMainBottomView: TMBaseView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionLayout)
         view.backgroundColor = .clear
         view.alwaysBounceHorizontal = true
-        for item in TMMainViewController.dataArray {
+        for item in self.dataArray {
             view.register(TMMainBottomCell.self, forCellWithReuseIdentifier: "TMMainBottomCell_\(item.type.rawValue)")
         }
         view.dataSource = self
@@ -141,11 +145,11 @@ class TMMainBottomView: TMBaseView {
 extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TMMainViewController.dataArray.count
+        return self.dataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = TMMainViewController.dataArray[indexPath.row]
+        let item = self.dataArray[indexPath.row]
         let identity = "TMMainBottomCell_\(item.type.rawValue)"
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identity, for: indexPath) as? TMMainBottomCell {
             cell.setupItem(item)
@@ -157,7 +161,7 @@ extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = TMMainViewController.dataArray[indexPath.row]
+        let item = self.dataArray[indexPath.row]
         self.didSelect?(item)
         self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }

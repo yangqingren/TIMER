@@ -16,6 +16,7 @@ extension NSNotification.Name {
 
 let kNotifiBackgroundColor = "kNotifiBackgroundColor"
 let kUserDefaultsVcType = "kUserDefaultsVcType"
+let kTMBwVcThemeColor = "kTMBwVcThemeColor"
 
 enum TMMainVcType {
     case main
@@ -34,38 +35,45 @@ class TMMainViewController: TMBaseViewController {
     
     lazy var pages: [TMBasePageViewController] = {
         var array = [TMBasePageViewController]()
-        for item in TMMainViewController.dataArray {
-            let vc = TMMainViewController.getPageVc(item.type)
+        for item in TMMainViewController.getDataArray() {
+            let vc = TMMainViewController.getPageVc(item)
             array.append(vc)
         }
         return array
     }()
     
-    static let dataArray: [TMMainVcItem] = {
-        return [
-            TMMainVcItem.init(type: .bw),
+    static func getDataArray(_ vcType: TMMainVcType = .main) -> [TMMainVcItem] {
+        var array = [
             TMMainVcItem.init(type: .electron),
             TMMainVcItem.init(type: .shadow),
             TMMainVcItem.init(type: .block),
             TMMainVcItem.init(type: .clock),
             TMMainVcItem.init(type: .neon)
         ]
-    }()
+        if vcType == .bottom {
+            array.insert(TMMainVcItem.init(type: .bw, .black), at: 0)
+            array.insert(TMMainVcItem.init(type: .bw, .white), at: 0)
+        }
+        else {
+            array.insert(TMMainVcItem.init(type: .bw), at: 0)
+        }
+        return array
+    }
     
-    static func getPageVc(_ type: TMPageMenuType, _ vcType: TMMainVcType = .main) -> TMBasePageViewController {
-        switch type {
+    static func getPageVc(_ item: TMMainVcItem, _ vcType: TMMainVcType = .main) -> TMBasePageViewController {
+        switch item.type {
         case .bw:
-            return TMBWClockViewController(.bw, vcType)
+            return TMBWClockViewController(item, vcType)
         case .electron:
-            return TMElectronViewController(.electron, vcType)
+            return TMElectronViewController(item, vcType)
         case .shadow:
-            return TMShadowClockViewController(.shadow, vcType)
+            return TMShadowClockViewController(item, vcType)
         case .block:
-            return TMBlockClockViewController(.block, vcType)
+            return TMBlockClockViewController(item, vcType)
         case .clock:
-            return TMClockClockViewController(.clock, vcType)
+            return TMClockClockViewController(item, vcType)
         case .neon:
-            return TMNeonClockViewController(.neon, vcType)
+            return TMNeonClockViewController(item, vcType)
         }
     }
     
@@ -79,7 +87,7 @@ class TMMainViewController: TMBaseViewController {
         let view = TMMainBottomView()
         view.didSelect = {[weak self] item in
             guard let `self` = self else { return }
-            self.menuView.setupType(item.type)
+            self.menuView.setupType(item)
         }
         return view
     }()
@@ -128,8 +136,8 @@ class TMMainViewController: TMBaseViewController {
         }
                 
         let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType)) ?? .bw
-        self.menuView.type = type
-        self.jumpVc(type, .forward, false)
+        let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
+        self.menuView.setupType(TMMainVcItem.init(type: type, subType))
         
         TMMontionManager.share.startMotionUpdates()
         TMTimerRunManager.share.startTimeUpdates()
@@ -215,7 +223,7 @@ extension TMMainViewController: UIPageViewControllerDataSource, UIPageViewContro
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let vc = pageViewController.viewControllers?.first as? TMBasePageViewController, finished, completed {
-            self.menuView.type = vc.type
+            self.menuView.item = vc.item
         }
     }
 }
@@ -223,34 +231,23 @@ extension TMMainViewController: UIPageViewControllerDataSource, UIPageViewContro
 
 extension TMMainViewController: TMPageMenuViewDelegate {
 
-    func pageMenuRoundViewCick(_ type: TMPageMenuType, _ navigation: UIPageViewController.NavigationDirection) {
-        self.jumpVc(type, navigation, true)
-    }
-    
-    func jumpVc(_ type: TMPageMenuType, _ navigation: UIPageViewController.NavigationDirection, _ animated: Bool) {
+    func pageMenuRoundViewCick(_ item: TMMainVcItem, _ navigation: UIPageViewController.NavigationDirection) {
         var vc: TMBasePageViewController?
-        for item in self.pages {
-            if item.type == type {
-                vc = item
+        for page in self.pages {
+            if page.item.type == item.type {
+                vc = page
                 break
             }
         }
         if let vc = vc {
-            if let curr = self.pageViewController.viewControllers?.first as? TMBasePageViewController, curr.isEqual(vc), curr.type == .bw {
-                let theme = UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)
-                if TMBwVcTheme.init(rawValue: theme) == TMBwVcTheme.white {
-                    UserDefaults.standard.set(TMBwVcTheme.black.rawValue, forKey: kTMBwVcThemeColor)
-                }
-                else {
-                    UserDefaults.standard.set(TMBwVcTheme.white.rawValue, forKey: kTMBwVcThemeColor)
-                }
+            self.pageViewController.setViewControllers([vc], direction: navigation, animated: true)
+            if let bwVc = vc as? TMBWClockViewController {
+                bwVc.subType = item.subType ?? .white
                 NotificationCenter.default.post(name: NSNotification.Name.kNotifiVcThemeChanged, object: nil)
-            }
-            else {
-                self.pageViewController.setViewControllers([vc], direction: navigation, animated: true)
             }
         }
     }
+    
     
     @objc func panGestureRecognizer(_ pan: UIPanGestureRecognizer) {
         let location = pan.location(in: self.view)

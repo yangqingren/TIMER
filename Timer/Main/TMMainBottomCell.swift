@@ -24,7 +24,10 @@ class TMMainBottomCell: UICollectionViewCell {
         }
         self.currItem = item
         let ratio = kBottomCellSize.width / LEGOScreenWidth
-        let vc = TMMainViewController.getPageVc(item.type, .bottom)
+        let vc = TMMainViewController.getPageVc(item, .bottom)
+        if let bwVc = vc as? TMBWClockViewController {
+            bwVc.subType = item.subType ?? .white
+        }
         self.contentView.addSubview(vc.view)
         vc.view.snp.makeConstraints { make in
             make.width.equalTo(LEGOScreenWidth)
