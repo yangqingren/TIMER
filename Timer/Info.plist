@@ -5,6 +5,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>TMTimer.ttf</string>
+		<string>iconfont-8bit-front-Regular.ttf</string>
+		<string>DigitaldreamSkewNarrow.ttf</string>
+		<string>DS-Digital-Bold.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

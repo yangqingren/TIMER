@@ -84,7 +84,7 @@ class TMNeonClockView: TMBaseView {
         shadow.shadowBlurRadius = 7.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         let text = Date().getDateStringEn(format: "MMM dd")
-        self.dateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
+        self.dateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
     }
 
     

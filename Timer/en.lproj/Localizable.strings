@@ -13,6 +13,11 @@
 "傍 晚" = "Evening";
 "晚 安" = "Night";
 
+"时" = "HOUR";
+"分" = "MIN";
+"秒" = "SEC";
+
 "好 心 情  ⏎" = "in the Mood  ⏎";
 
-
+"全部" = "ALL";
+"探索所有可用主题" = "Explore all available themes";

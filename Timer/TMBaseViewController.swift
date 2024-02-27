@@ -14,10 +14,37 @@ protocol TMTimeUpdatesProtocol {
 
 class TMBaseViewController: UIViewController {
 
+    lazy var batteryView: TMBatteryLevelView = {
+        let view = TMBatteryLevelView()
+        return view
+    }()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.isKind(of: TMBlockClockViewController.self) {
+            self.batteryView.battery.image = UIImage.init(named: "common_battery_white")
+            self.batteryView.battery.alpha = 0.7
+        }
+        else {
+            self.batteryView.battery.image = UIImage.init(named: "common_battery_nomal")
+            self.batteryView.battery.alpha = 1.0
+        }
+        self.batteryView.setupBatteryLevel()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // Do any additional setup after loading the view.
+    }
+    
+    func setupBatteryView() {
+        self.view.addSubview(self.batteryView)
+        self.batteryView.snp.makeConstraints { make in
+            make.right.equalTo(self.view.safeAreaInsets.left).offset(-20.dp)
+            make.centerY.equalTo(self.view.safeAreaInsets.top).offset(55.dp + 10.dp)
+            make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -29,7 +56,6 @@ class TMBaseViewController: UIViewController {
     }
 
     func motionUpdates(directin: TMMontionDirection) {
-                
         for subView in self.view.subviews {
             if let view = subView as? TMBaseView {
                 view.motionUpdates(directin: directin)

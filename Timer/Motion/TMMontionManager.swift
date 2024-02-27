@@ -23,10 +23,23 @@ class TMMontionManager: NSObject {
         let m = CMMotionManager()
         return m
     }()
+     
+    var fixOriginal = false
     
     override init() {
         super.init()
         
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: OperationQueue.current) { [weak self] (notification) in
+            guard let `self` = self else { return }
+            self.fixOriginal = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.fixOriginal = false
+            }
+            self.directin = .original
+            for delegate in TMDelegateManager.share.delegates {
+                delegate.motionUpdates(directin: .original)
+            }
+        }
     }
     
     var directin: TMMontionDirection = .original
@@ -52,7 +65,7 @@ class TMMontionManager: NSObject {
                     }
                     self.directin = directin
                     for delegate in TMDelegateManager.share.delegates {
-                        delegate.motionUpdates(directin: directin)
+                        delegate.motionUpdates(directin: self.fixOriginal ? .original : directin)
                     }
                 }
             }

@@ -7,50 +7,38 @@
 
 import UIKit
 
-private let kBackgroundColor = UIColor.init(r: 248, g: 248, b: 248, a: 1)
-
-class TMBWBaseLabel: UILabel {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.font = .init(name: "TMTimer", size: 180.sp)
-        self.textColor = .black
-        self.textAlignment = .center
-        self.backgroundColor = kBackgroundColor
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: 21.dp, left: 0, bottom: 0, right: 0)
-        super.drawText(in: rect.inset(by: insets))
-    }
-}
+private let kCornerRadius = 14.dp
 
 class TMBWBaseView: TMBaseView {
 
-    lazy var timeLabel1: UILabel = {
-        return TMBWBaseLabel()
+    lazy var timeLabel1: TMBWBaseLabel = {
+        return TMBWBaseLabel(frame: .zero, theme: .white)
     }()
     
-    lazy var timeLabel2: UILabel = {
-        return TMBWBaseLabel()
+    lazy var timeLabel2: TMBWBaseLabel = {
+        return TMBWBaseLabel(frame: .zero, theme: .white)
     }()
-        
+    
+    lazy var topLabel: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "Gill Sans", size: 18.sp)
+        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
+        label.textAlignment = .center
+        return label
+    }()
+    
     let format: String
     
     init(frame: CGRect, format: String) {
         self.format = format
         super.init(frame: frame)
-        self.backgroundColor = kBackgroundColor
-        self.layer.cornerRadius = 14.dp
+        self.isUserInteractionEnabled = false
+        self.layer.cornerRadius = kCornerRadius
         self.layer.shadowRadius = 10.dp
         self.layer.shadowOffset = CGSize(width: 0, height: 5.dp)
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowOpacity = 1.0
-        
+                
         self.addSubview(self.timeLabel1)
         self.timeLabel1.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.subViewSize())
@@ -63,6 +51,22 @@ class TMBWBaseView: TMBaseView {
             make.right.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        self.addSubview(self.topLabel)
+        self.topLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(5.dp)
+        }
+        self.topLabel.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 0, TMBWBaseView.subViewSize().height)
+    }
+    
+    var theme: TMBwVcTheme = .white
+    
+    func setupTheme(_ theme: TMBwVcTheme) {
+        self.theme = theme
+        self.backgroundColor = TMBWClockViewController.getThemeColor(theme, .timeBg)
+        self.timeLabel1.setupTheme(theme)
+        self.timeLabel2.setupTheme(theme)
     }
     
     required init?(coder: NSCoder) {
@@ -97,7 +101,7 @@ class TMBWBaseView: TMBaseView {
         let durtion = 1.0
         let rect = CGRect(x: 0, y: 0, width: TMBWBaseView.subViewSize().width, height: TMBWBaseView.subViewSize().height)
         
-        let view1 = TMBWHalfView1(frame: rect, new: text, old: label.text ?? "")
+        let view1 = TMBWHalfView1(frame: rect, new: text, old: label.text ?? "", theme: self.theme)
         self.addSubview(view1)
         view1.snp.makeConstraints { make in
             make.edges.equalTo(label)
@@ -105,7 +109,7 @@ class TMBWBaseView: TMBaseView {
         var transform = CATransform3DTranslate(CATransform3DIdentity, 0, 0, 10.dp)
         view1.layer.transform = transform
         
-        let view2 = TMBWHalfView2(frame: rect, new: text, old: label.text ?? "")
+        let view2 = TMBWHalfView2(frame: rect, new: text, old: label.text ?? "", theme: self.theme)
         self.addSubview(view2)
         view2.snp.makeConstraints { make in
             make.edges.equalTo(label)
@@ -130,6 +134,32 @@ class TMBWBaseView: TMBaseView {
     }
 }
 
+class TMBWBaseLabel: UILabel {
+    
+    init(frame: CGRect, theme: TMBwVcTheme) {
+        super.init(frame: frame)
+        self.font = .init(name: "TMTimer", size: 180.sp)
+        self.textAlignment = .center
+        self.layer.cornerRadius = kCornerRadius
+        self.layer.masksToBounds = true
+        self.setupTheme(theme)
+    }
+    
+    func setupTheme(_ theme: TMBwVcTheme) {
+        self.backgroundColor = TMBWClockViewController.getThemeColor(theme, .timeBg)
+        self.textColor = TMBWClockViewController.getThemeColor(theme, .timeText)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: 21.dp, left: 0, bottom: 0, right: 0)
+        super.drawText(in: rect.inset(by: insets))
+    }
+}
+
 enum TMBWHalfType {
     case top
     case bottom
@@ -139,10 +169,11 @@ class TMBWHalfLabel: TMBWBaseLabel {
     
     let type: TMBWHalfType
     
-    init(frame: CGRect, type: TMBWHalfType) {
+    init(frame: CGRect, type: TMBWHalfType, theme: TMBwVcTheme) {
         self.type = type
-        super.init(frame: frame)
-        self.backgroundColor = kBackgroundColor
+        super.init(frame: frame, theme: theme)
+        
+        self.backgroundColor = TMBWClockViewController.getThemeColor(theme, .timeBg)
         
         var rect = CGRect.zero
         if type == .top {
@@ -165,17 +196,17 @@ class TMBWHalfLabel: TMBWBaseLabel {
 
 class TMBWHalfView1: UIView {
     
-    init(frame: CGRect, new: String, old: String) {
+    init(frame: CGRect, new: String, old: String, theme: TMBwVcTheme) {
         super.init(frame: frame)
             
-        let label1 = TMBWHalfLabel(frame: frame, type: .top)
+        let label1 = TMBWHalfLabel(frame: frame, type: .top, theme: theme)
         label1.text = new
         self.addSubview(label1)
         label1.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        let label2 = TMBWHalfLabel(frame: frame, type: .bottom)
+        let label2 = TMBWHalfLabel(frame: frame, type: .bottom, theme: theme)
         label2.text = old
         self.addSubview(label2)
         label2.snp.makeConstraints { make in
@@ -198,11 +229,11 @@ class TMBWHalfView2: UIView {
     
     let label2: UILabel
     
-    init(frame: CGRect, new: String, old: String) {
+    init(frame: CGRect, new: String, old: String, theme: TMBwVcTheme) {
             
-        label1 = TMBWHalfLabel(frame: frame, type: .top)
+        label1 = TMBWHalfLabel(frame: frame, type: .top, theme: theme)
         label1.text = old
-        label2 = TMBWHalfLabel(frame: frame, type: .bottom)
+        label2 = TMBWHalfLabel(frame: frame, type: .bottom, theme: theme)
         label2.text = new
         super.init(frame: frame)
 

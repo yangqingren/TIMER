@@ -77,7 +77,7 @@ class TMNeonTextFieldView: TMBaseView, UITextFieldDelegate {
     
     override func timeUpdates() {
         super.timeUpdates()
-
+        
         if let text = self.text, text.count > 0 {
             self.setupTextChanged(text)
         }

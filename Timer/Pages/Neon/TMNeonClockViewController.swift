@@ -12,15 +12,21 @@ let TMNeonBlue =  UIColor.init(r: 148, g: 226, b: 250, a: 1)
 let TMNeonYellow = UIColor.init(r: 249, g: 231, b: 158, a: 1)
 let TMNeonGreen = UIColor.init(r: 151, g: 247, b: 195, a: 1)
 
+enum TMNeonClockNight {
+    case unknow
+    case day
+    case night
+}
+
 class TMNeonClockViewController: TMBasePageViewController {
-    
+            
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
         label.textColor = UIColor.black
         label.textAlignment = .center
         let shadow = NSShadow()
-        shadow.shadowColor = UIColor.init(r: 148, g: 226, b: 250, a: 1)
+        shadow.shadowColor = TMNeonBlue
         shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
@@ -41,6 +47,12 @@ class TMNeonClockViewController: TMBasePageViewController {
         let view = TMNeonTextFieldView()
         return view
     }()
+    
+    lazy var bottomIconView: UIImageView = {
+        let view = UIImageView()
+        view.alpha = 0.85
+        return view
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +60,7 @@ class TMNeonClockViewController: TMBasePageViewController {
         
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.view.safeAreaInsets.left).offset(20.dp)
+            make.left.equalToSuperview().offset(20.dp)
             make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
         }
                 
@@ -71,29 +83,71 @@ class TMNeonClockViewController: TMBasePageViewController {
             make.centerX.equalToSuperview()
             make.bottom.equalTo(self.neonTextView.snp.top).offset(0)
         }
+        
+        self.transformView.addSubview(self.bottomIconView)
+        self.bottomIconView.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 100.dp, height: 100.dp))
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.neonClockView.snp.bottom).offset(28.dp)
+        }
 
         self.timeUpdates()
         
         // Do any additional setup after loading the view.
     }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TMDelegateManager.share.neon = self
-        UIScreen.main.brightness = 1.0
+        if self.vcType == .main {
+            TMDelegateManager.share.neon = self
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UIScreen.main.brightness = 0.5
+        if self.vcType == .main {
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: false)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        TMDelegateManager.share.neon = nil
+        if self.vcType == .main {
+            TMDelegateManager.share.neon = nil
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    var nightType: TMNeonClockNight = .unknow
+    
+    override func timeUpdates() {
+        super.timeUpdates()
+     
+        var nightType: TMNeonClockNight = .unknow
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: Date())
+        if hour >= 6 && hour < 18 {
+            nightType = .day
+        }
+        else {
+            nightType = .night
+        }
+        if self.nightType != nightType {
+            self.nightType = nightType
+            if nightType == .day {
+                self.neonIconView.legoImageView.image = UIImage.init(named: "neon_coke_nomal")
+                self.bottomIconView.image = UIImage.init(named: "neon_cat_nomal")
+            }
+            else {
+                self.neonIconView.legoImageView.image = UIImage.init(named: "neon_cat_nomal")
+                self.bottomIconView.image = UIImage.init(named: "neon_coke_nomal")
+            }
+        }
+        
+       
     }
         
     /*

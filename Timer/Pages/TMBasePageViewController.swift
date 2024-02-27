@@ -8,7 +8,21 @@
 import UIKit
 
 class TMBasePageViewController: TMBaseViewController {
+    
+    let type: TMPageMenuType
+    
+    let vcType: TMMainVcType
 
+    init(_ type: TMPageMenuType, _ vcType: TMMainVcType) {
+        self.type = type
+        self.vcType = vcType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     lazy var transformView: UIView = {
         let view = UIView()
         return view
@@ -16,6 +30,8 @@ class TMBasePageViewController: TMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.layer.masksToBounds = true
 
         self.view.addSubview(self.transformView)
         self.transformView.snp.makeConstraints { make in
@@ -25,9 +41,17 @@ class TMBasePageViewController: TMBaseViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.timeUpdates()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.post(name: NSNotification.Name.kBackgroundColor, object: self.view.backgroundColor)
+        self.timeUpdates()
+        if self.vcType == .main {
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
+        }
     }
     
     override func motionUpdates(directin: TMMontionDirection) {

@@ -11,14 +11,6 @@ class TMNeonIconView: TMBaseView {
 
     lazy var legoImageView: UIImageView = {
         let view = UIImageView()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: Date())
-        if hour >= 6 && hour < 18 {
-            view.image = UIImage.init(named: "neon_coke_nomal")
-        }
-        else {
-            view.image = UIImage.init(named: "neon_cat_nomal")
-        }
         view.alpha = 0.85
         return view
     }()

@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController.init(rootViewController: vc)
         self.window?.rootViewController = nav
         
+//        let vc = LaunchViewController()
+//        let nav = UINavigationController.init(rootViewController: vc)
+//        self.window?.rootViewController = nav
+        
 //        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeRun), userInfo: nil, repeats: true)
         
         return true
