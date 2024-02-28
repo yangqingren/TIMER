@@ -11,21 +11,21 @@ class TMShadowBaseView: TMBaseView {
 
     lazy var label1: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 144.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
         label.textColor = UIColor.init(r: 51, g: 51, b: 51, a: 1)
         return label
     }()
     
     lazy var whiteLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 144.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
         label.textColor = UIColor.init(r: 255, g: 255, b: 255, a: 0.3)
         return label
     }()
     
     lazy var blackLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 144.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
         label.textColor = UIColor.init(r: 0, g: 0, b: 0, a: 0.3)
         return label
     }()
@@ -111,10 +111,43 @@ class TMShadowBaseView: TMBaseView {
     override func timeUpdates() {
         super.timeUpdates()
         
+        var isSame = false
         let text = Date().getDateStringEn(format: self.format)
+        if text == self.label1.text {
+            isSame = true
+        }
         self.label1.text = text
         self.whiteLabel.text = text
         self.blackLabel.text = text
+        
+        if !isSame {
+            var transform = CGAffineTransform.identity
+            switch TMMontionManager.share.directin {
+            case .original:
+                transform = transform.scaledBy(x: 1.2, y: 1)
+            case .left:
+                transform = transform.scaledBy(x: 1, y: 1.2)
+            case .right:
+                transform = transform.scaledBy(x: 1, y: 1.2)
+            case .down:
+                transform = transform.scaledBy(x: 1.2, y: 1)
+            }
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut) {
+                self.setupLabelTransform(transform)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut) {
+                    let transform = CGAffineTransform.identity
+                    self.setupLabelTransform(transform)
+                } completion: { _ in
+                    
+                }
+            }
+        }
     }
     
+    func setupLabelTransform(_ transform: CGAffineTransform) {
+        self.label1.transform = transform
+        self.whiteLabel.transform = transform
+        self.blackLabel.transform = transform
+    }
 }

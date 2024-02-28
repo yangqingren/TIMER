@@ -96,7 +96,7 @@ class TMMainViewController: TMBaseViewController {
     lazy var upButton: LEGOHighlightButton = {
         let button = LEGOHighlightButton(type: .custom)
         button.setImage(UIImage.init(named: "mian_button_up"), for: .normal)
-        button.setImage(UIImage.init(named: "mian_button_up"), for: .highlighted)
+        button.setImage(UIImage.init(named: "mian_button_bottom"), for: .selected)
         button.addTarget(self, action: #selector(upButtonClick(_:)), for: .touchUpInside)
         button.hotspot = 8.dp
         return button
@@ -171,7 +171,8 @@ class TMMainViewController: TMBaseViewController {
         let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType)) ?? .bw
         let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
         self.menuView.setupType(TMMainVcItem.init(type: type, subType))
-        
+        self.pageViewController.view.backgroundColor = TMBWClockViewController.getThemeColor(subType, .vcBg)
+
         TMMontionManager.share.startMotionUpdates()
         TMTimerRunManager.share.startTimeUpdates()
         
@@ -316,7 +317,6 @@ extension TMMainViewController: TMPageMenuViewDelegate {
                 offsetY = min
             }
             self.offsetY = offsetY
-            self.setupUpButton()
         default:
             break
         }
@@ -374,19 +374,11 @@ extension TMMainViewController: TMPageMenuViewDelegate {
                 self.pageViewController.view.layer.cornerRadius = 0
             }
         }
-        self.setupUpButton()
-    }
-    
-    func setupUpButton() {
-        if self.upButton.isSelected {
-            self.upButton.transform = CGAffineTransform.identity.rotated(by: .pi)
-        }
-        else {
-            self.upButton.transform = CGAffineTransform.identity
-        }
     }
     
     @objc func settingButtonClick(_ sender: UIButton) {
+        guard let inView = UIApplication.shared.delegate?.window ?? self.view else { return  }
+        TMMainSettingView.show(inView: inView, originalRect: sender.frame)
         
     }
 }

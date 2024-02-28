@@ -106,13 +106,7 @@ class TMMainBottomView: TMBaseView {
             make.top.equalTo(self.titleLabel.snp.bottom).offset(-8.dp)
         }
     }
-     
-    func setAnchorPointTo(view: UIView, point: CGPoint) {
-        let oldFrame = view.frame
-        view.layer.anchorPoint = point
-        view.frame = oldFrame
-    }
-        
+             
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -8,6 +8,7 @@
 import UIKit
 
 private let kCornerRadius = 14.dp
+let kTMBWBaseViewSpacingY = 22.dp
 
 class TMBWBaseView: TMBaseView {
 
@@ -74,7 +75,7 @@ class TMBWBaseView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan) / 3.0 - 50.dp
+        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMBWBaseViewSpacingY * 2 - 165.dp) / 3.0
         return CGSize(width: height, height: height)
     }
     
@@ -138,7 +139,7 @@ class TMBWBaseLabel: UILabel {
     
     init(frame: CGRect, theme: TMBwVcTheme) {
         super.init(frame: frame)
-        self.font = .init(name: "TMTimer", size: 180.sp)
+        self.font = .init(name: "TMTimer", size: 160.sp)
         self.textAlignment = .center
         self.layer.cornerRadius = kCornerRadius
         self.layer.masksToBounds = true

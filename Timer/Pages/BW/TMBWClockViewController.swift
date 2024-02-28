@@ -36,16 +36,12 @@ class TMBWClockViewController: TMBasePageViewController {
     lazy var topDateLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
+        label.textColor = .black
         label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var topDateLabel2: UILabel = {
-        let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.darkGray
-        label.textAlignment = .center
+        label.layer.shadowOffset = CGSize(width: 0.dp, height: 0.dp)
+        label.layer.shadowColor = UIColor.lightGray.cgColor
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowRadius = 4.dp
         return label
     }()
     
@@ -96,12 +92,6 @@ class TMBWClockViewController: TMBasePageViewController {
             make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
-        self.view.insertSubview(self.topDateLabel2, belowSubview: self.topDateLabel)
-        self.topDateLabel2.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(1.dp)
-            make.centerY.equalTo(self.shadowLabel.snp.centerY)
-        }
-        
         self.view.addSubview(self.bwMmView)
         self.bwMmView.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.viewSize())
@@ -113,14 +103,14 @@ class TMBWClockViewController: TMBasePageViewController {
         self.bwHHView.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.viewSize())
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.bwMmView.snp.top).offset(-20.dp)
+            make.bottom.equalTo(self.bwMmView.snp.top).offset(-kTMBWBaseViewSpacingY)
         }
         
         self.view.addSubview(self.bwSsView)
         self.bwSsView.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.viewSize())
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.bwMmView.snp.bottom).offset(20.dp)
+            make.top.equalTo(self.bwMmView.snp.bottom).offset(kTMBWBaseViewSpacingY)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeVcChanged), name: NSNotification.Name.kNotifiVcThemeChanged, object: nil)
@@ -134,7 +124,6 @@ class TMBWClockViewController: TMBasePageViewController {
         super.timeUpdates()
         let text = Date().getDateStringEn(format: "MM dd EEEE")
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
-        self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
 
     
@@ -165,6 +154,10 @@ class TMBWClockViewController: TMBasePageViewController {
         self.bwHHView.setupTheme(theme)
         self.bwMmView.setupTheme(theme)
         self.bwSsView.setupTheme(theme)
+        self.topDateLabel.textColor = theme == .white ? .black : .white
+        if self.vcType == .main {
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
+        }
     }
     
     static func getThemeColor(_ theme: TMBwVcTheme, _ type: TMBwVcThemeType) -> UIColor {

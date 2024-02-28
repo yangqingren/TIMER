@@ -140,7 +140,6 @@ class TMShadowClockViewController: TMBasePageViewController {
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
 
-    
     override func motionUpdates(directin: TMMontionDirection) {
         super.motionUpdates(directin: directin)
         
@@ -155,11 +154,13 @@ class TMShadowClockViewController: TMBasePageViewController {
         case .down:
             transform = CGAffineTransform.identity.rotated(by: .pi)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut) {
             self.shadowHHView.transform = transform
             self.shadowMmView.transform = transform
             self.shadowSsView.transform = transform
         }
+        
+        
     }
     
     /*
