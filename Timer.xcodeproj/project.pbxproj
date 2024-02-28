@@ -22,13 +22,13 @@
 		E81821272B45B89A0022368D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81821262B45B89A0022368D /* WidgetKit.framework */; };
 		E81821292B45B89A0022368D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81821282B45B89A0022368D /* SwiftUI.framework */; };
 		E818212C2B45B89A0022368D /* MTLiveWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212B2B45B89A0022368D /* MTLiveWidgetBundle.swift */; };
-		E818212E2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */; };
-		E81821302B45B89A0022368D /* MTLiveWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212F2B45B89A0022368D /* MTLiveWidget.swift */; };
+		E818212E2B45B89A0022368D /* MTLiveAndLockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveAndLockWidget.swift */; };
+		E81821302B45B89A0022368D /* MTUniversalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212F2B45B89A0022368D /* MTUniversalWidget.swift */; };
 		E81821322B45B89B0022368D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E81821312B45B89B0022368D /* Assets.xcassets */; };
 		E81821362B45B89B0022368D /* MTLiveWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E81821242B45B89A0022368D /* MTLiveWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
-		E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */; };
+		E818213F2B45BAFA0022368D /* MTLiveAndLockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveAndLockWidget.swift */; };
 		E83EDB4A2B8A332700AF1492 /* TMClockClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */; };
 		E83EDB4C2B8A338B00AF1492 /* TMClockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB4B2B8A338B00AF1492 /* TMClockClockView.swift */; };
 		E83EDB4E2B8A4E9E00AF1492 /* TMClockTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB4D2B8A4E9E00AF1492 /* TMClockTimeView.swift */; };
@@ -57,6 +57,8 @@
 		E88ED35D2B88920C0075707F /* TMBlockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED35C2B88920C0075707F /* TMBlockClockView.swift */; };
 		E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C068E2B872F4D00E6106F /* TMBaseView.swift */; };
 		E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A095342B8C6836004EE16D /* TMMainBottomView.swift */; };
+		E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B635C42B8F0E6500D549DC /* UIColor+Category.swift */; };
+		E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */; };
 		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
 		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
 		E8E8691C2B8DE94500D8C627 /* LEGOHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */; };
@@ -113,8 +115,8 @@
 		E81821262B45B89A0022368D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E81821282B45B89A0022368D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E818212B2B45B89A0022368D /* MTLiveWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLiveWidgetBundle.swift; sourceTree = "<group>"; };
-		E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLiveWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		E818212F2B45B89A0022368D /* MTLiveWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLiveWidget.swift; sourceTree = "<group>"; };
+		E818212D2B45B89A0022368D /* MTLiveAndLockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLiveAndLockWidget.swift; sourceTree = "<group>"; };
+		E818212F2B45B89A0022368D /* MTUniversalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUniversalWidget.swift; sourceTree = "<group>"; };
 		E81821312B45B89B0022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81821332B45B89B0022368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E818213B2B45B8B30022368D /* TMTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerManager.swift; sourceTree = "<group>"; };
@@ -152,6 +154,8 @@
 		E88ED35C2B88920C0075707F /* TMBlockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBlockClockView.swift; sourceTree = "<group>"; };
 		E89C068E2B872F4D00E6106F /* TMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseView.swift; sourceTree = "<group>"; };
 		E8A095342B8C6836004EE16D /* TMMainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainBottomView.swift; sourceTree = "<group>"; };
+		E8B635C42B8F0E6500D549DC /* UIColor+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Category.swift"; sourceTree = "<group>"; };
+		E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMImpactManager.swift; sourceTree = "<group>"; };
 		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
 		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
 		E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEGOHighlightButton.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			children = (
 				E8153BEA2B85AC6900D74130 /* String+Category.swift */,
 				E8822EFE2B85D11E00471E5A /* Date+Category.swift */,
+				E8B635C42B8F0E6500D549DC /* UIColor+Category.swift */,
 			);
 			path = Expand;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				E8049DA22B88F9E90016E878 /* Common */,
 				E8153BE92B85AC4100D74130 /* Expand */,
 				E8153BE62B85AA4F00D74130 /* Font */,
+				E8B635C62B8F28E100D549DC /* Impact */,
 				E8C7CD7D2B85FCAB00A87087 /* Motion */,
 				E8153BE22B85A41700D74130 /* Timer */,
 				E8F3AE762B859D7E00B374F1 /* Pages */,
@@ -294,11 +300,11 @@
 		E818212A2B45B89A0022368D /* MTLiveWidget */ = {
 			isa = PBXGroup;
 			children = (
+				E818213B2B45B8B30022368D /* TMTimerManager.swift */,
 				E85626782B86DE9F00053DB9 /* Font */,
 				E818212B2B45B89A0022368D /* MTLiveWidgetBundle.swift */,
-				E818213B2B45B8B30022368D /* TMTimerManager.swift */,
-				E818212D2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift */,
-				E818212F2B45B89A0022368D /* MTLiveWidget.swift */,
+				E818212D2B45B89A0022368D /* MTLiveAndLockWidget.swift */,
+				E818212F2B45B89A0022368D /* MTUniversalWidget.swift */,
 				E81821312B45B89B0022368D /* Assets.xcassets */,
 				E81821332B45B89B0022368D /* Info.plist */,
 			);
@@ -368,6 +374,14 @@
 				E88ED35C2B88920C0075707F /* TMBlockClockView.swift */,
 			);
 			path = Block;
+			sourceTree = "<group>";
+		};
+		E8B635C62B8F28E100D549DC /* Impact */ = {
+			isa = PBXGroup;
+			children = (
+				E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */,
+			);
+			path = Impact;
 			sourceTree = "<group>";
 		};
 		E8C7CD7D2B85FCAB00A87087 /* Motion */ = {
@@ -582,8 +596,10 @@
 				E8049DA42B88FA070016E878 /* TMBatteryLevelView.swift in Sources */,
 				E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */,
 				E88909452B8D8D2000714237 /* LaunchViewController.swift in Sources */,
+				E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */,
 				E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */,
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
+				E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */,
 				E8E8691E2B8DFF2200D8C627 /* TMMainSettingView.swift in Sources */,
 				E8790B992B8A21F900B58804 /* TMShadowBaseView.swift in Sources */,
 				E8790B972B8A211100B58804 /* TMShadowClockViewController.swift in Sources */,
@@ -597,7 +613,7 @@
 				E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */,
 				E85626952B871B4900053DB9 /* TMNeonIconView.swift in Sources */,
 				E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */,
-				E818213F2B45BAFA0022368D /* MTLiveWidgetLiveActivity.swift in Sources */,
+				E818213F2B45BAFA0022368D /* MTLiveAndLockWidget.swift in Sources */,
 				E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,9 +623,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */,
-				E81821302B45B89A0022368D /* MTLiveWidget.swift in Sources */,
+				E81821302B45B89A0022368D /* MTUniversalWidget.swift in Sources */,
 				E818212C2B45B89A0022368D /* MTLiveWidgetBundle.swift in Sources */,
-				E818212E2B45B89A0022368D /* MTLiveWidgetLiveActivity.swift in Sources */,
+				E818212E2B45B89A0022368D /* MTLiveAndLockWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

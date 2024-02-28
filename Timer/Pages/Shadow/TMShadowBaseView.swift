@@ -57,7 +57,7 @@ class TMShadowBaseView: TMBaseView {
         self.blackFormatLabel.text = text
     }
     
-    let format: String
+    var format: String
     
     init(frame: CGRect, format: String) {
         self.format = format

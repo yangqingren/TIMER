@@ -197,10 +197,12 @@ class TMBlockClockView: TMBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var format = Date.getHhFormatter()
+    
     override func timeUpdates() {
         super.timeUpdates()
         
-        let hh = Date().getDateStringEn(format: "HH")
+        let hh = Date().getDateStringEn(format: self.format)
         self.timeHHView.setupTextIcon(String(hh.prefix(1)), String(hh.suffix(1)))
         let mm = Date().getDateStringEn(format: "mm")
         self.timeMmView.setupTextIcon(String(mm.prefix(1)), String(mm.suffix(1)))

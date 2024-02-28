@@ -35,7 +35,13 @@ class TMBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSystemTimeChanged), name: NSNotification.Name.kNotifiSystemTimeChanged, object: nil)
+
         // Do any additional setup after loading the view.
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupBatteryView() {
@@ -79,6 +85,10 @@ class TMBaseViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func setupSystemTimeChanged() {
+        
     }
     
     /*

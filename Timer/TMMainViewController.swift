@@ -11,6 +11,8 @@ extension NSNotification.Name {
     static let kNotifiBackgroundColor = NSNotification.Name(rawValue: "kNotifiBackgroundColor")
     static let kNotifiMainBrightness = NSNotification.Name(rawValue: "kNotifiMainBrightness")
     static let kNotifiVcThemeChanged = NSNotification.Name(rawValue: "kNotifiVcThemeChanged")
+    static let kNotifiSystemTimeChanged = NSNotification.Name(rawValue: "kNotifiSystemTimeChanged")
+    static let kNotifiActivitesWarm = NSNotification.Name(rawValue: "kNotifiActivitesWarm")
 
 }
 
@@ -113,15 +115,19 @@ class TMMainViewController: TMBaseViewController {
         
     var location = 0.0
     var offsetY = 0.0
+    var impactY = 0.0
     
     lazy var pan: UIPanGestureRecognizer = {
         let recognizer = UIPanGestureRecognizer.init(target: self, action: #selector(panGestureRecognizer(_:)))
         return recognizer
     }()
+    
+    weak var settingView: TMMainSettingView?
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TMDelegateManager.share.main = self
+        _ = TMMainSettingManager.share.array
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -207,6 +213,30 @@ class TMMainViewController: TMBaseViewController {
             }
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.kNotifiActivitesWarm, object: nil, queue: .main) {[weak self] noti in
+            guard let `self` = self else { return }
+            DispatchQueue.main.async {
+                let alertVc = UIAlertController.init(title: TMLocalizedString("温馨提示"), message: TMLocalizedString("您的锁屏小组件开启失败，请前往系统设置打开「实时活动」"), preferredStyle: .alert)
+                let close = UIAlertAction(title: TMLocalizedString("关闭锁屏小组件"), style: .default) { _ in
+                    if self.settingButton.isSelected {
+                        self.settingView?.dismiss()
+                    }
+                    TMMainSettingManager.setOpenStatus(false, .lock)
+                }
+                let setting = UIAlertAction(title: TMLocalizedString("去设置"), style: .default) {_ in
+                    if let url = URL.init(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.noCheckActivity = true
+                    }
+                }
+                alertVc.addAction(close)
+                alertVc.addAction(setting)
+                self.present(alertVc, animated: true)
+            }
+        }
+        
         self.view.addGestureRecognizer(self.pan)
         
         // Do any additional setup after loading the view.
@@ -286,7 +316,6 @@ extension TMMainViewController: TMPageMenuViewDelegate {
         }
     }
     
-    
     @objc func panGestureRecognizer(_ pan: UIPanGestureRecognizer) {
         let location = pan.location(in: self.view)
         let velocity = pan.velocity(in: self.view)
@@ -308,6 +337,11 @@ extension TMMainViewController: TMPageMenuViewDelegate {
             else {
                 self.upButton.isSelected = false
             }
+            if abs(self.impactY - offsetY) > 0.005 {
+                self.impactY = offsetY
+                TMImpactManager.share.impactOccurred(.rigid)
+            }
+                
         case .ended, .cancelled:
             offsetY = self.offsetY + (location.y - self.location)
             if offsetY < -max * 0.5 {
@@ -363,6 +397,7 @@ extension TMMainViewController: TMPageMenuViewDelegate {
     }
 
     @objc func upButtonClick(_ sender: UIButton) {
+        TMImpactManager.share.startWeakContinueStopWait(0.15)
         sender.isSelected = !sender.isSelected
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveLinear) {
             if sender.isSelected {
@@ -378,7 +413,11 @@ extension TMMainViewController: TMPageMenuViewDelegate {
     
     @objc func settingButtonClick(_ sender: UIButton) {
         guard let inView = UIApplication.shared.delegate?.window ?? self.view else { return  }
-        TMMainSettingView.show(inView: inView, originalRect: sender.frame)
-        
+        let originalRect = CGRect(x: sender.frame.minX, y: sender.frame.minY + self.pageViewController.view.transform.ty, width: sender.frame.width, height: sender.frame.height)
+        self.settingButton.isSelected = true
+        self.settingView = TMMainSettingView.show(inView: inView, originalRect: originalRect) {[weak self] in
+            guard let `self` = self else { return }
+            self.settingButton.isSelected = false
+        }
     }
 }

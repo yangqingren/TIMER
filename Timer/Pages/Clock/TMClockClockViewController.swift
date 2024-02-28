@@ -96,6 +96,13 @@ class TMClockClockViewController: TMBasePageViewController {
         }
     }
     
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+        
+        self.clockTimeView.format = Date.getHhFormatter()
+        self.clockTimeView.timeUpdates()
+    }
+    
     /*
     // MARK: - Navigation
 

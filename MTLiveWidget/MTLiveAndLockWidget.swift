@@ -19,30 +19,28 @@ struct MTLiveWidgetAttributes: ActivityAttributes {
     var name: String
 }
 
-struct MTLiveWidgetLiveActivity: Widget {
+struct MTLiveAndLockWidget: Widget {
     var body: some WidgetConfiguration {
+        
         ActivityConfiguration(for: MTLiveWidgetAttributes.self) { context in
 
-            LockScreenLiveActivityView(context: context)
+            TMLockScreenView(context: context)
                 .background(Color(red: 1, green: 1, blue: 1, opacity: 1))
             
         } dynamicIsland: { context in
+            
             DynamicIsland {
                 DynamicIslandExpandedRegion(.center) {
-                    
                     HStack {
-                        
                         Text(TMTimerManager.getDate(), style: .date)
                             .font(.system(size: 14))
                             .multilineTextAlignment(.leading)
                             .shadow(color: .white, radius: 2, x: 0, y: 2)
-                        
                         Text(TMTimerManager.getWeek("EEE"))
                             .font(.system(size: 14))
                             .multilineTextAlignment(.center)
                             .shadow(color: .white, radius: 2, x: 0, y: 2)
                     }
-
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     Text(TMTimerManager.getDate(), style: .timer)
@@ -51,27 +49,25 @@ struct MTLiveWidgetLiveActivity: Widget {
                         .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 }
             } compactLeading: {
-                
-                Text("  \(TMTimerManager.getWeek("MM/dd EEE"))")
-                    .font(.system(size: 11))
-                    .multilineTextAlignment(.center)
-                    .shadow(color: .white, radius: 2, x: 0, y: 2)
-
+//                Text("  \(TMTimerManager.getWeek("MM/dd EEE"))")
+//                    .font(.system(size: 11))
+//                    .multilineTextAlignment(.center)
+//                    .shadow(color: .white, radius: 2, x: 0, y: 2)
             } compactTrailing: {
                 
-                Text(TMTimerManager.getDate(), style: .timer)
-                    .font(.system(size: 11))
-                    .multilineTextAlignment(.center)
-                    .shadow(color: .white, radius: 2, x: 0, y: 2)
+//                Text(TMTimerManager.getDate(), style: .timer)
+//                    .font(.system(size: 11))
+//                    .multilineTextAlignment(.center)
+//                    .shadow(color: .white, radius: 2, x: 0, y: 2)
             } minimal: {
 
             }
-            .keylineTint(Color.red)
+            .keylineTint(Color.clear)
         }
     }
 }
 
-struct LockScreenLiveActivityView: View {
+struct TMLockScreenView: View {
     
     let context: ActivityViewContext <MTLiveWidgetAttributes>
     
@@ -79,8 +75,9 @@ struct LockScreenLiveActivityView: View {
         
         ZStack {
             
-            LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.5), Color.white, Color.white]), startPoint: .top, endPoint: .bottom)
-            
+            LinearGradient(gradient: Gradient(colors: [Color.init(red: 42.0 / 255.0, green: 95.0 / 255.0, blue: 215.0 / 255.0, opacity: 0.3), Color.clear, Color.clear]), startPoint: UnitPoint(x: 0.3, y: 0), endPoint: UnitPoint(x: 0.7, y: 1))
+            LinearGradient(gradient: Gradient(colors: [Color.init(red: 42.0 / 255.0, green: 95.0 / 255.0, blue: 215.0 / 255.0, opacity: 0.3), Color.clear, Color.clear]), startPoint: UnitPoint(x: 0.7, y: 1), endPoint: UnitPoint(x: 0.3, y: 0))
+
             VStack {
                 
                 Spacer(minLength: 20)
@@ -97,11 +94,10 @@ struct LockScreenLiveActivityView: View {
                         .multilineTextAlignment(.center)
                         .shadow(color: .gray, radius: 2, x: 0, y: 5)
                     
-                    Text(TMTimerManager.share.getCount())
-                        .font(.system(size: 16))
-                        .multilineTextAlignment(.center)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
-                    
+//                    Text(TMTimerManager.share.getCount())
+//                        .font(.system(size: 16))
+//                        .multilineTextAlignment(.center)
+//                        .shadow(color: .gray, radius: 2, x: 0, y: 5)
                 }
 
                 

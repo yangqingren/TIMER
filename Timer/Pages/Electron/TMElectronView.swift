@@ -99,26 +99,28 @@ class TMElectronView: TMBaseView {
         return CGSize(width: width, height: width / 768.0 * 1408.0)
     }
     
+    var format = Date.getHhFormatter()
+    
     var flag: Int = 0
     override func timeUpdates() {
         super.timeUpdates()
         
-        self.electronHHLabel.text = Date().getDateStringEn(format: "HH")
+        self.electronHHLabel.text = Date().getDateStringEn(format: self.format)
         self.electronMmLabel.text = Date().getDateStringEn(format: "mm")
         self.electronSsLabel.text = Date().getDateStringEn(format: "ss")
         
         self.flag += 1
-        if self.flag % 2 == 0 {
+        if self.flag % 2 == 0 && self.flag >= 2 * 2 {
             self.dian1Label.isHidden = true
             self.dian2Label.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.dian1Label.isHidden = false
+                self.dian2Label.isHidden = false
+            }
         }
         else {
             self.dian1Label.isHidden = false
             self.dian2Label.isHidden = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.dian1Label.isHidden = true
-                self.dian2Label.isHidden = true
-            }
         }
     }
 

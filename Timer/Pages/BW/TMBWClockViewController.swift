@@ -46,7 +46,8 @@ class TMBWClockViewController: TMBasePageViewController {
     }()
     
     lazy var bwHHView: TMBWBaseView = {
-        let view = TMBWBaseView(frame: .zero, format: "HH")
+        let format = Date.getHhFormatter()
+        let view = TMBWBaseView(frame: .zero, format: format)
         view.topLabel.text = TMLocalizedString("时")
         return view
     }()
@@ -158,6 +159,13 @@ class TMBWClockViewController: TMBasePageViewController {
         if self.vcType == .main {
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
         }
+    }
+    
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+        let format = Date.getHhFormatter()
+        self.bwHHView.format = format
+        self.bwMmView.timeUpdates()
     }
     
     static func getThemeColor(_ theme: TMBwVcTheme, _ type: TMBwVcThemeType) -> UIColor {

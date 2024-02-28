@@ -22,6 +22,26 @@ let IsPhoneX: Bool = {
     return isPhoneX
 }()
 
+let IsChinese: Bool = {
+    var isChinese = false
+    if let systemLanguages = UserDefaults.standard.object(forKey: "AppleLanguages") as? [String] {
+        for language in systemLanguages {
+            if language.contains("zh-Hans") || language.contains("en") || language.contains("zh-Hant") {
+                if language.contains("zh-Hans") {
+                    return true
+                }
+                if language.contains("zh-Hant") {
+                    return true
+                }
+                if language.contains("en") {
+                    return false
+                }
+            }
+        }
+    }
+    return false
+}()
+
 let IsPhoneXisland: Bool = {
     var isPhoneX = false
     if #available(iOS 11.0, *) {
@@ -43,15 +63,6 @@ let LEGOScreenHeight = UIScreen.main.bounds.height
 let LEGOViewRate = LEGOScreenWidth / 375.0
 let LEGONavMargan = IsPhoneX ? 40.0 : 20.0
 let LEGOBottomMargan = IsPhoneX ? 34.0 : 0.0
-
-extension UIColor {
-    public convenience init(r:UInt32 ,g:UInt32 , b:UInt32 , a:CGFloat) {
-        self.init(red: CGFloat(r) / 255.0,
-                  green: CGFloat(g) / 255.0,
-                  blue: CGFloat(b) / 255.0,
-                  alpha: a)
-    }
-}
 
 public protocol UIAdapter {
     var dp: CGFloat { get }

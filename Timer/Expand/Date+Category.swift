@@ -27,4 +27,12 @@ extension Date {
         return dateString
     }
 
+    static func getHhFormatter() -> String {
+        if TMMainSettingManager.getOpenStatus(.systemTime) {
+            return "hh"
+        }
+        else {
+            return "HH"
+        }
+    }
 }

@@ -62,12 +62,14 @@ class TMNeonClockView: TMBaseView {
         return label
     }()
     
+    var format = Date.getHhFormatter()
+    
     func setupTimeLabel() {
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.init(r: 255, g: 154, b: 195, a: 1)
         shadow.shadowBlurRadius = 10.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        let text = Date().getDateStringEn(format: "HH : mm : ss")
+        let text = Date().getDateStringEn(format: "\(self.format) : mm : ss")
         self.timeLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
     }
     

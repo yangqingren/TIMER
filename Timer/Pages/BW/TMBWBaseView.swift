@@ -28,7 +28,7 @@ class TMBWBaseView: TMBaseView {
         return label
     }()
     
-    let format: String
+    var format: String
     
     init(frame: CGRect, format: String) {
         self.format = format
@@ -43,13 +43,13 @@ class TMBWBaseView: TMBaseView {
         self.addSubview(self.timeLabel1)
         self.timeLabel1.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.subViewSize())
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(4.dp)
             make.centerY.equalToSuperview()
         }
         self.addSubview(self.timeLabel2)
         self.timeLabel2.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.subViewSize())
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-4.dp)
             make.centerY.equalToSuperview()
         }
         
@@ -139,7 +139,7 @@ class TMBWBaseLabel: UILabel {
     
     init(frame: CGRect, theme: TMBwVcTheme) {
         super.init(frame: frame)
-        self.font = .init(name: "TMTimer", size: 160.sp)
+        self.font = .init(name: "TMTimer", size: 150.sp)
         self.textAlignment = .center
         self.layer.cornerRadius = kCornerRadius
         self.layer.masksToBounds = true

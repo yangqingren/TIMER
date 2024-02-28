@@ -19,5 +19,18 @@
 
 "好 心 情  ⏎" = "in the Mood  ⏎";
 
-"全部" = "ALL";
 "探索所有可用主题" = "Explore all available themes";
+
+// setting
+"通用" = "Setting";
+"锁屏小组件" = "Lock screen widget";
+"桌面小组件" = "Home screen widget";
+"12小时制" = "12-hour system";
+"声音反馈" = "Sound Feedback";
+"震动反馈" = "Impact Feedback";
+
+// activity
+"温馨提示" = "Warm prompt";
+"您的锁屏小组件开启失败，请前往系统设置打开「实时活动」" = "Your lock screen widget failed to open. Please go to the system settings to open 「Live Activites」";
+"关闭锁屏小组件" = "Close lock screen widget";
+"去设置" = "Go setting";

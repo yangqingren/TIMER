@@ -126,6 +126,14 @@ class TMElectronViewController: TMBasePageViewController {
         }
     }
     
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+        
+        self.contentView.format = Date.getHhFormatter()
+        self.contentView.timeUpdates()
+    }
+    
+    
     /*
     // MARK: - Navigation
 

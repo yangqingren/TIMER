@@ -95,7 +95,7 @@ class TMNeonClockViewController: TMBasePageViewController {
         
         // Do any additional setup after loading the view.
     }
-        
+            
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.vcType == .main {
@@ -120,6 +120,14 @@ class TMNeonClockViewController: TMBasePageViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+        
+        let format = Date.getHhFormatter()
+        self.neonClockView.format = format
+        self.neonClockView.timeUpdates()
     }
     
     var nightType: TMNeonClockNight = .unknow

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var timeInterval: Int = 0
 
+    var noCheckActivity = false
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let vc = TMMainViewController()
@@ -32,70 +34,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let vc = LaunchViewController()
 //        let nav = UINavigationController.init(rootViewController: vc)
 //        self.window?.rootViewController = nav
-        
-//        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeRun), userInfo: nil, repeats: true)
-        
+                
         return true
     }
     
-    @objc func timeRun() {
-        debugPrint("\(self.timeInterval)")
-        self.timeInterval += 1
-        if self.timeInterval % 60 == 0, let deliveryActivity = self.deliveryActivity {
-            Task {
-                guard let current = Activity<MTLiveWidgetAttributes>.activities.first else {
-                    return
-                }
-                let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
-                await current.update(using: state)
-            }
-        }
-    }
+//    @objc func timeRun() {
+//        
+//        // self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeRun), userInfo: nil, repeats: true)
+//
+//        debugPrint("\(self.timeInterval)")
+//        self.timeInterval += 1
+//        if self.timeInterval % 60 == 0, let deliveryActivity = self.deliveryActivity {
+//            Task {
+//                guard let current = Activity<MTLiveWidgetAttributes>.activities.first else {
+//                    return
+//                }
+//                let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
+//                await current.update(using: state)
+//            }
+//        }
+//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        self.resetDeliveryActivity()
+        self.setupLiveAndLockWidger()
     }
 
 
-    func resetDeliveryActivity() {
-        
-        if let current = Activity<MTLiveWidgetAttributes>.activities.first {
-            Task {
+    func setupLiveAndLockWidger() {
+        if TMMainSettingManager.getOpenStatus(.lock) {
+            if let current = Activity<MTLiveWidgetAttributes>.activities.first {
+                Task {
+                    let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
+                    let content = ActivityContent(state: state, staleDate: .distantFuture)
+                    await current.update(content)
+                    debugPrint("MTLiveWidget更新成功=\(current.id)")
+                }
+            }
+            else {
+                let attributes = MTLiveWidgetAttributes(name: "Widger")
                 let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
-                await current.update(using: state)
-                debugPrint("MTLiveWidget更新成功=\(current.id)")
+                let content = ActivityContent(state: state, staleDate: .distantFuture)
+                do {
+                    self.deliveryActivity = try Activity.request(attributes: attributes, content: content, pushType: nil)
+                    debugPrint("MTLiveWidget开启成功=\(String(describing: self.deliveryActivity?.id))")
+                }
+                catch (let error) {
+                    debugPrint("MTLiveWidget开启失败=\(error.localizedDescription)")
+                    if self.noCheckActivity {
+                        self.noCheckActivity = false
+                        return
+                    }
+                    NotificationCenter.default.post(name: NSNotification.Name.kNotifiActivitesWarm, object: nil)
+                }
             }
         }
         else {
-            let attributes = MTLiveWidgetAttributes(name: "Widger")
-            let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
-            do {
-                self.deliveryActivity = try Activity.request(attributes: attributes, contentState: state)
-                debugPrint("MTLiveWidget开启成功=\(String(describing: self.deliveryActivity?.id))")
-            } 
-            catch (let error) {
-                debugPrint("MTLiveWidget开启失败=\(error.localizedDescription)")
+            if let current = Activity<MTLiveWidgetAttributes>.activities.first {
+                Task {
+                    let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
+                    let content = ActivityContent(state: state, staleDate: .now)
+                    await current.end(content, dismissalPolicy: .immediate)
+                    debugPrint("MTLiveWidget立即停止=\(current.id)")
+                }
             }
         }
         
         if let current = Activity<MTLiveWidgetAttributes>.activities.first {
             Task {
-                 for await state in current.contentStateUpdates {
-                     debugPrint("监听state状态=\(state)")
+                 for await state in current.contentUpdates {
+                     debugPrint("MTLiveWidget监听state状态=\(state)")
                  }
             }
             Task {
                 for await state in current.activityStateUpdates {
-                    debugPrint("监听activity状态=\(state)")
+                    debugPrint("MTLiveWidget监听activity状态=\(state)")
                 }
             }
         }
         
-        //            Task {
-        //                    for activity in Activity<TestAttributes>.activities {
-        //                      await activity.end(dismissalPolicy: .immediate)
-        //                    }
-        //                }
+
 
     }
 }

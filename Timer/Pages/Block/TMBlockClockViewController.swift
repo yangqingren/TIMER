@@ -194,6 +194,14 @@ class TMBlockClockViewController: TMBasePageViewController {
             self.contentView.timeSsView.transform = transform
         }
     }
+    
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+        
+        let format = Date.getHhFormatter()
+        self.contentView.format = format
+        self.contentView.timeUpdates()
+    }
 }
 
 

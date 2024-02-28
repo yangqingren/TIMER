@@ -37,7 +37,7 @@ class TMBasePageViewController: TMBaseViewController {
         self.transformView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+                
         // Do any additional setup after loading the view.
     }
     
@@ -73,6 +73,9 @@ class TMBasePageViewController: TMBaseViewController {
         }
     }
 
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
+    }
     
     /*
     // MARK: - Navigation

@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct MTLiveWidgetBundle: WidgetBundle {
     var body: some Widget {
-        MTLiveWidget()
-        MTLiveWidgetLiveActivity()
+        MTLiveAndLockWidget()
+        MTUniversalWidget()
     }
 }

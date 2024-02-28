@@ -46,7 +46,8 @@ class TMShadowClockViewController: TMBasePageViewController {
     }()
     
     lazy var shadowHHView: TMShadowBaseView = {
-        let view = TMShadowBaseView(frame: .zero, format: "HH")
+        let format = Date.getHhFormatter()
+        let view = TMShadowBaseView(frame: .zero, format: format)
         view.setupFormatLabel(TMLocalizedString("时"))
         return view
     }()
@@ -159,8 +160,14 @@ class TMShadowClockViewController: TMBasePageViewController {
             self.shadowMmView.transform = transform
             self.shadowSsView.transform = transform
         }
+    }
+    
+    override func setupSystemTimeChanged() {
+        super.setupSystemTimeChanged()
         
-        
+        let format = Date.getHhFormatter()
+        self.shadowHHView.format = format
+        self.shadowHHView.timeUpdates()
     }
     
     /*
