@@ -112,6 +112,17 @@ class TMMainViewController: TMBaseViewController {
         button.hotspot = 8.dp
         return button
     }()
+    
+    lazy var autoHVButton: LEGOHighlightButton = {
+        let button = LEGOHighlightButton(type: .custom)
+        button.setBackgroundImage(UIImage.init(named: "mian_button_emtry"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17.sp, weight: .semibold)
+        button.addTarget(self, action: #selector(autoHVButtonClick(_:)), for: .touchUpInside)
+        button.hotspot = 8.dp
+        button.setTitle(TMMontionManager.getAutoHVText(), for: .normal)
+        return button
+    }()
         
     var location = 0.0
     var offsetY = 0.0
@@ -170,7 +181,14 @@ class TMMainViewController: TMBaseViewController {
         self.pageViewController.view.addSubview(self.settingButton)
         self.settingButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
-            make.left.equalTo(self.upButton.snp.right).offset(16.dp)
+            make.left.equalTo(self.upButton.snp.right).offset(14.dp)
+            make.centerY.equalTo(self.menuView)
+        }
+        
+        self.pageViewController.view.addSubview(self.autoHVButton)
+        self.autoHVButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
+            make.left.equalTo(self.settingButton.snp.right).offset(14.dp)
             make.centerY.equalTo(self.menuView)
         }
                 
@@ -337,7 +355,7 @@ extension TMMainViewController: TMPageMenuViewDelegate {
             else {
                 self.upButton.isSelected = false
             }
-            if abs(self.impactY - offsetY) > 0.005 {
+            if abs(self.impactY - offsetY) > 0.005 && offsetY < 0 {
                 self.impactY = offsetY
                 TMImpactManager.share.impactOccurred(.rigid)
             }
@@ -419,5 +437,18 @@ extension TMMainViewController: TMPageMenuViewDelegate {
             guard let `self` = self else { return }
             self.settingButton.isSelected = false
         }
+    }
+    
+    @objc func autoHVButtonClick(_ sender: UIButton) {
+        if TMMontionManager.share.autoHV == .auto {
+            TMMontionManager.share.autoHV = .H
+        }
+        else if TMMontionManager.share.autoHV == .H {
+            TMMontionManager.share.autoHV = .V
+        }
+        else {
+            TMMontionManager.share.autoHV = .auto
+        }
+        self.autoHVButton.setTitle(TMMontionManager.getAutoHVText(), for: .normal)
     }
 }

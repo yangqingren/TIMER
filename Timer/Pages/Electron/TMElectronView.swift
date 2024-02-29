@@ -7,6 +7,8 @@
 
 import UIKit
 
+let kTMElectronAlpha = 0.025
+
 class TMElectronView: TMBaseView {
     
     lazy var bgView: UIImageView = {
@@ -15,33 +17,45 @@ class TMElectronView: TMBaseView {
         return view
     }()
     
-    lazy var electronHHLabel: TMElectronBaseLabel = {
-        let label = TMElectronBaseLabel()
-        return label
+    lazy var electronHHView: TMElectronBaseView = {
+        let view = TMElectronBaseView()
+        return view
     }()
     
-    lazy var electronMmLabel: TMElectronBaseLabel = {
-        let label = TMElectronBaseLabel()
-        return label
+    lazy var electronMmView: TMElectronBaseView = {
+        let view = TMElectronBaseView()
+        return view
     }()
     
-    lazy var electronSsLabel: TMElectronBaseLabel = {
-        let label = TMElectronBaseLabel()
-        return label
+    lazy var electronSsView: TMElectronBaseView = {
+        let view = TMElectronBaseView()
+        return view
     }()
     
-    lazy var dian1Label: TMElectronBaseLabel = {
-        let label = TMElectronBaseLabel()
-        label.text = ":"
-        return label
+    lazy var dian1: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return view
     }()
     
-    lazy var dian2Label: TMElectronBaseLabel = {
-        let label = TMElectronBaseLabel()
-        label.text = ":"
-        return label
+    lazy var dian2: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return view
     }()
-
+    
+    lazy var dian3: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return view
+    }()
+    
+    lazy var dian4: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -55,39 +69,56 @@ class TMElectronView: TMBaseView {
             make.edges.equalToSuperview()
         }
         
-        self.addSubview(self.electronMmLabel)
-        self.electronMmLabel.snp.makeConstraints { make in
+        self.addSubview(self.electronMmView)
+        self.electronMmView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.size.equalTo(TMElectronBaseView.viewSize())
         }
         
-        let spacing = 30.dp
+        let spacing = 0.dp
         
-        self.addSubview(self.electronHHLabel)
-        self.electronHHLabel.snp.makeConstraints { make in
+        self.addSubview(self.electronHHView)
+        self.electronHHView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.electronMmLabel.snp.top).offset(-spacing)
-        }
-        
-        self.addSubview(self.electronSsLabel)
-        self.electronSsLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.electronMmLabel.snp.bottom).offset(spacing)
+            make.bottom.equalTo(self.electronMmView.snp.top).offset(-spacing)
+            make.size.equalTo(TMElectronBaseView.viewSize())
         }
         
-        self.addSubview(self.dian1Label)
-        self.dian1Label.snp.makeConstraints { make in
+        self.addSubview(self.electronSsView)
+        self.electronSsView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalTo(self.electronMmLabel.snp.top).offset(-spacing / 2.0)
+            make.top.equalTo(self.electronMmView.snp.bottom).offset(spacing)
+            make.size.equalTo(TMElectronBaseView.viewSize())
         }
-        self.addSubview(self.dian2Label)
-        self.dian2Label.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalTo(self.electronMmLabel.snp.bottom).offset(spacing / 2.0)
+        
+        let width = 13.dp
+        let spcaing = 13.dp
+        self.addSubview(self.dian1)
+        self.dian1.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: width, height: width))
+            make.right.equalTo(self.snp.centerX).offset(-spcaing)
+            make.centerY.equalTo(self.electronMmView.snp.top).offset(abs(spacing) / 2.0)
         }
-        self.dian1Label.transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-        self.dian2Label.transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
+        self.addSubview(self.dian2)
+        self.dian2.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: width, height: width))
+            make.left.equalTo(self.snp.centerX).offset(spcaing)
+            make.centerY.equalTo(self.electronMmView.snp.top).offset(abs(spacing) / 2.0)
+        }
 
+        self.addSubview(self.dian3)
+        self.dian3.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: width, height: width))
+            make.right.equalTo(self.snp.centerX).offset(-spcaing)
+            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(-abs(spacing) / 2.0)
+        }
+        self.addSubview(self.dian4)
+        self.dian4.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: width, height: width))
+            make.left.equalTo(self.snp.centerX).offset(spcaing)
+            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(-abs(spacing) / 2.0)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -105,35 +136,147 @@ class TMElectronView: TMBaseView {
     override func timeUpdates() {
         super.timeUpdates()
         
-        self.electronHHLabel.text = Date().getDateStringEn(format: self.format)
-        self.electronMmLabel.text = Date().getDateStringEn(format: "mm")
-        self.electronSsLabel.text = Date().getDateStringEn(format: "ss")
+        self.electronHHView.setupText(Date().getDateStringEn(format: self.format))
+        self.electronMmView.setupText(Date().getDateStringEn(format: "mm"))
+        self.electronSsView.setupText(Date().getDateStringEn(format: "ss"))
         
         self.flag += 1
+        
         if self.flag % 2 == 0 && self.flag >= 2 * 2 {
-            self.dian1Label.isHidden = true
-            self.dian2Label.isHidden = true
+            self.dian1.alpha = kTMElectronAlpha
+            self.dian2.alpha = kTMElectronAlpha
+            self.dian3.alpha = kTMElectronAlpha
+            self.dian4.alpha = kTMElectronAlpha
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.dian1Label.isHidden = false
-                self.dian2Label.isHidden = false
+                self.dian1.alpha = 1
+                self.dian2.alpha = 1
+                self.dian3.alpha = 1
+                self.dian4.alpha = 1
             }
         }
         else {
-            self.dian1Label.isHidden = false
-            self.dian2Label.isHidden = false
+            self.dian1.alpha = 1
+            self.dian2.alpha = 1
+            self.dian3.alpha = 1
+            self.dian4.alpha = 1
+        }
+    }
+    
+    override func motionUpdates(directin: TMMontionDirection) {
+        super.motionUpdates(directin: directin)
+        
+        var transform = CGAffineTransform.identity
+        var transform2 = CGAffineTransform.identity
+        switch directin {
+        case .original:
+            transform = transform.scaledBy(x: 1, y: 1)
+            transform2 = transform.translatedBy(x: 3.dp, y: 0)
+        case .left:
+            transform = transform.scaledBy(x: 0.8, y:0.8)
+            transform2 = transform.rotated(by: .pi / -2.0)
+        case .right:
+            transform = transform.scaledBy(x: 0.8, y: 0.8)
+            transform2 = transform.rotated(by: .pi / 2.0)
+        case .down:
+            transform = transform.scaledBy(x: 1, y: 1)
+            transform = transform.rotated(by: .pi)
+            transform2 = transform.translatedBy(x: 3.dp, y: 0)
+        }
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+            self.electronHHView.transform = transform2
+            self.electronMmView.transform = transform2
+            self.electronSsView.transform = transform2
+            self.dian1.transform = transform
+            self.dian2.transform = transform
+            self.dian3.transform = transform
+            self.dian4.transform = transform
         }
     }
 
 }
 
+private let kSpecaing = 1.5.dp
 
-class TMElectronBaseLabel: UILabel {
+class TMElectronBaseView: UIView {
+    
+    lazy var label1: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return label
+    }()
         
+    lazy var label2: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        return label
+    }()
+    
+    lazy var label3: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: kTMElectronAlpha)
+        label.text = "8"
+        return label
+    }()
+        
+    lazy var label4: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: kTMElectronAlpha)
+        label.text = "8"
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.font = .init(name: "DS-Digital-Bold", size: 135.sp)
-        self.textColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
+        self.addSubview(self.label1)
+        self.label1.snp.makeConstraints { make in
+            make.right.equalTo(self.snp.centerX).offset(-kSpecaing)
+            make.left.top.bottom.equalToSuperview()
+        }
+        
+        self.addSubview(self.label2)
+        self.label2.snp.makeConstraints { make in
+            make.left.equalTo(self.snp.centerX).offset(kSpecaing)
+            make.right.top.bottom.equalToSuperview()
+        }
+        
+        self.insertSubview(self.label3, belowSubview: self.label1)
+        self.label3.snp.makeConstraints { make in
+            make.edges.equalTo(self.label1)
+        }
+        
+        self.insertSubview(self.label4, belowSubview: self.label2)
+        self.label4.snp.makeConstraints { make in
+            make.edges.equalTo(self.label2)
+        }
+    }
+    
+    func setupText(_ text: String) {
+        let text1 = String(text.prefix(1))
+        if text1 == "1" {
+            self.label1.textAlignment = .right
+        }
+        else {
+            self.label1.textAlignment = .left
+        }
+        let text2 = String(text.suffix(1))
+        if text2 == "1" {
+            self.label2.textAlignment = .right
+        }
+        else {
+            self.label2.textAlignment = .left
+        }
+        self.label1.text = text1
+        self.label2.text = text2
+    }
+    
+    static func viewSize() -> CGSize {
+        let width = LEGOScreenWidth * 0.2 * 2.0 + kSpecaing * 2.0
+        return CGSize(width: width, height: width)
     }
     
     required init?(coder: NSCoder) {

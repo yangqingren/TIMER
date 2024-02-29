@@ -52,7 +52,7 @@ class TMMainSettingManager: NSObject {
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.lock.rawValue)")
             UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.systemTime.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
-            UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
+            UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
         }
         
         var list = [TMMainSettingItem]()

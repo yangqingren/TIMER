@@ -98,33 +98,6 @@ class TMElectronViewController: TMBasePageViewController {
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
-
-
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
-        
-        var transform = CGAffineTransform.identity
-        switch directin {
-        case .original:
-            transform = CGAffineTransform.identity
-            self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: 30.dp)
-        case .left:
-            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
-            self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: -30.dp)
-        case .right:
-            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-            self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: 30.dp)
-        case .down:
-            transform = CGAffineTransform.identity.rotated(by: .pi)
-            self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: -30.dp)
-        }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
-            self.contentView.electronHHLabel.transform = transform
-            self.contentView.electronMmLabel.transform = transform
-            self.contentView.electronSsLabel.transform = transform
-            
-        }
-    }
     
     override func setupSystemTimeChanged() {
         super.setupSystemTimeChanged()
@@ -133,6 +106,23 @@ class TMElectronViewController: TMBasePageViewController {
         self.contentView.timeUpdates()
     }
     
+    override func motionUpdates(directin: TMMontionDirection) {
+        super.motionUpdates(directin: directin)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+            switch directin {
+            case .original:
+                self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: 30.dp)
+            case .left:
+                self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: -30.dp)
+            case .right:
+                self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: 30.dp)
+            case .down:
+                self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: -30.dp)
+            }
+            
+        }
+    }
     
     /*
     // MARK: - Navigation
