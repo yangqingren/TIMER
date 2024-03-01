@@ -50,6 +50,7 @@ class TMMainViewController: TMBaseViewController {
             TMMainVcItem.init(type: .shadow),
             TMMainVcItem.init(type: .block),
             TMMainVcItem.init(type: .clock),
+            TMMainVcItem.init(type: .clock2),
             TMMainVcItem.init(type: .neon)
         ]
         if vcType == .bottom {
@@ -75,6 +76,8 @@ class TMMainViewController: TMBaseViewController {
             return TMBlockClockViewController(item, vcType)
         case .clock:
             return TMClockClockViewController(item, vcType)
+        case .clock2:
+            return TMClockClock2ViewController(item, vcType)
         case .neon:
             return TMNeonClockViewController(item, vcType)
         }

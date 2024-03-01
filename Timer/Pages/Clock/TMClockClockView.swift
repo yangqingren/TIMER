@@ -7,13 +7,13 @@
 
 import UIKit
 
-let hourW = 5.dp
-let minW = 3.dp
-let secW = 1.5.dp
+private let hourW = 5.dp
+private let minW = 3.dp
+private let secW = 1.5.dp
 
-let hourLength = TMClockClockView.viewSize().width * 0.5
-let minLength = TMClockClockView.viewSize().width * 0.7
-let secLength = TMClockClockView.viewSize().width * 0.9
+private let hourLength = TMClockClockView.viewSize().width * 0.5
+private let minLength = TMClockClockView.viewSize().width * 0.7
+private let secLength = TMClockClockView.viewSize().width * 0.9
 
 class TMClockClockBaseView: UIView {
     
@@ -219,7 +219,7 @@ class TMClockClockView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        CGSize(width: LEGOScreenWidth / 2.0, height: LEGOScreenWidth / 2.0)
+        return CGSize(width: LEGOScreenWidth / 2.0, height: LEGOScreenWidth / 2.0)
     }
     
     override func timeUpdates() {

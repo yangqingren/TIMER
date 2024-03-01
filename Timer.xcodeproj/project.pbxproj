@@ -63,6 +63,8 @@
 		E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */; };
 		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
 		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
+		E8D9CF432B9247420020DB0B /* TMClockClock2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9CF422B9247420020DB0B /* TMClockClock2ViewController.swift */; };
+		E8D9CF452B9247850020DB0B /* TMClockClock2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9CF442B9247850020DB0B /* TMClockClock2View.swift */; };
 		E8E8691C2B8DE94500D8C627 /* LEGOHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */; };
 		E8E8691E2B8DFF2200D8C627 /* TMMainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E8691D2B8DFF2200D8C627 /* TMMainSettingView.swift */; };
 		E8F3AE6F2B85933900B374F1 /* TMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3AE6E2B85933900B374F1 /* TMBaseViewController.swift */; };
@@ -162,6 +164,8 @@
 		E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMImpactManager.swift; sourceTree = "<group>"; };
 		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
 		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
+		E8D9CF422B9247420020DB0B /* TMClockClock2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClock2ViewController.swift; sourceTree = "<group>"; };
+		E8D9CF442B9247850020DB0B /* TMClockClock2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClock2View.swift; sourceTree = "<group>"; };
 		E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEGOHighlightButton.swift; sourceTree = "<group>"; };
 		E8E8691D2B8DFF2200D8C627 /* TMMainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainSettingView.swift; sourceTree = "<group>"; };
 		E8EE88BD2B46B92C00597769 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -331,6 +335,8 @@
 				E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */,
 				E83EDB4B2B8A338B00AF1492 /* TMClockClockView.swift */,
 				E83EDB4D2B8A4E9E00AF1492 /* TMClockTimeView.swift */,
+				E8D9CF422B9247420020DB0B /* TMClockClock2ViewController.swift */,
+				E8D9CF442B9247850020DB0B /* TMClockClock2View.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -609,10 +615,12 @@
 				E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */,
 				E8049DA42B88FA070016E878 /* TMBatteryLevelView.swift in Sources */,
 				E828B3F52B90CB330015BCDA /* TMTimerViewController.swift in Sources */,
+				E8D9CF452B9247850020DB0B /* TMClockClock2View.swift in Sources */,
 				E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */,
 				E828B3F72B90CEA90015BCDA /* TMTimerContentView.swift in Sources */,
 				E88909452B8D8D2000714237 /* LaunchViewController.swift in Sources */,
 				E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */,
+				E8D9CF432B9247420020DB0B /* TMClockClock2ViewController.swift in Sources */,
 				E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */,
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
 				E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */,

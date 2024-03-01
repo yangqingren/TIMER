@@ -1,22 +1,22 @@
 //
-//  TMClockClockViewController.swift
+//  TMClockClock2ViewController.swift
 //  Timer
 //
-//  Created by yangqingren on 2024/2/24.
+//  Created by yangqingren on 2024/3/2.
 //
 
 import UIKit
 
-class TMClockClockViewController: TMBasePageViewController {
-
+class TMClockClock2ViewController: TMBasePageViewController {
+   
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.black.withAlphaComponent(0.15)
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.init(r: 222, g: 228, b: 234, a: 1)
         label.textAlignment = .center
         let shadow = NSShadow()
-        shadow.shadowColor = TMNeonBlue
-        shadow.shadowBlurRadius = 4.dp
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
         return label
@@ -25,7 +25,7 @@ class TMClockClockViewController: TMBasePageViewController {
     lazy var topDateLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.black.withAlphaComponent(0.35)
+        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
         label.textAlignment = .center
         return label
     }()
@@ -37,9 +37,9 @@ class TMClockClockViewController: TMBasePageViewController {
         label.textAlignment = .center
         return label
     }()
-    
-    lazy var clockClockView: TMClockClockView = {
-        let view = TMClockClockView(frame: CGRect(x: 0, y: 0, width: TMClockClockView.viewSize().width, height: TMClockClockView.viewSize().height))
+        
+    lazy var clockClockView: TMClockClock2View = {
+        let view = TMClockClock2View(frame: CGRect(x: 0, y: 0, width: TMClockClock2View.viewSize().width, height: TMClockClock2View.viewSize().height))
         return view
     }()
     
@@ -51,32 +51,26 @@ class TMClockClockViewController: TMBasePageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.vcType == .main {
-            TMDelegateManager.share.clock = self
+            TMDelegateManager.share.clock2 = self
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if self.vcType == .main {
-            TMDelegateManager.share.clock = nil
+            TMDelegateManager.share.clock2 = nil
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.init(r: 231, g: 215, b: 207, a: 1)
-        
+        self.view.backgroundColor = UIColor.init(r: 237, g: 243, b: 243, a: 1)
+
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20.dp)
             make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
-        }
-        
-        self.view.insertSubview(self.topDateLabel2, belowSubview: self.topDateLabel)
-        self.topDateLabel2.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(1.dp)
-            make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
         self.view.addSubview(self.topDateLabel)
@@ -85,11 +79,17 @@ class TMClockClockViewController: TMBasePageViewController {
             make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
+        self.view.insertSubview(self.topDateLabel2, belowSubview: self.topDateLabel)
+        self.topDateLabel2.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().offset(1.dp)
+            make.centerY.equalTo(self.shadowLabel.snp.centerY)
+        }
+        
         self.view.addSubview(self.clockClockView)
         self.clockClockView.snp.makeConstraints { make in
-            make.size.equalTo(TMClockClockView.viewSize())
+            make.size.equalTo(TMClockClock2View.viewSize())
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.view.snp.centerY).offset(-30.dp)
+            make.bottom.equalTo(self.view.snp.centerY).offset(0.dp)
         }
         
         self.view.addSubview(self.clockTimeView)
@@ -100,7 +100,7 @@ class TMClockClockViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -137,7 +137,7 @@ class TMClockClockViewController: TMBasePageViewController {
         self.clockTimeView.format = Date.getHhFormatter()
         self.clockTimeView.timeUpdates()
     }
-    
+
     /*
     // MARK: - Navigation
 

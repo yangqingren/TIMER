@@ -25,6 +25,8 @@ class TMDelegateManager: NSObject {
     
     weak var clock: TMBaseViewController?
     
+    weak var clock2: TMBaseViewController?
+
     weak var electron: TMBaseViewController?
 
     var delegates: [TMBaseViewController] {
@@ -47,6 +49,9 @@ class TMDelegateManager: NSObject {
             }
             if let clock = self.clock {
                 array.append(clock)
+            }
+            if let clock2 = self.clock2 {
+                array.append(clock2)
             }
             if let electron = self.electron {
                 array.append(electron)

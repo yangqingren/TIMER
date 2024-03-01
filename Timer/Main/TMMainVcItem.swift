@@ -13,7 +13,8 @@ enum TMPageMenuType: Int {
     case shadow = 2
     case block = 3
     case clock = 4
-    case neon = 5
+    case clock2 = 5
+    case neon = 6
 }
 
 class TMMainVcItem: NSObject {
