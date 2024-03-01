@@ -15,7 +15,8 @@ class TMMainCollectionLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         self.itemSize = kBottomCellSize
-        self.minimumInteritemSpacing = 10.dp
+        self.minimumInteritemSpacing = 0.dp   // 横向间隔
+        self.minimumLineSpacing = 10.dp  // 竖向间隔
         self.sectionInset = UIEdgeInsets.init(top: 0, left: 22.dp, bottom: 0, right: 22.dp)
         self.scrollDirection = .horizontal
     }
@@ -48,9 +49,9 @@ class TMMainBottomView: TMBaseView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = String.getExpansionString(text: TMLocalizedString("探索所有可用主题"))
+        label.text = "探索所有可用主题"
         label.textColor = .white
-        label.font = .systemFont(ofSize: 18.sp, weight: .medium)
+        label.font = .systemFont(ofSize: 17.sp, weight: .medium)
         return label
     }()
     
@@ -77,6 +78,8 @@ class TMMainBottomView: TMBaseView {
     }()
     
     var didSelect: ((_ item: TMMainVcItem) -> Void)?
+
+    var impactX = 0.0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -137,6 +140,13 @@ class TMMainBottomView: TMBaseView {
 }
 
 extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if abs(self.impactX - scrollView.contentOffset.x) > 0.005 {
+            self.impactX = scrollView.contentOffset.x
+            TMImpactManager.share.impactOccurred(.rigid)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataArray.count

@@ -13,7 +13,7 @@ extension NSNotification.Name {
     static let kNotifiVcThemeChanged = NSNotification.Name(rawValue: "kNotifiVcThemeChanged")
     static let kNotifiSystemTimeChanged = NSNotification.Name(rawValue: "kNotifiSystemTimeChanged")
     static let kNotifiActivitesWarm = NSNotification.Name(rawValue: "kNotifiActivitesWarm")
-
+    static let kNotifiSettingChanged = NSNotification.Name(rawValue: "kNotifiSettingChanged")
 }
 
 let kNotifiBackgroundColor = "kNotifiBackgroundColor"
@@ -90,7 +90,7 @@ class TMMainViewController: TMBaseViewController {
         let view = TMMainBottomView()
         view.didSelect = {[weak self] item in
             guard let `self` = self else { return }
-            self.menuView.setupType(item)
+            self.menuView.setupItem(item, true)
         }
         return view
     }()
@@ -121,6 +121,15 @@ class TMMainViewController: TMBaseViewController {
         button.addTarget(self, action: #selector(autoHVButtonClick(_:)), for: .touchUpInside)
         button.hotspot = 8.dp
         button.setTitle(TMMontionManager.getAutoHVText(), for: .normal)
+        return button
+    }()
+    
+    lazy var timerButton: LEGOHighlightButton = {
+        let button = LEGOHighlightButton(type: .custom)
+        button.setImage(UIImage.init(named: "mian_button_timer"), for: .normal)
+        button.setImage(UIImage.init(named: "mian_button_timer"), for: .highlighted)
+        button.addTarget(self, action: #selector(timerButtonClick(_:)), for: .touchUpInside)
+        button.hotspot = 8.dp
         return button
     }()
         
@@ -167,34 +176,42 @@ class TMMainViewController: TMBaseViewController {
         self.pageViewController.view.addSubview(self.menuView)
         self.menuView.snp.makeConstraints { make in
             make.size.equalTo(TMPageMenuView.viewSize())
-            make.bottom.equalToSuperview().offset(IsPhoneX ? -23.dp : -15.dp)
+            make.bottom.equalToSuperview().offset(IsPhoneX ? -28.dp : -20.dp)
             make.right.equalToSuperview().offset(-25.dp)
         }
         
+        let spacing = 8.dp
         self.pageViewController.view.addSubview(self.upButton)
         self.upButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
             make.left.equalToSuperview().offset(25.dp)
             make.centerY.equalTo(self.menuView)
         }
-        
+    
         self.pageViewController.view.addSubview(self.settingButton)
         self.settingButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
-            make.left.equalTo(self.upButton.snp.right).offset(14.dp)
+            make.left.equalTo(self.upButton.snp.right).offset(spacing)
             make.centerY.equalTo(self.menuView)
         }
         
         self.pageViewController.view.addSubview(self.autoHVButton)
         self.autoHVButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
-            make.left.equalTo(self.settingButton.snp.right).offset(14.dp)
+            make.left.equalTo(self.settingButton.snp.right).offset(spacing)
             make.centerY.equalTo(self.menuView)
         }
                 
+        self.pageViewController.view.addSubview(self.timerButton)
+        self.timerButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
+            make.left.equalTo(self.autoHVButton.snp.right).offset(spacing)
+            make.centerY.equalTo(self.menuView)
+        }
+        
         let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType)) ?? .bw
         let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
-        self.menuView.setupType(TMMainVcItem.init(type: type, subType))
+        self.menuView.setupItem(TMMainVcItem.init(type: type, subType), false)
         self.pageViewController.view.backgroundColor = TMBWClockViewController.getThemeColor(subType, .vcBg)
 
         TMMontionManager.share.startMotionUpdates()
@@ -255,6 +272,11 @@ class TMMainViewController: TMBaseViewController {
             }
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.kNotifiSettingChanged, object: nil, queue: .main) {[weak self] noti in
+            guard let `self` = self else { return }
+            self.autoHVButton.setTitle(TMMontionManager.getAutoHVText(), for: .normal)
+        }
+        
         self.view.addGestureRecognizer(self.pan)
         
         // Do any additional setup after loading the view.
@@ -266,6 +288,8 @@ class TMMainViewController: TMBaseViewController {
             self.bottomView.alpha = 0.65
             self.upButton.alpha = 0.65
             self.settingButton.alpha = 0.65
+            self.autoHVButton.alpha = 0.65
+            self.timerButton.alpha = 0.65
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 UIScreen.main.brightness = 1.0
             }
@@ -276,6 +300,8 @@ class TMMainViewController: TMBaseViewController {
             self.bottomView.alpha = 1
             self.upButton.alpha = 1
             self.settingButton.alpha = 1
+            self.autoHVButton.alpha = 1
+            self.timerButton.alpha = 1
         }
     }
     
@@ -309,7 +335,7 @@ extension TMMainViewController: UIPageViewControllerDataSource, UIPageViewContro
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let vc = pageViewController.viewControllers?.first as? TMBasePageViewController, finished, completed {
-            self.menuView.setupType(vc.item)
+            self.menuView.setupItem(vc.item, true)
         }
     }
 }
@@ -442,13 +468,23 @@ extension TMMainViewController: TMPageMenuViewDelegate {
     @objc func autoHVButtonClick(_ sender: UIButton) {
         if TMMontionManager.share.autoHV == .auto {
             TMMontionManager.share.autoHV = .H
+            TMMainSettingManager.setOpenStatus(true, .horizontal)
         }
         else if TMMontionManager.share.autoHV == .H {
             TMMontionManager.share.autoHV = .V
+            TMMainSettingManager.setOpenStatus(false, .horizontal)
         }
         else {
             TMMontionManager.share.autoHV = .auto
+            TMMainSettingManager.setOpenStatus(false, .horizontal)
         }
         self.autoHVButton.setTitle(TMMontionManager.getAutoHVText(), for: .normal)
     }
+    
+    @objc func timerButtonClick(_ sender: UIButton) {
+        let vc = TMTimerViewController()
+        vc.modalPresentationStyle = .popover
+        self.present(vc, animated: true)
+    }
+    
 }

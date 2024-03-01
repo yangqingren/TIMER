@@ -22,6 +22,8 @@ class TMMainVcItem: NSObject {
     
     var subType: TMBwVcTheme?
     
+    var isSelected: Bool = false
+    
     init(type: TMPageMenuType, _ subType: TMBwVcTheme? = nil) {
         self.type = type
         self.subType = subType

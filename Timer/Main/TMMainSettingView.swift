@@ -12,6 +12,7 @@ enum TMSettingType: String {
     case systemTime = "systemTime"
     case sound = "sound"
     case impact = "impact"
+    case horizontal = "horizontal"
 }
 
 class TMMainSettingItem: NSObject {
@@ -42,6 +43,7 @@ class TMMainSettingManager: NSObject {
         let types: [TMSettingType] = [
             .lock,
             .systemTime,
+            .horizontal,
             .sound,
             .impact
         ]
@@ -51,6 +53,8 @@ class TMMainSettingManager: NSObject {
             UserDefaults.standard.set(true, forKey: kTMMainSettingInited)
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.lock.rawValue)")
             UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.systemTime.rawValue)")
+            let horizontal = TMMontionManager.share.autoHV == .H
+            UserDefaults.standard.set(horizontal, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.horizontal.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
             UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
         }
@@ -103,6 +107,16 @@ class TMMainSettingContentView: UIView {
         }
         else if sender.isEqual(self.impactSwitch) {
             TMMainSettingManager.setOpenStatus(sender.isOn, .impact)
+        }
+        else if sender.isEqual(self.horizontalSwitch) {
+            TMMainSettingManager.setOpenStatus(sender.isOn, .horizontal)
+            if sender.isOn {
+                TMMontionManager.share.autoHV = .H
+            }
+            else {
+                TMMontionManager.share.autoHV = .auto
+            }
+            NotificationCenter.default.post(name: NSNotification.Name.kNotifiSettingChanged, object: nil)
         }
     }
     
@@ -181,6 +195,17 @@ class TMMainSettingContentView: UIView {
         button.addTarget(self, action: #selector(entryButtonClick(_:)), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
         return button
+    }()
+    
+    lazy var horizontalLabel: UILabel = {
+        let label = self.createTitleLabel()
+        label.text = TMLocalizedString("固定横屏")
+        return label
+    }()
+    lazy var horizontalSwitch: UISwitch = {
+        let switchButton = self.createSwitchButton()
+        switchButton.isOn = TMMainSettingManager.getOpenStatus(.horizontal)
+        return switchButton
     }()
     
     lazy var soundLabel: UILabel = {
@@ -270,10 +295,22 @@ class TMMainSettingContentView: UIView {
             make.centerY.equalTo(self.homeLabel)
         }
         
+        self.addSubview(self.horizontalLabel)
+        self.horizontalLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(left)
+            make.top.equalTo(self.homeLabel.snp.bottom).offset(top)
+        }
+        self.addSubview(self.horizontalSwitch)
+        self.horizontalSwitch.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-right)
+            make.size.equalTo(size)
+            make.centerY.equalTo(self.horizontalLabel)
+        }
+        
         self.addSubview(self.soundLabel)
         self.soundLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
-            make.top.equalTo(self.homeLabel.snp.bottom).offset(top)
+            make.top.equalTo(self.horizontalLabel.snp.bottom).offset(top)
         }
         self.addSubview(self.soundSwitch)
         self.soundSwitch.snp.makeConstraints { make in
@@ -296,7 +333,7 @@ class TMMainSettingContentView: UIView {
     }
     
     static func viewSize() -> CGSize {
-        return CGSize(width: 232.dp, height: 322.dp)
+        return CGSize(width: 232.dp, height: 330.dp)
     }
     
     required init?(coder: NSCoder) {

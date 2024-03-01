@@ -26,6 +26,7 @@
 "锁屏小组件" = "Lock screen widget";
 "桌面小组件" = "Home screen widget";
 "12小时制" = "12-hour system";
+"固定横屏" = "Horizontal screen";
 "声音反馈" = "Sound Feedback";
 "震动反馈" = "Impact Feedback";
 
@@ -34,3 +35,9 @@
 "您的锁屏小组件开启失败，请前往系统设置打开「实时活动」" = "Your lock screen widget failed to open. Please go to the system settings to open 「Live Activites」";
 "关闭锁屏小组件" = "Close lock screen widget";
 "去设置" = "Go setting";
+
+// timerVc
+"开始" = "Start";
+"暂停" = "Stop";
+"计时器" = "Timer";
+
