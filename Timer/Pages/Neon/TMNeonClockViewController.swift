@@ -50,7 +50,6 @@ class TMNeonClockViewController: TMBasePageViewController {
     
     lazy var bottomIconView: UIImageView = {
         let view = UIImageView()
-        view.alpha = 0.85
         return view
     }()
         
@@ -86,9 +85,9 @@ class TMNeonClockViewController: TMBasePageViewController {
         
         self.transformView.addSubview(self.bottomIconView)
         self.bottomIconView.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 100.dp, height: 100.dp))
+            make.size.equalTo(CGSize(width: 150.dp, height: 150.dp))
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.neonClockView.snp.bottom).offset(28.dp)
+            make.top.equalTo(self.neonClockView.snp.bottom).offset(20.dp)
         }
 
         self.timeUpdates()
@@ -148,11 +147,13 @@ class TMNeonClockViewController: TMBasePageViewController {
             self.nightType = nightType
             if nightType == .day {
                 self.neonIconView.legoImageView.image = UIImage.init(named: "neon_coke_nomal")
-                self.bottomIconView.image = UIImage.init(named: "neon_cat_nomal")
+                self.bottomIconView.image = UIImage.init(named: "neon_beauty_nomal")
+                self.bottomIconView.alpha = 0.8
             }
             else {
                 self.neonIconView.legoImageView.image = UIImage.init(named: "neon_cat_nomal")
-                self.bottomIconView.image = UIImage.init(named: "neon_coke_nomal")
+                self.bottomIconView.image = UIImage.init(named: "neon_cat_nomal2")
+                self.bottomIconView.alpha = 1
             }
         }
         
