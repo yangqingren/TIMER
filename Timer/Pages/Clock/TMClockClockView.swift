@@ -74,7 +74,10 @@ class TMClockClockView: TMBaseView {
         return label
     }
     
-    override init(frame: CGRect) {
+    let vcType: TMMainVcType
+
+    init(frame: CGRect, vcType: TMMainVcType) {
+        self.vcType = vcType
         super.init(frame: frame)
         
         let width = TMClockClockView.viewSize().width
@@ -222,6 +225,8 @@ class TMClockClockView: TMBaseView {
         return CGSize(width: LEGOScreenWidth / 2.0, height: LEGOScreenWidth / 2.0)
     }
     
+    var ss = 0
+    
     override func timeUpdates() {
         super.timeUpdates()
 
@@ -237,5 +242,12 @@ class TMClockClockView: TMBaseView {
         self.sec.transform = CGAffineTransform.identity.rotated(by: secAngle)
         self.min.transform = CGAffineTransform.identity.rotated(by: minAngle)
         self.hour.transform = CGAffineTransform(rotationAngle: hourAngle)
+        
+        if self.ss != sec {
+            self.ss = sec
+            if self.vcType == .main {
+                TMSoundManager.playSound("pointer")
+            }
+        }
     }
 }

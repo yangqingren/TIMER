@@ -39,7 +39,7 @@ class TMNeonClockViewController: TMBasePageViewController {
     }()
     
     lazy var neonClockView: TMNeonClockView = {
-        let view = TMNeonClockView()
+        let view = TMNeonClockView(frame: .zero, vcType: self.vcType)
         return view
     }()
     

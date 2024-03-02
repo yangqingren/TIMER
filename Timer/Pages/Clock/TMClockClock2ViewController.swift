@@ -39,7 +39,7 @@ class TMClockClock2ViewController: TMBasePageViewController {
     }()
         
     lazy var clockClockView: TMClockClock2View = {
-        let view = TMClockClock2View(frame: CGRect(x: 0, y: 0, width: TMClockClock2View.viewSize().width, height: TMClockClock2View.viewSize().height))
+        let view = TMClockClock2View(frame: CGRect(x: 0, y: 0, width: TMClockClock2View.viewSize().width, height: TMClockClock2View.viewSize().height), vcType: self.vcType)
         return view
     }()
     

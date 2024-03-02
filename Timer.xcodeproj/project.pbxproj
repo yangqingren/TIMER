@@ -45,6 +45,16 @@
 		E856268F2B86E7DD00053DB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E85626912B86E7DD00053DB9 /* Localizable.strings */; };
 		E85626952B871B4900053DB9 /* TMNeonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85626942B871B4900053DB9 /* TMNeonIconView.swift */; };
 		E8579C9C2B46CD4C00DCE5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81820F62B45B8260022368D /* Main.storyboard */; };
+		E863F0972B936D6E00FA87C9 /* TMSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863F0962B936D6E00FA87C9 /* TMSoundManager.swift */; };
+		E863F09A2B93701200FA87C9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E863F0992B93701200FA87C9 /* AudioToolbox.framework */; };
+		E863F0A52B93774600FA87C9 /* pointer.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F09D2B93774600FA87C9 /* pointer.wav */; };
+		E863F0A62B93774600FA87C9 /* flip.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F09E2B93774600FA87C9 /* flip.wav */; };
+		E863F0A72B93774600FA87C9 /* neon.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F09F2B93774600FA87C9 /* neon.wav */; };
+		E863F0A82B93774600FA87C9 /* kasakii.power.off.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F0A02B93774600FA87C9 /* kasakii.power.off.wav */; };
+		E863F0A92B93774600FA87C9 /* nixie.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F0A12B93774600FA87C9 /* nixie.wav */; };
+		E863F0AA2B93774600FA87C9 /* slim.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F0A22B93774600FA87C9 /* slim.wav */; };
+		E863F0AB2B93774600FA87C9 /* dida.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F0A32B93774600FA87C9 /* dida.wav */; };
+		E863F0AC2B93774600FA87C9 /* digit.wav in Resources */ = {isa = PBXBuildFile; fileRef = E863F0A42B93774600FA87C9 /* digit.wav */; };
 		E8790B972B8A211100B58804 /* TMShadowClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790B962B8A211100B58804 /* TMShadowClockViewController.swift */; };
 		E8790B992B8A21F900B58804 /* TMShadowBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790B982B8A21F900B58804 /* TMShadowBaseView.swift */; };
 		E8822EFF2B85D11E00471E5A /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8822EFE2B85D11E00471E5A /* Date+Category.swift */; };
@@ -146,6 +156,16 @@
 		E8579C9B2B46BA0700DCE5E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E8579C9E2B46CD5100DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E8579CA02B46CD5C00DCE5E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E863F0962B936D6E00FA87C9 /* TMSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMSoundManager.swift; sourceTree = "<group>"; };
+		E863F0992B93701200FA87C9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E863F09D2B93774600FA87C9 /* pointer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pointer.wav; sourceTree = "<group>"; };
+		E863F09E2B93774600FA87C9 /* flip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flip.wav; sourceTree = "<group>"; };
+		E863F09F2B93774600FA87C9 /* neon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = neon.wav; sourceTree = "<group>"; };
+		E863F0A02B93774600FA87C9 /* kasakii.power.off.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kasakii.power.off.wav; sourceTree = "<group>"; };
+		E863F0A12B93774600FA87C9 /* nixie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nixie.wav; sourceTree = "<group>"; };
+		E863F0A22B93774600FA87C9 /* slim.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slim.wav; sourceTree = "<group>"; };
+		E863F0A32B93774600FA87C9 /* dida.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dida.wav; sourceTree = "<group>"; };
+		E863F0A42B93774600FA87C9 /* digit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digit.wav; sourceTree = "<group>"; };
 		E8790B962B8A211100B58804 /* TMShadowClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMShadowClockViewController.swift; sourceTree = "<group>"; };
 		E8790B982B8A21F900B58804 /* TMShadowBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMShadowBaseView.swift; sourceTree = "<group>"; };
 		E8822EFE2B85D11E00471E5A /* Date+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -183,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AA00B70F738E5448EEE62F6 /* libPods-Timer.a in Frameworks */,
+				E863F09A2B93701200FA87C9 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +302,7 @@
 				E8F420DA2B8B61EA001F20EF /* Main */,
 				E8049DA22B88F9E90016E878 /* Common */,
 				E8153BE92B85AC4100D74130 /* Expand */,
+				E863F0852B936D4A00FA87C9 /* MP3 */,
 				E8153BE62B85AA4F00D74130 /* Font */,
 				E8B635C62B8F28E100D549DC /* Impact */,
 				E8C7CD7D2B85FCAB00A87087 /* Motion */,
@@ -299,6 +321,7 @@
 		E81821252B45B89A0022368D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E863F0992B93701200FA87C9 /* AudioToolbox.framework */,
 				E81821262B45B89A0022368D /* WidgetKit.framework */,
 				E81821282B45B89A0022368D /* SwiftUI.framework */,
 				AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */,
@@ -367,6 +390,22 @@
 				E8527D662B87418B00CCD428 /* TMBWBaseView.swift */,
 			);
 			path = BW;
+			sourceTree = "<group>";
+		};
+		E863F0852B936D4A00FA87C9 /* MP3 */ = {
+			isa = PBXGroup;
+			children = (
+				E863F0962B936D6E00FA87C9 /* TMSoundManager.swift */,
+				E863F0A32B93774600FA87C9 /* dida.wav */,
+				E863F0A42B93774600FA87C9 /* digit.wav */,
+				E863F09E2B93774600FA87C9 /* flip.wav */,
+				E863F0A02B93774600FA87C9 /* kasakii.power.off.wav */,
+				E863F09F2B93774600FA87C9 /* neon.wav */,
+				E863F0A12B93774600FA87C9 /* nixie.wav */,
+				E863F09D2B93774600FA87C9 /* pointer.wav */,
+				E863F0A22B93774600FA87C9 /* slim.wav */,
+			);
+			path = MP3;
 			sourceTree = "<group>";
 		};
 		E889093D2B8D77EB00714237 /* Electron */ = {
@@ -523,16 +562,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E863F0A72B93774600FA87C9 /* neon.wav in Resources */,
 				E88ED3552B8850370075707F /* DigitaldreamSkewNarrow.ttf in Resources */,
+				E863F0A82B93774600FA87C9 /* kasakii.power.off.wav in Resources */,
 				E81820FD2B45B8270022368D /* LaunchScreen.storyboard in Resources */,
 				E85626882B86E75A00053DB9 /* InfoPlist.strings in Resources */,
+				E863F0A92B93774600FA87C9 /* nixie.wav in Resources */,
+				E863F0AC2B93774600FA87C9 /* digit.wav in Resources */,
 				E88ECBD52B8C912F0025F121 /* iconfont-8bit-front-Regular.ttf in Resources */,
 				E8129D222B8D9B2200F2CB3F /* launch_icon.png in Resources */,
+				E863F0A62B93774600FA87C9 /* flip.wav in Resources */,
 				E8153BE82B85AA4F00D74130 /* TMTimer.ttf in Resources */,
+				E863F0AB2B93774600FA87C9 /* dida.wav in Resources */,
 				E856268F2B86E7DD00053DB9 /* Localizable.strings in Resources */,
 				E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */,
+				E863F0A52B93774600FA87C9 /* pointer.wav in Resources */,
 				E81820FA2B45B8270022368D /* Assets.xcassets in Resources */,
 				E81820F82B45B8260022368D /* Main.storyboard in Resources */,
+				E863F0AA2B93774600FA87C9 /* slim.wav in Resources */,
 				E88909492B8D916A00714237 /* launch_white.png in Resources */,
 				E88909432B8D7F7700714237 /* DS-Digital-Bold.ttf in Resources */,
 			);
@@ -626,6 +673,7 @@
 				E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */,
 				E8E8691E2B8DFF2200D8C627 /* TMMainSettingView.swift in Sources */,
 				E8790B992B8A21F900B58804 /* TMShadowBaseView.swift in Sources */,
+				E863F0972B936D6E00FA87C9 /* TMSoundManager.swift in Sources */,
 				E8790B972B8A211100B58804 /* TMShadowClockViewController.swift in Sources */,
 				E88ED35B2B88818C0075707F /* TMBlockClockViewController.swift in Sources */,
 				E8F420DC2B8B6212001F20EF /* TMPageMenuView.swift in Sources */,

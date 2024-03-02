@@ -41,7 +41,7 @@ class TMBlockClockViewController: TMBasePageViewController {
     }()
     
     lazy var contentView: TMBlockClockView = {
-        let view = TMBlockClockView()
+        let view = TMBlockClockView(frame: .zero, vcType: self.vcType)
         return view
     }()
     

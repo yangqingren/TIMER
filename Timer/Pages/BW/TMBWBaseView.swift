@@ -29,9 +29,11 @@ class TMBWBaseView: TMBaseView {
     }()
     
     var format: String
-    
-    init(frame: CGRect, format: String) {
+    let vcType: TMMainVcType
+
+    init(frame: CGRect, format: String, vcType: TMMainVcType) {
         self.format = format
+        self.vcType = vcType
         super.init(frame: frame)
         self.isUserInteractionEnabled = false
         self.layer.cornerRadius = kCornerRadius
@@ -131,6 +133,10 @@ class TMBWBaseView: TMBaseView {
         DispatchQueue.main.asyncAfter(deadline: .now() + durtion / 4.0) {
             view2.label1.isHidden = true
             view2.label2.isHidden = false
+        }
+        
+        if self.vcType == .main && self.format == "ss" {
+            TMSoundManager.playSound("flip")
         }
     }
 }

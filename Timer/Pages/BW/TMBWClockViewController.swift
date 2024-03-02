@@ -29,7 +29,7 @@ class TMBWClockViewController: TMBasePageViewController {
         shadow.shadowColor = TMNeonBlue
         shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
+        label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
         return label
     }()
     
@@ -47,19 +47,19 @@ class TMBWClockViewController: TMBasePageViewController {
     
     lazy var bwHHView: TMBWBaseView = {
         let format = Date.getHhFormatter()
-        let view = TMBWBaseView(frame: .zero, format: format)
+        let view = TMBWBaseView(frame: .zero, format: format, vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("时")
         return view
     }()
     
     lazy var bwMmView: TMBWBaseView = {
-        let view = TMBWBaseView(frame: .zero, format: "mm")
+        let view = TMBWBaseView(frame: .zero, format: "mm", vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("分")
         return view
     }()
     
     lazy var bwSsView: TMBWBaseView = {
-        let view = TMBWBaseView(frame: .zero, format: "ss")
+        let view = TMBWBaseView(frame: .zero, format: "ss", vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("秒")
         return view
     }()

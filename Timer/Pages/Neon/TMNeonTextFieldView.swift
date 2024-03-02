@@ -38,6 +38,7 @@ class TMNeonTextFieldView: TMBaseView, UITextFieldDelegate {
     }()
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: false)
         textField.text = self.text
         textField.selectedTextRange = textField.textRange(from: textField.endOfDocument, to: textField.endOfDocument)
     }
@@ -45,6 +46,10 @@ class TMNeonTextFieldView: TMBaseView, UITextFieldDelegate {
     @objc func textFieldChanged(_ sender: UITextField) {
         self.text = sender.text
         self.timeUpdates()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -82,7 +87,7 @@ class TMNeonTextFieldView: TMBaseView, UITextFieldDelegate {
             self.setupTextChanged(text)
         }
         else {
-            let text = "\(self.getDateText()) \(TMLocalizedString("好 心 情  ⏎"))"
+            let text = "\(TMLocalizedString("编 辑")) \(self.getDateText()) \(TMLocalizedString("好 心 情  ⏎"))"
             self.setupTextChanged(text)
         }
     }

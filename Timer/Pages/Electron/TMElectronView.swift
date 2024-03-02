@@ -55,8 +55,11 @@ class TMElectronView: TMBaseView {
         view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
         return view
     }()
+
+    let vcType: TMMainVcType
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, vcType: TMMainVcType) {
+        self.vcType = vcType
         super.init(frame: frame)
         
         self.layer.shadowOffset = CGSize(width: 30.dp, height: 30.dp)
@@ -133,12 +136,20 @@ class TMElectronView: TMBaseView {
     var format = Date.getHhFormatter()
     
     var flag: Int = 0
+    var ss = ""
     override func timeUpdates() {
         super.timeUpdates()
         
         self.electronHHView.setupText(Date().getDateStringEn(format: self.format))
         self.electronMmView.setupText(Date().getDateStringEn(format: "mm"))
-        self.electronSsView.setupText(Date().getDateStringEn(format: "ss"))
+        let ss = Date().getDateStringEn(format: "ss")
+        self.electronSsView.setupText(ss)
+        if self.ss != ss {
+            self.ss = ss
+            if self.vcType == .main {
+                TMSoundManager.playSound("slim")
+            }
+        }
         
         self.flag += 1
         
@@ -160,6 +171,8 @@ class TMElectronView: TMBaseView {
             self.dian3.alpha = 1
             self.dian4.alpha = 1
         }
+        
+
     }
     
     override func motionUpdates(directin: TMMontionDirection) {

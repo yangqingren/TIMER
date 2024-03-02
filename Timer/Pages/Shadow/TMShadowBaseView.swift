@@ -58,9 +58,11 @@ class TMShadowBaseView: TMBaseView {
     }
     
     var format: String
-    
-    init(frame: CGRect, format: String) {
+    let vcType: TMMainVcType
+
+    init(frame: CGRect, format: String, vcType: TMMainVcType) {
         self.format = format
+        self.vcType = vcType
         super.init(frame: frame)
         
         self.addSubview(self.formatLabel)
@@ -141,6 +143,9 @@ class TMShadowBaseView: TMBaseView {
                 } completion: { _ in
                     
                 }
+            }
+            if self.vcType == .main && self.format == "ss" {
+                TMSoundManager.playSound("neon")
             }
         }
     }

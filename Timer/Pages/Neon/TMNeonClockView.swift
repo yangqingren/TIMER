@@ -63,14 +63,21 @@ class TMNeonClockView: TMBaseView {
     }()
     
     var format = Date.getHhFormatter()
-    
+    var text = ""
     func setupTimeLabel() {
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.init(r: 255, g: 154, b: 195, a: 1)
         shadow.shadowBlurRadius = 10.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         let text = Date().getDateStringEn(format: "\(self.format) : mm : ss")
-        self.timeLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
+        self.timeLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
+        
+        if self.text != text {
+            self.text = text
+            if self.vcType == .main {
+                TMSoundManager.playSound("slim")
+            }
+        }
     }
     
     lazy var dateLabel: UILabel = {
@@ -89,8 +96,10 @@ class TMNeonClockView: TMBaseView {
         self.dateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
     }
 
-    
-    override init(frame: CGRect) {
+    let vcType: TMMainVcType
+
+    init(frame: CGRect, vcType: TMMainVcType) {
+        self.vcType = vcType
         super.init(frame: frame)
         
         self.addSubview(self.contentView)

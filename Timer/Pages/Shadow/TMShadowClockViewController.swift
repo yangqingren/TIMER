@@ -47,19 +47,19 @@ class TMShadowClockViewController: TMBasePageViewController {
     
     lazy var shadowHHView: TMShadowBaseView = {
         let format = Date.getHhFormatter()
-        let view = TMShadowBaseView(frame: .zero, format: format)
+        let view = TMShadowBaseView(frame: .zero, format: format, vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("时"))
         return view
     }()
     
     lazy var shadowMmView: TMShadowBaseView = {
-        let view = TMShadowBaseView(frame: .zero, format: "mm")
+        let view = TMShadowBaseView(frame: .zero, format: "mm", vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("分"))
         return view
     }()
     
     lazy var shadowSsView: TMShadowBaseView = {
-        let view = TMShadowBaseView(frame: .zero, format: "ss")
+        let view = TMShadowBaseView(frame: .zero, format: "ss", vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("秒"))
         return view
     }()

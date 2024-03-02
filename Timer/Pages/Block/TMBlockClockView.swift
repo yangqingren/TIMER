@@ -92,7 +92,10 @@ class TMBlockClockView: TMBaseView {
         return view
     }()
     
-    override init(frame: CGRect) {
+    let vcType: TMMainVcType
+
+    init(frame: CGRect, vcType: TMMainVcType) {
+        self.vcType = vcType
         super.init(frame: frame)
         
         self.addSubview(self.timeMmView)
@@ -198,7 +201,7 @@ class TMBlockClockView: TMBaseView {
     }
     
     var format = Date.getHhFormatter()
-    
+    var ss = ""
     override func timeUpdates() {
         super.timeUpdates()
         
@@ -208,6 +211,12 @@ class TMBlockClockView: TMBaseView {
         self.timeMmView.setupTextIcon(String(mm.prefix(1)), String(mm.suffix(1)))
         let ss = Date().getDateStringEn(format: "ss")
         self.timeSsView.setupTextIcon(String(ss.prefix(1)), String(ss.suffix(1)))
+        if self.ss != ss {
+            self.ss = ss
+            if self.vcType == .main {
+                TMSoundManager.playSound("digit")
+            }
+        }
     }
     
     override func motionUpdates(directin: TMMontionDirection) {

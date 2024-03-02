@@ -80,7 +80,10 @@ class TMClockClock2View: TMBaseView {
         return view
     }()
     
-    override init(frame: CGRect) {
+    let vcType: TMMainVcType
+    
+    init(frame: CGRect, vcType: TMMainVcType) {
+        self.vcType = vcType
         super.init(frame: frame)
         
         self.addSubview(self.bgView)
@@ -128,6 +131,8 @@ class TMClockClock2View: TMBaseView {
         return CGSize(width: 245.dp, height: 245.dp)
     }
     
+    var ss = 0
+    
     override func timeUpdates() {
         super.timeUpdates()
 
@@ -143,5 +148,12 @@ class TMClockClock2View: TMBaseView {
         self.sec.transform = CGAffineTransform.identity.rotated(by: secAngle)
         self.min.transform = CGAffineTransform.identity.rotated(by: minAngle)
         self.hour.transform = CGAffineTransform(rotationAngle: hourAngle)
+        
+        if self.ss != sec {
+            self.ss = sec
+            if self.vcType == .main {
+                TMSoundManager.playSound("pointer")
+            }
+        }
     }
 }

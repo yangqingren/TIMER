@@ -105,6 +105,9 @@ class TMMainSettingContentView: UIView {
         else if sender.isEqual(self.systemTimeSwitch) {
             TMMainSettingManager.setOpenStatus(sender.isOn, .systemTime)
         }
+        else if sender.isEqual(self.soundSwitch) {
+            TMMainSettingManager.setOpenStatus(sender.isOn, .sound)
+        }
         else if sender.isEqual(self.impactSwitch) {
             TMMainSettingManager.setOpenStatus(sender.isOn, .impact)
         }

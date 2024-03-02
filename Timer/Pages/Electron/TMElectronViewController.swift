@@ -39,7 +39,7 @@ class TMElectronViewController: TMBasePageViewController {
     }()
     
     lazy var contentView: TMElectronView = {
-        let view = TMElectronView()
+        let view = TMElectronView(frame: .zero, vcType: self.vcType)
         return view
     }()
     
