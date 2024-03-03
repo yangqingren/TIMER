@@ -34,7 +34,7 @@ class TMNeonClockViewController: TMBasePageViewController {
     }()
         
     lazy var neonIconView: TMNeonIconView = {
-        let view = TMNeonIconView()
+        let view = TMNeonIconView(frame: .zero)
         return view
     }()
     
@@ -44,7 +44,7 @@ class TMNeonClockViewController: TMBasePageViewController {
     }()
     
     lazy var neonTextView: TMNeonTextFieldView = {
-        let view = TMNeonTextFieldView()
+        let view = TMNeonTextFieldView(frame: .zero)
         return view
     }()
     
@@ -90,7 +90,8 @@ class TMNeonClockViewController: TMBasePageViewController {
             make.top.equalTo(self.neonClockView.snp.bottom).offset(20.dp)
         }
 
-        self.timeUpdates()
+        self.setupUnlockBanner()
+        self.unlockBanner.alpha = 0.8
         
         // Do any additional setup after loading the view.
     }
@@ -98,7 +99,6 @@ class TMNeonClockViewController: TMBasePageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.vcType == .main {
-            TMDelegateManager.share.neon = self
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: true)
         }
     }
@@ -112,21 +112,12 @@ class TMNeonClockViewController: TMBasePageViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if self.vcType == .main {
-            TMDelegateManager.share.neon = nil
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiMainBrightness, object: false)
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        
-        let format = Date.getHhFormatter()
-        self.neonClockView.format = format
-        self.neonClockView.timeUpdates()
     }
     
     var nightType: TMNeonClockNight = .unknow

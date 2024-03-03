@@ -44,23 +44,9 @@ class TMClockClockViewController: TMBasePageViewController {
     }()
     
     lazy var clockTimeView: TMClockTimeView = {
-        let view = TMClockTimeView()
+        let view = TMClockTimeView(frame: .zero)
         return view
     }()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.clock = self
-        }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.clock = nil
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +86,7 @@ class TMClockClockViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
+        self.setupUnlockBanner()
 
         // Do any additional setup after loading the view.
     }
@@ -111,8 +98,8 @@ class TMClockClockViewController: TMBasePageViewController {
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         var transform = CGAffineTransform.identity
         switch directin {
@@ -125,17 +112,10 @@ class TMClockClockViewController: TMBasePageViewController {
         case .down:
             transform = CGAffineTransform.identity.rotated(by: .pi)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
             self.clockClockView.transform = transform
             self.clockTimeView.transform = transform
         }
-    }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        
-        self.clockTimeView.format = Date.getHhFormatter()
-        self.clockTimeView.timeUpdates()
     }
     
     /*

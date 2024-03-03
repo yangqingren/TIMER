@@ -46,38 +46,23 @@ class TMShadowClockViewController: TMBasePageViewController {
     }()
     
     lazy var shadowHHView: TMShadowBaseView = {
-        let format = Date.getHhFormatter()
-        let view = TMShadowBaseView(frame: .zero, format: format, vcType: self.vcType)
+        let view = TMShadowBaseView(frame: .zero, format: .hh, vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("时"))
         return view
     }()
     
     lazy var shadowMmView: TMShadowBaseView = {
-        let view = TMShadowBaseView(frame: .zero, format: "mm", vcType: self.vcType)
+        let view = TMShadowBaseView(frame: .zero, format: .mm, vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("分"))
         return view
     }()
     
     lazy var shadowSsView: TMShadowBaseView = {
-        let view = TMShadowBaseView(frame: .zero, format: "ss", vcType: self.vcType)
+        let view = TMShadowBaseView(frame: .zero, format: .ss, vcType: self.vcType)
         view.setupFormatLabel(TMLocalizedString("秒"))
         return view
     }()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.shadow = self
-        }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.shadow = nil
-        }
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -129,8 +114,8 @@ class TMShadowClockViewController: TMBasePageViewController {
             make.top.equalTo(self.shadowMmView.snp.bottom).offset(35.dp)
         }
         
-        self.timeUpdates()
-        
+        self.setupUnlockBanner()
+
         // Do any additional setup after loading the view.
     }
     
@@ -140,44 +125,5 @@ class TMShadowClockViewController: TMBasePageViewController {
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
-
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
-        
-        var transform = CGAffineTransform.identity
-        switch directin {
-        case .original:
-            transform = CGAffineTransform.identity
-        case .left:
-            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
-        case .right:
-            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-        case .down:
-            transform = CGAffineTransform.identity.rotated(by: .pi)
-        }
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut) {
-            self.shadowHHView.transform = transform
-            self.shadowMmView.transform = transform
-            self.shadowSsView.transform = transform
-        }
-    }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        
-        let format = Date.getHhFormatter()
-        self.shadowHHView.format = format
-        self.shadowHHView.timeUpdates()
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

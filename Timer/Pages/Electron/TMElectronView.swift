@@ -55,12 +55,9 @@ class TMElectronView: TMBaseView {
         view.backgroundColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
         return view
     }()
-
-    let vcType: TMMainVcType
     
-    init(frame: CGRect, vcType: TMMainVcType) {
-        self.vcType = vcType
-        super.init(frame: frame)
+    override init(frame: CGRect, vcType: TMMainVcType) {
+        super.init(frame: frame, vcType: vcType)
         
         self.layer.shadowOffset = CGSize(width: 30.dp, height: 30.dp)
         self.layer.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1).cgColor
@@ -133,14 +130,11 @@ class TMElectronView: TMBaseView {
         return CGSize(width: width, height: width / 768.0 * 1408.0)
     }
     
-    var format = Date.getHhFormatter()
-    
-    var flag: Int = 0
     var ss = ""
     override func timeUpdates() {
         super.timeUpdates()
         
-        self.electronHHView.setupText(Date().getDateStringEn(format: self.format))
+        self.electronHHView.setupText(Date().getDateStringEn(format: self.hhFormat))
         self.electronMmView.setupText(Date().getDateStringEn(format: "mm"))
         let ss = Date().getDateStringEn(format: "ss")
         self.electronSsView.setupText(ss)
@@ -149,34 +143,21 @@ class TMElectronView: TMBaseView {
             if self.vcType == .main {
                 TMSoundManager.playSound("slim")
             }
-        }
-        
-        self.flag += 1
-        
-        if self.flag % 2 == 0 && self.flag >= 2 * 2 {
-            self.dian1.alpha = kTMElectronAlpha
-            self.dian2.alpha = kTMElectronAlpha
-            self.dian3.alpha = kTMElectronAlpha
-            self.dian4.alpha = kTMElectronAlpha
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.dian1.alpha = 1
-                self.dian2.alpha = 1
-                self.dian3.alpha = 1
-                self.dian4.alpha = 1
-            }
-        }
-        else {
             self.dian1.alpha = 1
             self.dian2.alpha = 1
             self.dian3.alpha = 1
             self.dian4.alpha = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.dian1.alpha = kTMElectronAlpha
+                self.dian2.alpha = kTMElectronAlpha
+                self.dian3.alpha = kTMElectronAlpha
+                self.dian4.alpha = kTMElectronAlpha
+            }
         }
-        
-
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         var transform = CGAffineTransform.identity
         var transform2 = CGAffineTransform.identity
@@ -195,7 +176,7 @@ class TMElectronView: TMBaseView {
             transform = transform.rotated(by: .pi)
             transform2 = transform.translatedBy(x: 3.dp, y: 0)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
             self.electronHHView.transform = transform2
             self.electronMmView.transform = transform2
             self.electronSsView.transform = transform2

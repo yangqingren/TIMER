@@ -118,12 +118,12 @@ class TMMainBottomView: TMBaseView {
         return CGSize(width: LEGOScreenWidth, height: LEGOScreenHeight * 0.3)
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         for cell in self.collectionView.visibleCells {
             if let bottomCell = cell as? TMMainBottomCell, let vc = bottomCell.vc {
-                vc.motionUpdates(directin: directin)
+                vc.motionUpdates(directin: directin, duration: duration)
             }
         }
     }

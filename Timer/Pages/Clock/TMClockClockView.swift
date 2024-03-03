@@ -74,11 +74,8 @@ class TMClockClockView: TMBaseView {
         return label
     }
     
-    let vcType: TMMainVcType
-
-    init(frame: CGRect, vcType: TMMainVcType) {
-        self.vcType = vcType
-        super.init(frame: frame)
+    override init(frame: CGRect, vcType: TMMainVcType) {
+        super.init(frame: frame, vcType: vcType)
         
         let width = TMClockClockView.viewSize().width
         let height = TMClockClockView.viewSize().height

@@ -22,15 +22,14 @@ class TMSoundManager: NSObject {
     static func playSound(_ name: String) {
         let now = Date()
         let timeInterval = now.timeIntervalSince(TMSoundManager.share.date)
-        if TMMainSettingManager.getOpenStatus(.sound), timeInterval > 0.7 , let soundURL = Bundle.main.url(forResource: name, withExtension: "wav") {
+        if TMMainSettingManager.getOpenStatus(.sound), timeInterval > 0.7, let topVc = TMGetTopController(), topVc.isKind(of: TMMainViewController.self), let soundURL = Bundle.main.url(forResource: name, withExtension: "wav") {
             TMSoundManager.share.date = now
             var soundID: SystemSoundID = 0
-            let error = AudioServicesCreateSystemSoundID(soundURL as CFURL, &soundID)
-            debugPrint("error=\(error)")
+            let _ = AudioServicesCreateSystemSoundID(soundURL as CFURL, &soundID)
             AudioServicesPlaySystemSound(soundID)
         }
         else {
-            print("Sound file not found")
+            print("Sound not play")
         }
     }
 }

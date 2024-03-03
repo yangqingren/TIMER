@@ -44,7 +44,7 @@ class TMClockClock2ViewController: TMBasePageViewController {
     }()
     
     lazy var clockTimeView: TMClockTimeView = {
-        let view = TMClockTimeView()
+        let view = TMClockTimeView(frame: .zero)
         return view
     }()
     
@@ -100,7 +100,8 @@ class TMClockClock2ViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
-        
+        self.setupUnlockBanner()
+
         // Do any additional setup after loading the view.
     }
     
@@ -111,8 +112,8 @@ class TMClockClock2ViewController: TMBasePageViewController {
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         var transform = CGAffineTransform.identity
         switch directin {
@@ -125,18 +126,12 @@ class TMClockClock2ViewController: TMBasePageViewController {
         case .down:
             transform = CGAffineTransform.identity.rotated(by: .pi)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
             self.clockClockView.transform = transform
             self.clockTimeView.transform = transform
         }
     }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        
-        self.clockTimeView.format = Date.getHhFormatter()
-        self.clockTimeView.timeUpdates()
-    }
+
 
     /*
     // MARK: - Navigation

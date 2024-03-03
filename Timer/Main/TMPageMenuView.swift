@@ -256,6 +256,9 @@ class TMPageMenuCell: UICollectionViewCell {
             case .block:
                 self.round.backgroundColor = UIColor.systemBlue
                 self.bwRound.isHidden = true
+            case .heart:
+                self.round.backgroundColor = UIColor.init(r: 225, g: 152, b: 165, a: 1)
+                self.bwRound.isHidden = true
             case .clock:
                 self.round.backgroundColor = UIColor.init(r: 231, g: 215, b: 207, a: 1)
                 self.bwRound.isHidden = true

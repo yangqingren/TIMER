@@ -92,11 +92,8 @@ class TMBlockClockView: TMBaseView {
         return view
     }()
     
-    let vcType: TMMainVcType
-
-    init(frame: CGRect, vcType: TMMainVcType) {
-        self.vcType = vcType
-        super.init(frame: frame)
+    override init(frame: CGRect, vcType: TMMainVcType) {
+        super.init(frame: frame, vcType: vcType)
         
         self.addSubview(self.timeMmView)
         self.timeMmView.snp.makeConstraints { make in
@@ -191,21 +188,17 @@ class TMBlockClockView: TMBaseView {
             make.right.equalTo(self.snp.right).offset(-spacingY * 2.0)
             make.centerY.equalTo(self.timeSsView.snp.centerY).offset(0)
         }
-    
-        self.timeUpdates()
-        self.motionUpdates(directin: .original)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var format = Date.getHhFormatter()
     var ss = ""
     override func timeUpdates() {
         super.timeUpdates()
         
-        let hh = Date().getDateStringEn(format: self.format)
+        let hh = Date().getDateStringEn(format: self.hhFormat)
         self.timeHHView.setupTextIcon(String(hh.prefix(1)), String(hh.suffix(1)))
         let mm = Date().getDateStringEn(format: "mm")
         self.timeMmView.setupTextIcon(String(mm.prefix(1)), String(mm.suffix(1)))
@@ -219,8 +212,8 @@ class TMBlockClockView: TMBaseView {
         }
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         if directin == .original || directin == .down {
             self.dian1.isHidden = false
@@ -258,6 +251,23 @@ class TMBlockClockView: TMBaseView {
             self.dian8.isHidden = true
             self.dian9.isHidden = true
             self.dian10.isHidden = true
+        }
+        
+        var transform = CGAffineTransform.identity
+        switch directin {
+        case .original:
+            transform = CGAffineTransform.identity
+        case .left:
+            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
+        case .right:
+            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
+        case .down:
+            transform = CGAffineTransform.identity.rotated(by: .pi)
+        }
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
+            self.timeHHView.transform = transform
+            self.timeMmView.transform = transform
+            self.timeSsView.transform = transform
         }
     }
 }

@@ -35,7 +35,7 @@ class TMMontionManager: NSObject {
     var autoHV: TMMontionAutoHV = .auto {
         didSet {
             UserDefaults.standard.set(autoHV.rawValue, forKey: kTMMontionAutoHV)
-            self.setupMotionUpdates()
+            self.setupMotionUpdates(duration: 0.2)
         }
     }
      
@@ -59,22 +59,27 @@ class TMMontionManager: NSObject {
                 self.directin = .original
             }
             for delegate in TMDelegateManager.share.delegates {
-                delegate.motionUpdates(directin: self.directin)
+                delegate.motionUpdates(directin: self.directin, duration: 0)
             }
         }
     }
     
-    func setupMotionUpdates() {
+    func setupMotionUpdates(duration: TimeInterval) {
         if self.autoHV == .H {
             self.directin = .right
             for delegate in TMDelegateManager.share.delegates {
-                delegate.motionUpdates(directin: self.directin)
+                delegate.motionUpdates(directin: self.directin, duration: duration)
             }
         }
         else if self.autoHV == .V {
             self.directin = .original
             for delegate in TMDelegateManager.share.delegates {
-                delegate.motionUpdates(directin: self.directin)
+                delegate.motionUpdates(directin: self.directin, duration: duration)
+            }
+        }
+        else {
+            for delegate in TMDelegateManager.share.delegates {
+                delegate.motionUpdates(directin: self.directin, duration: duration)
             }
         }
     }
@@ -90,13 +95,13 @@ class TMMontionManager: NSObject {
                 if self.autoHV == .H {
                     self.directin = .right
                     for delegate in TMDelegateManager.share.delegates {
-                        delegate.motionUpdates(directin: self.directin)
+                        delegate.motionUpdates(directin: self.directin, duration: 0.2)
                     }
                 }
                 else if self.autoHV == .V {
                     self.directin = .original
                     for delegate in TMDelegateManager.share.delegates {
-                        delegate.motionUpdates(directin:  self.directin)
+                        delegate.motionUpdates(directin:  self.directin, duration: 0.2)
                     }
                 }
                 else {
@@ -117,7 +122,7 @@ class TMMontionManager: NSObject {
                         
                         self.directin = directin
                         for delegate in TMDelegateManager.share.delegates {
-                            delegate.motionUpdates(directin: self.fixOriginal ? .original : self.directin)
+                            delegate.motionUpdates(directin: self.fixOriginal ? .original : self.directin, duration: 0.2)
                         }
                     }
                 }

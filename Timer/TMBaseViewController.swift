@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TMTimeUpdatesProtocol {
-    func motionUpdates(directin: TMMontionDirection)
+    func motionUpdates(directin: TMMontionDirection, duration: TimeInterval)
     func timeUpdates()
 }
 
@@ -61,14 +61,14 @@ class TMBaseViewController: UIViewController {
         return true
     }
 
-    func motionUpdates(directin: TMMontionDirection) {
+    func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
         for subView in self.view.subviews {
             if let view = subView as? TMBaseView {
-                view.motionUpdates(directin: directin)
+                view.motionUpdates(directin: directin, duration: duration)
             }
             for subsubView in subView.subviews {
                 if let view = subsubView as? TMBaseView {
-                    view.motionUpdates(directin: directin)
+                    view.motionUpdates(directin: directin, duration: duration)
                 }
             }
         }
@@ -88,7 +88,16 @@ class TMBaseViewController: UIViewController {
     }
     
     @objc func setupSystemTimeChanged() {
-        
+        for subView in self.view.subviews {
+            if let view = subView as? TMBaseView {
+                view.setupSystemTimeChanged()
+            }
+            for subsubView in subView.subviews {
+                if let view = subsubView as? TMBaseView {
+                    view.setupSystemTimeChanged()
+                }
+            }
+        }
     }
     
     /*

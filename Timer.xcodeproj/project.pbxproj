@@ -69,6 +69,10 @@
 		E88ED35D2B88920C0075707F /* TMBlockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED35C2B88920C0075707F /* TMBlockClockView.swift */; };
 		E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C068E2B872F4D00E6106F /* TMBaseView.swift */; };
 		E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A095342B8C6836004EE16D /* TMMainBottomView.swift */; };
+		E8A56F302B9448B20083D9B8 /* TMStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */; };
+		E8A56F322B947FBB0083D9B8 /* TMUnlockBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F312B947FBB0083D9B8 /* TMUnlockBannerView.swift */; };
+		E8A56F352B9481390083D9B8 /* TMHeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F342B9481390083D9B8 /* TMHeartViewController.swift */; };
+		E8A56F372B9481C70083D9B8 /* TMHeartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F362B9481C70083D9B8 /* TMHeartContentView.swift */; };
 		E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B635C42B8F0E6500D549DC /* UIColor+Category.swift */; };
 		E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */; };
 		E8C7CD7F2B85FCC800A87087 /* TMMontionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */; };
@@ -180,6 +184,10 @@
 		E88ED35C2B88920C0075707F /* TMBlockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBlockClockView.swift; sourceTree = "<group>"; };
 		E89C068E2B872F4D00E6106F /* TMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseView.swift; sourceTree = "<group>"; };
 		E8A095342B8C6836004EE16D /* TMMainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainBottomView.swift; sourceTree = "<group>"; };
+		E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMStoreManager.swift; sourceTree = "<group>"; };
+		E8A56F312B947FBB0083D9B8 /* TMUnlockBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMUnlockBannerView.swift; sourceTree = "<group>"; };
+		E8A56F342B9481390083D9B8 /* TMHeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMHeartViewController.swift; sourceTree = "<group>"; };
+		E8A56F362B9481C70083D9B8 /* TMHeartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMHeartContentView.swift; sourceTree = "<group>"; };
 		E8B635C42B8F0E6500D549DC /* UIColor+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Category.swift"; sourceTree = "<group>"; };
 		E8B635C72B8F28FD00D549DC /* TMImpactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMImpactManager.swift; sourceTree = "<group>"; };
 		E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMontionManager.swift; sourceTree = "<group>"; };
@@ -298,6 +306,7 @@
 				E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */,
 				E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */,
 				E8F3AE702B85934900B374F1 /* TMMainViewController.swift */,
+				E8A56F2E2B9448A40083D9B8 /* Store */,
 				E828B3F32B90CB1F0015BCDA /* TimerVc */,
 				E8F420DA2B8B61EA001F20EF /* Main */,
 				E8049DA22B88F9E90016E878 /* Common */,
@@ -435,6 +444,23 @@
 			path = Block;
 			sourceTree = "<group>";
 		};
+		E8A56F2E2B9448A40083D9B8 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E8A56F332B94811E0083D9B8 /* Heart */ = {
+			isa = PBXGroup;
+			children = (
+				E8A56F342B9481390083D9B8 /* TMHeartViewController.swift */,
+				E8A56F362B9481C70083D9B8 /* TMHeartContentView.swift */,
+			);
+			path = Heart;
+			sourceTree = "<group>";
+		};
 		E8B635C62B8F28E100D549DC /* Impact */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +481,8 @@
 			isa = PBXGroup;
 			children = (
 				E8F3AE742B85976400B374F1 /* TMBasePageViewController.swift */,
+				E8A56F312B947FBB0083D9B8 /* TMUnlockBannerView.swift */,
+				E8A56F332B94811E0083D9B8 /* Heart */,
 				E889093D2B8D77EB00714237 /* Electron */,
 				E83EDB482B8A331300AF1492 /* Clock */,
 				E88ED3572B8855B10075707F /* Block */,
@@ -644,6 +672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A56F352B9481390083D9B8 /* TMHeartViewController.swift in Sources */,
 				E81820F12B45B8260022368D /* AppDelegate.swift in Sources */,
 				E8153BEB2B85AC6900D74130 /* String+Category.swift in Sources */,
 				E88ED35D2B88920C0075707F /* TMBlockClockView.swift in Sources */,
@@ -652,6 +681,7 @@
 				E8F3AE732B8596CA00B374F1 /* TMConfigPrefix.swift in Sources */,
 				E8129D262B8DC49D00F2CB3F /* TMMainBottomCell.swift in Sources */,
 				E8E8691C2B8DE94500D8C627 /* LEGOHighlightButton.swift in Sources */,
+				E8A56F302B9448B20083D9B8 /* TMStoreManager.swift in Sources */,
 				E889093F2B8D780800714237 /* TMElectronViewController.swift in Sources */,
 				E85626812B86E29C00053DB9 /* TMBWClockViewController.swift in Sources */,
 				E88909412B8D785200714237 /* TMElectronView.swift in Sources */,
@@ -667,6 +697,7 @@
 				E828B3F72B90CEA90015BCDA /* TMTimerContentView.swift in Sources */,
 				E88909452B8D8D2000714237 /* LaunchViewController.swift in Sources */,
 				E8B635C82B8F28FD00D549DC /* TMImpactManager.swift in Sources */,
+				E8A56F372B9481C70083D9B8 /* TMHeartContentView.swift in Sources */,
 				E8D9CF432B9247420020DB0B /* TMClockClock2ViewController.swift in Sources */,
 				E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */,
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
@@ -678,6 +709,7 @@
 				E88ED35B2B88818C0075707F /* TMBlockClockViewController.swift in Sources */,
 				E8F420DC2B8B6212001F20EF /* TMPageMenuView.swift in Sources */,
 				E83EDB4C2B8A338B00AF1492 /* TMClockClockView.swift in Sources */,
+				E8A56F322B947FBB0083D9B8 /* TMUnlockBannerView.swift in Sources */,
 				E8F3AE712B85934900B374F1 /* TMMainViewController.swift in Sources */,
 				E83EDB4E2B8A4E9E00AF1492 /* TMClockTimeView.swift in Sources */,
 				E83EDB4A2B8A332700AF1492 /* TMClockClockViewController.swift in Sources */,

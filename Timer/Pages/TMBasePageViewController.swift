@@ -28,6 +28,11 @@ class TMBasePageViewController: TMBaseViewController {
         return view
     }()
     
+    lazy var unlockBanner = {
+        let view = TMUnlockBannerView()
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,25 +42,79 @@ class TMBasePageViewController: TMBaseViewController {
         self.transformView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-                
+                        
         // Do any additional setup after loading the view.
     }
     
+    func setupUnlockBanner() {
+        if self.vcType == .main {
+            self.view.addSubview(self.unlockBanner)
+            self.unlockBanner.snp.remakeConstraints { make in
+                make.size.equalTo(TMUnlockBannerView.viewSize())
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().offset(-kMenuHeightAndBottom - 15.dp)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {
+                    self.unlockBanner.layer.shadowOffset = CGSize(width: 0, height: 0)
+                    self.unlockBanner.layer.shadowColor = UIColor.white.cgColor
+                    self.unlockBanner.layer.shadowOpacity = 1.0
+                    self.unlockBanner.layer.shadowRadius = 88.dp
+                }
+            }
+        }
+    }
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupDelegate(self)
         self.timeUpdates()
+        TMMontionManager.share.setupMotionUpdates(duration: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.timeUpdates()
+        self.setupDelegate(self)
         if self.vcType == .main {
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
         }
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.setupDelegate(nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.setupDelegate(nil)
+    }
+    
+    func setupDelegate(_ vc: TMBasePageViewController?) {
+        if self.vcType == .main {
+            switch self.item.type {
+            case .bw:
+                TMDelegateManager.share.bw = vc
+            case .electron:
+                TMDelegateManager.share.electron = vc
+            case .shadow:
+                TMDelegateManager.share.shadow = vc
+            case .block:
+                TMDelegateManager.share.blcok = vc
+            case .heart:
+                TMDelegateManager.share.heart = vc
+            case .clock:
+                TMDelegateManager.share.clock = vc
+            case .clock2:
+                TMDelegateManager.share.clock2 = vc
+            case .neon:
+                TMDelegateManager.share.neon = vc
+            }
+        }
+    }
+    
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
         var transform = CGAffineTransform.identity
         switch directin {
@@ -68,13 +127,9 @@ class TMBasePageViewController: TMBaseViewController {
         case .down:
             transform = CGAffineTransform.identity.rotated(by: .pi)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
             self.transformView.transform = transform
         }
-    }
-
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
     }
     
     /*

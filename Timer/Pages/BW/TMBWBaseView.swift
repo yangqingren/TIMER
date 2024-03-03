@@ -10,6 +10,12 @@ import UIKit
 private let kCornerRadius = 14.dp
 let kTMBWBaseViewSpacingY = 22.dp
 
+enum TMBWBaseType {
+    case hh
+    case mm
+    case ss
+}
+
 class TMBWBaseView: TMBaseView {
 
     lazy var timeLabel1: TMBWBaseLabel = {
@@ -28,13 +34,11 @@ class TMBWBaseView: TMBaseView {
         return label
     }()
     
-    var format: String
-    let vcType: TMMainVcType
+    var format: TMBWBaseType
 
-    init(frame: CGRect, format: String, vcType: TMMainVcType) {
+    init(frame: CGRect, format: TMBWBaseType, vcType: TMMainVcType) {
         self.format = format
-        self.vcType = vcType
-        super.init(frame: frame)
+        super.init(frame: frame, vcType: vcType)
         self.isUserInteractionEnabled = false
         self.layer.cornerRadius = kCornerRadius
         self.layer.shadowRadius = 10.dp
@@ -85,11 +89,38 @@ class TMBWBaseView: TMBaseView {
         let size = TMBWBaseView.viewSize()
         return CGSize(width: size.width / 2.0, height: size.height)
     }
+    
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
+        
+        var transform = CGAffineTransform.identity
+        switch directin {
+        case .original:
+            transform = CGAffineTransform.identity
+        case .left:
+            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
+        case .right:
+            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
+        case .down:
+            transform = CGAffineTransform.identity.rotated(by: .pi)
+        }
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
+            self.transform = transform
+        }
+    }
         
     override func timeUpdates() {
         super.timeUpdates()
-        
-        let text = Date().getDateStringEn(format: self.format)
+        var format = ""
+        switch self.format {
+        case .hh:
+            format = self.hhFormat
+        case .mm:
+            format = "mm"
+        case .ss:
+            format = "ss"
+        }
+        let text = Date().getDateStringEn(format: format)
         self.transformPage(String(text.prefix(1)), label: self.timeLabel1)
         self.transformPage(String(text.suffix(1)), label: self.timeLabel2)
     }
@@ -135,7 +166,7 @@ class TMBWBaseView: TMBaseView {
             view2.label2.isHidden = false
         }
         
-        if self.vcType == .main && self.format == "ss" {
+        if self.vcType == .main && self.format == .ss {
             TMSoundManager.playSound("flip")
         }
     }

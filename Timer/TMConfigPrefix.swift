@@ -54,6 +54,40 @@ let IsPhoneXisland: Bool = {
     return isPhoneX
 }()
 
+func getNormalWindow() -> UIWindow? {
+    var window: UIWindow?
+    if let windowScene = UIApplication.shared.connectedScenes
+        .compactMap({ $0 as? UIWindowScene })
+        .first(where: { $0.activationState == .foregroundActive }) {
+        window = windowScene.windows.first { $0.isKeyWindow && $0.windowLevel == .normal }
+    }
+        if window == nil {
+        if let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first {
+            window = windowScene.windows.first { $0.windowLevel == .normal }
+        }
+    }
+    return window
+}
+
+func TMGetTopController() -> UIViewController? {
+    var topController = UIApplication.shared.delegate?.window??.rootViewController
+    if let window = getNormalWindow(), let frontView = window.subviews.first, let nextResponder = frontView.next as? UIViewController {
+        topController = nextResponder
+    }
+    while let presentedViewController = topController?.presentedViewController {
+        topController = presentedViewController
+    }
+    if let tabBarController = topController as? UITabBarController {
+        topController = tabBarController.selectedViewController
+    }
+    if let navigationController = topController as? UINavigationController {
+        topController = navigationController.visibleViewController
+    }
+    return topController
+}
+
 func TMLocalizedString(_ key: String) -> String {
     return Bundle.main.localizedString(forKey: key, value: "", table: nil)
 }

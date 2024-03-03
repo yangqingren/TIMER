@@ -1,13 +1,13 @@
 //
-//  TMElectronViewController.swift
+//  TMHeartViewController.swift
 //  Timer
 //
-//  Created by yangqingren on 2024/2/27.
+//  Created by yangqingren on 2024/3/3.
 //
 
 import UIKit
 
-class TMElectronViewController: TMBasePageViewController {
+class TMHeartViewController: TMBasePageViewController {
 
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
@@ -38,15 +38,15 @@ class TMElectronViewController: TMBasePageViewController {
         return label
     }()
     
-    lazy var contentView: TMElectronView = {
-        let view = TMElectronView(frame: .zero, vcType: self.vcType)
+    
+    lazy var contentView: TMHeartContentView = {
+        let view = TMHeartContentView(frame: .zero, vcType: self.vcType)
         return view
     }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.init(r: 237, g: 243, b: 243, a: 1)
+        self.view.backgroundColor = .white
         
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
@@ -68,49 +68,23 @@ class TMElectronViewController: TMBasePageViewController {
         
         self.view.addSubview(self.contentView)
         self.contentView.snp.makeConstraints { make in
-            make.size.equalTo(TMElectronView.viewSize())
+            make.size.equalTo(TMHeartContentView.viewSize())
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
         self.setupBatteryView()
-        
+        self.setupUnlockBanner()
+
         // Do any additional setup after loading the view.
     }
     
+
     override func timeUpdates() {
         super.timeUpdates()
         let text = Date().getDateStringEn(format: "MM dd EEEE")
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
-        
-    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
-        super.motionUpdates(directin: directin, duration: duration)
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
-            switch directin {
-            case .original:
-                self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: 30.dp)
-            case .left:
-                self.contentView.layer.shadowOffset = CGSize(width: 30.dp, height: -30.dp)
-            case .right:
-                self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: 30.dp)
-            case .down:
-                self.contentView.layer.shadowOffset = CGSize(width: -30.dp, height: -30.dp)
-            }
-            
-        }
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -19,6 +19,9 @@ extension NSNotification.Name {
 let kNotifiBackgroundColor = "kNotifiBackgroundColor"
 let kUserDefaultsVcType = "kUserDefaultsVcType"
 let kTMBwVcThemeColor = "kTMBwVcThemeColor"
+let kMenuLeft = 25.dp
+let kMenuBottom = IsPhoneX ? 28.dp : 20.dp
+let kMenuHeightAndBottom = TMPageMenuView.viewSize().height + kMenuBottom
 
 enum TMMainVcType {
     case main
@@ -49,6 +52,7 @@ class TMMainViewController: TMBaseViewController {
             TMMainVcItem.init(type: .electron),
             TMMainVcItem.init(type: .shadow),
             TMMainVcItem.init(type: .block),
+            TMMainVcItem.init(type: .heart),
             TMMainVcItem.init(type: .clock),
             TMMainVcItem.init(type: .clock2),
             TMMainVcItem.init(type: .neon)
@@ -74,6 +78,8 @@ class TMMainViewController: TMBaseViewController {
             return TMShadowClockViewController(item, vcType)
         case .block:
             return TMBlockClockViewController(item, vcType)
+        case .heart:
+            return TMHeartViewController(item, vcType)
         case .clock:
             return TMClockClockViewController(item, vcType)
         case .clock2:
@@ -90,7 +96,7 @@ class TMMainViewController: TMBaseViewController {
     }()
     
     lazy var bottomView: TMMainBottomView = {
-        let view = TMMainBottomView()
+        let view = TMMainBottomView(frame: .zero)
         view.didSelect = {[weak self] item in
             guard let `self` = self else { return }
             self.menuView.setupItem(item, true)
@@ -179,15 +185,15 @@ class TMMainViewController: TMBaseViewController {
         self.pageViewController.view.addSubview(self.menuView)
         self.menuView.snp.makeConstraints { make in
             make.size.equalTo(TMPageMenuView.viewSize())
-            make.bottom.equalToSuperview().offset(IsPhoneX ? -28.dp : -20.dp)
-            make.right.equalToSuperview().offset(-25.dp)
+            make.bottom.equalToSuperview().offset(-kMenuBottom)
+            make.right.equalToSuperview().offset(-kMenuLeft)
         }
         
         let spacing = 8.dp
         self.pageViewController.view.addSubview(self.upButton)
         self.upButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
-            make.left.equalToSuperview().offset(25.dp)
+            make.left.equalToSuperview().offset(kMenuLeft)
             make.centerY.equalTo(self.menuView)
         }
     
@@ -308,8 +314,8 @@ class TMMainViewController: TMBaseViewController {
         }
     }
     
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
         
     }
 }

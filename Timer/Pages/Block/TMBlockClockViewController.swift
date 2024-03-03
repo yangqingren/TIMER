@@ -107,21 +107,7 @@ class TMBlockClockViewController: TMBasePageViewController {
         view.layer.addSublayer(gradientLayer)
         return view
     }()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.blcok = self
-        }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.blcok = nil
-        }
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBlue
@@ -161,7 +147,7 @@ class TMBlockClockViewController: TMBasePageViewController {
             make.edges.equalToSuperview()
         }
         
-        self.timeUpdates()
+        self.setupUnlockBanner()
 
         // Do any additional setup after loading the view.
     }
@@ -172,35 +158,6 @@ class TMBlockClockViewController: TMBasePageViewController {
         let text = Date().getDateStringEn(format: "MM dd EEEE")
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
         self.topDateLabel2.attributedText = String.getExpansionString(text: text, expansion: 0.3)
-    }
-
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
-        
-        var transform = CGAffineTransform.identity
-        switch directin {
-        case .original:
-            transform = CGAffineTransform.identity
-        case .left:
-            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
-        case .right:
-            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-        case .down:
-            transform = CGAffineTransform.identity.rotated(by: .pi)
-        }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
-            self.contentView.timeHHView.transform = transform
-            self.contentView.timeMmView.transform = transform
-            self.contentView.timeSsView.transform = transform
-        }
-    }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        
-        let format = Date.getHhFormatter()
-        self.contentView.format = format
-        self.contentView.timeUpdates()
     }
 }
 

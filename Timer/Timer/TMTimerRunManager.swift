@@ -20,6 +20,9 @@ class TMTimerRunManager: NSObject {
     func startTimeUpdates() {
         self.stopTimeUpdates()
         self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timeRun(_:)), userInfo: nil, repeats: true)
+        if let timer = self.timer {
+            RunLoop.current.add(timer, forMode: .common)
+        }
     }
     
     @objc func timeRun(_ sender: Timer) {

@@ -62,14 +62,13 @@ class TMNeonClockView: TMBaseView {
         return label
     }()
     
-    var format = Date.getHhFormatter()
     var text = ""
     func setupTimeLabel() {
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.init(r: 255, g: 154, b: 195, a: 1)
         shadow.shadowBlurRadius = 10.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        let text = Date().getDateStringEn(format: "\(self.format) : mm : ss")
+        let text = Date().getDateStringEn(format: "\(self.hhFormat) : mm : ss")
         self.timeLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
         
         if self.text != text {
@@ -96,11 +95,8 @@ class TMNeonClockView: TMBaseView {
         self.dateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3, others: [NSAttributedString.Key.shadow: shadow])
     }
 
-    let vcType: TMMainVcType
-
-    init(frame: CGRect, vcType: TMMainVcType) {
-        self.vcType = vcType
-        super.init(frame: frame)
+    override init(frame: CGRect, vcType: TMMainVcType) {
+        super.init(frame: frame, vcType: vcType)
         
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints { make in

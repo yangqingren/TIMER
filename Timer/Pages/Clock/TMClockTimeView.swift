@@ -44,13 +44,11 @@ class TMClockTimeView: TMBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var format = Date.getHhFormatter()
-
     override func timeUpdates() {
         super.timeUpdates()
         
         self.dateLabel.text = Date().getDateString(format: "MM-dd EE")
-        self.timeLabel.text = Date().getDateString(format: "\(self.format) : mm : ss")
+        self.timeLabel.text = Date().getDateString(format: "\(self.hhFormat) : mm : ss")
     }
     
 }

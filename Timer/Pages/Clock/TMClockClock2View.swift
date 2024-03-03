@@ -79,12 +79,9 @@ class TMClockClock2View: TMBaseView {
         view.image = UIImage(named: "clock_clock2_bg")
         return view
     }()
-    
-    let vcType: TMMainVcType
-    
-    init(frame: CGRect, vcType: TMMainVcType) {
-        self.vcType = vcType
-        super.init(frame: frame)
+        
+    override init(frame: CGRect, vcType: TMMainVcType) {
+        super.init(frame: frame, vcType: vcType)
         
         self.addSubview(self.bgView)
         self.bgView.snp.makeConstraints { make in

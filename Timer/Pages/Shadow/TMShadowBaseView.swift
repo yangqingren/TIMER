@@ -57,13 +57,11 @@ class TMShadowBaseView: TMBaseView {
         self.blackFormatLabel.text = text
     }
     
-    var format: String
-    let vcType: TMMainVcType
+    var format: TMBWBaseType
 
-    init(frame: CGRect, format: String, vcType: TMMainVcType) {
+    init(frame: CGRect, format: TMBWBaseType, vcType: TMMainVcType) {
         self.format = format
-        self.vcType = vcType
-        super.init(frame: frame)
+        super.init(frame: frame, vcType: vcType)
         
         self.addSubview(self.formatLabel)
         self.formatLabel.snp.makeConstraints { make in
@@ -114,7 +112,16 @@ class TMShadowBaseView: TMBaseView {
         super.timeUpdates()
         
         var isSame = false
-        let text = Date().getDateStringEn(format: self.format)
+        var format = ""
+        switch self.format {
+        case .hh:
+            format = self.hhFormat
+        case .mm:
+            format = "mm"
+        case .ss:
+            format = "ss"
+        }
+        let text = Date().getDateStringEn(format: format)
         if text == self.label1.text {
             isSame = true
         }
@@ -144,7 +151,7 @@ class TMShadowBaseView: TMBaseView {
                     
                 }
             }
-            if self.vcType == .main && self.format == "ss" {
+            if self.vcType == .main && self.format == .ss {
                 TMSoundManager.playSound("neon")
             }
         }
@@ -154,5 +161,24 @@ class TMShadowBaseView: TMBaseView {
         self.label1.transform = transform
         self.whiteLabel.transform = transform
         self.blackLabel.transform = transform
+    }
+    
+    override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
+        super.motionUpdates(directin: directin, duration: duration)
+        
+        var transform = CGAffineTransform.identity
+        switch directin {
+        case .original:
+            transform = CGAffineTransform.identity
+        case .left:
+            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
+        case .right:
+            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
+        case .down:
+            transform = CGAffineTransform.identity.rotated(by: .pi)
+        }
+        UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut) {
+            self.transform = transform
+        }
     }
 }

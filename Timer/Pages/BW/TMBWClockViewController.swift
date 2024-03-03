@@ -47,37 +47,23 @@ class TMBWClockViewController: TMBasePageViewController {
     
     lazy var bwHHView: TMBWBaseView = {
         let format = Date.getHhFormatter()
-        let view = TMBWBaseView(frame: .zero, format: format, vcType: self.vcType)
+        let view = TMBWBaseView(frame: .zero, format: .hh, vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("时")
         return view
     }()
     
     lazy var bwMmView: TMBWBaseView = {
-        let view = TMBWBaseView(frame: .zero, format: "mm", vcType: self.vcType)
+        let view = TMBWBaseView(frame: .zero, format: .mm, vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("分")
         return view
     }()
     
     lazy var bwSsView: TMBWBaseView = {
-        let view = TMBWBaseView(frame: .zero, format: "ss", vcType: self.vcType)
+        let view = TMBWBaseView(frame: .zero, format: .ss, vcType: self.vcType)
         view.topLabel.text = TMLocalizedString("秒")
         return view
     }()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.bw = self
-        }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if self.vcType == .main {
-            TMDelegateManager.share.bw = nil
-        }
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,7 +103,6 @@ class TMBWClockViewController: TMBasePageViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeVcChanged), name: NSNotification.Name.kNotifiVcThemeChanged, object: nil)
         
         self.setupBatteryView()
-        self.timeUpdates()
         self.setupThemeVcChanged()
     }
     
@@ -127,28 +112,6 @@ class TMBWClockViewController: TMBasePageViewController {
         self.topDateLabel.attributedText = String.getExpansionString(text: text, expansion: 0.3)
     }
 
-    
-    override func motionUpdates(directin: TMMontionDirection) {
-        super.motionUpdates(directin: directin)
-        
-        var transform = CGAffineTransform.identity
-        switch directin {
-        case .original:
-            transform = CGAffineTransform.identity
-        case .left:
-            transform = CGAffineTransform.identity.rotated(by: .pi / -2.0)
-        case .right:
-            transform = CGAffineTransform.identity.rotated(by: .pi / 2.0)
-        case .down:
-            transform = CGAffineTransform.identity.rotated(by: .pi)
-        }
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
-            self.bwHHView.transform = transform
-            self.bwMmView.transform = transform
-            self.bwSsView.transform = transform
-        }
-    }
-        
     @objc func setupThemeVcChanged() {
         let theme = self.item.subType ?? .white
         self.view.backgroundColor = TMBWClockViewController.getThemeColor(theme, .vcBg)
@@ -160,14 +123,7 @@ class TMBWClockViewController: TMBasePageViewController {
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
         }
     }
-    
-    override func setupSystemTimeChanged() {
-        super.setupSystemTimeChanged()
-        let format = Date.getHhFormatter()
-        self.bwHHView.format = format
-        self.bwMmView.timeUpdates()
-    }
-    
+        
     static func getThemeColor(_ theme: TMBwVcTheme, _ type: TMBwVcThemeType) -> UIColor {
         var color: UIColor = .clear
         if theme == .black {

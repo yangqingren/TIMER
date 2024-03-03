@@ -29,6 +29,8 @@ class TMDelegateManager: NSObject {
 
     weak var electron: TMBaseViewController?
 
+    weak var heart: TMBaseViewController?
+
     var delegates: [TMBaseViewController] {
         get {
             var array = [TMBaseViewController]()
@@ -55,6 +57,9 @@ class TMDelegateManager: NSObject {
             }
             if let electron = self.electron {
                 array.append(electron)
+            }
+            if let heart = self.heart {
+                array.append(heart)
             }
             return array
         }
