@@ -9,14 +9,6 @@ import UIKit
 
 class TMBlockClockView: TMBaseView {
     
-    lazy var topDateLabel: UILabel = {
-        let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
-        label.textAlignment = .center
-        return label
-    }()
-    
     lazy var timeHHView: TMBlockBaseView = {
         let view = TMBlockBaseView()
         return view
@@ -99,12 +91,12 @@ class TMBlockClockView: TMBaseView {
         self.timeMmView.snp.makeConstraints { make in
             make.size.equalTo(TMBlockBaseView.viewSize())
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(7.dp)
+            make.centerY.equalToSuperview().offset(6.dp * kBlockScale)
         }
                 
-        let size = CGSize(width: 26.dp, height: 26.dp)
-        let spacingX = 28.dp
-        let spacingY = 40.7.dp
+        let size = CGSize(width: 26.dp * kBlockScale, height: 26.dp * kBlockScale)
+        let spacingX = 28.dp * kBlockScale
+        let spacingY = 40.7.dp * kBlockScale
         self.addSubview(self.dian1)
         self.dian1.snp.makeConstraints { make in
             make.size.equalTo(size)
@@ -150,42 +142,42 @@ class TMBlockClockView: TMBaseView {
         self.addSubview(self.dian5)
         self.dian5.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.left.equalTo(self.snp.left).offset(spacingY * 2.0)
+            make.left.equalTo(self.timeMmView.snp.left)
             make.centerY.equalTo(self.timeMmView.snp.centerY).offset(0)
         }
         
         self.addSubview(self.dian6)
         self.dian6.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.left.equalTo(self.snp.left).offset(spacingY * 2.0)
+            make.left.equalTo(self.timeMmView.snp.left)
             make.centerY.equalTo(self.timeHHView.snp.centerY).offset(0)
         }
         
         self.addSubview(self.dian7)
         self.dian7.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.left.equalTo(self.snp.left).offset(spacingY * 2.0)
+            make.left.equalTo(self.timeMmView.snp.left)
             make.centerY.equalTo(self.timeSsView.snp.centerY).offset(0)
         }
         
         self.addSubview(self.dian8)
         self.dian8.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.right.equalTo(self.snp.right).offset(-spacingY * 2.0)
+            make.right.equalTo(self.timeMmView.snp.right)
             make.centerY.equalTo(self.timeMmView.snp.centerY).offset(0)
         }
         
         self.addSubview(self.dian9)
         self.dian9.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.right.equalTo(self.snp.right).offset(-spacingY * 2.0)
+            make.right.equalTo(self.timeMmView.snp.right)
             make.centerY.equalTo(self.timeHHView.snp.centerY).offset(0)
         }
         
         self.addSubview(self.dian10)
         self.dian10.snp.makeConstraints { make in
             make.size.equalTo(size)
-            make.right.equalTo(self.snp.right).offset(-spacingY * 2.0)
+            make.right.equalTo(self.timeMmView.snp.right)
             make.centerY.equalTo(self.timeSsView.snp.centerY).offset(0)
         }
     }
@@ -308,7 +300,7 @@ class TMBlockBaseView: UIView {
     }
     
     static func viewSize() -> CGSize {
-        let width = LEGOScreenWidth * 0.575
+        let width = LEGOScreenWidth * kBlockScale * 0.575
         return CGSize(width: width, height: width / 2.0)
     }
     

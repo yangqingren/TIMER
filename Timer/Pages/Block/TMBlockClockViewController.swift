@@ -7,17 +7,21 @@
 
 import UIKit
 
-let kBlockClockBlue = UIColor.init(r: 87, g: 144, b: 232, a: 1)
+let kBlockClockBlue = UIColor.init(r: 86, g: 144, b: 232, a: 1)
+let kBlockScale = 0.85
+let kBlockBgSize = CGSize(width: LEGOScreenWidth * kBlockScale, height: LEGOScreenWidth * kBlockScale / 1170.0 * 2488.0)
+let kGradientTop = 100.dp
+let kGradientLeft = kGradientTop / LEGOScreenHeight * LEGOScreenWidth
 
 class TMBlockClockViewController: TMBasePageViewController {
 
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 0.5)
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
         label.textAlignment = .center
         let shadow = NSShadow()
-        shadow.shadowColor = UIColor.black
+        shadow.shadowColor = TMNeonBlue
         shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
@@ -53,7 +57,7 @@ class TMBlockClockViewController: TMBasePageViewController {
     }()
     
     lazy var topGradientView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: LEGOScreenWidth, height: 40.dp))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: kBlockBgSize.width, height: kGradientTop))
         view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [kBlockClockBlue.cgColor,
@@ -67,7 +71,7 @@ class TMBlockClockViewController: TMBasePageViewController {
     }()
     
     lazy var leftGradientView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 15.dp, height: LEGOScreenHeight))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: kGradientLeft, height: kBlockBgSize.height))
         view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [kBlockClockBlue.cgColor,
@@ -81,7 +85,7 @@ class TMBlockClockViewController: TMBasePageViewController {
     }()
     
     lazy var rightGradientView: UIView = {
-        let view = UIView(frame: CGRect(x: LEGOScreenWidth - 15.dp, y: 0, width: 15.dp, height: LEGOScreenHeight))
+        let view = UIView(frame: CGRect(x: kBlockBgSize.width - kGradientLeft, y: 0, width: kGradientLeft, height: kBlockBgSize.height))
         view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [kBlockClockBlue.withAlphaComponent(0).cgColor,
@@ -95,7 +99,7 @@ class TMBlockClockViewController: TMBasePageViewController {
     }()
     
     lazy var bottomGradientView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: LEGOScreenHeight - 40.dp, width: LEGOScreenWidth, height: 40.dp))
+        let view = UIView(frame: CGRect(x: 0, y: kBlockBgSize.height - kGradientTop, width: kBlockBgSize.width, height: kGradientTop))
         view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [kBlockClockBlue.withAlphaComponent(0).cgColor,
@@ -110,13 +114,19 @@ class TMBlockClockViewController: TMBasePageViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBlue
-        
+        self.view.backgroundColor = kBlockClockBlue
+                
         self.view.addSubview(self.bgView)
         self.bgView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: LEGOScreenWidth, height: LEGOScreenWidth / 1170.0 * 2532))
+            make.size.equalTo(kBlockBgSize)
+        }
+        
+        self.view.addSubview(self.shadowLabel)
+        self.shadowLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20.dp)
+            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
         }
         
         self.view.addSubview(self.topDateLabel)
@@ -131,17 +141,11 @@ class TMBlockClockViewController: TMBasePageViewController {
             make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
         }
         
-        self.view.addSubview(self.topGradientView)
-        self.view.addSubview(self.leftGradientView)
-        self.view.addSubview(self.rightGradientView)
-        self.view.addSubview(self.bottomGradientView)
-        
-        self.view.addSubview(self.shadowLabel)
-        self.shadowLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20.dp)
-            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
-        }
-        
+        self.bgView.addSubview(self.topGradientView)
+        self.bgView.addSubview(self.leftGradientView)
+        self.bgView.addSubview(self.rightGradientView)
+        self.bgView.addSubview(self.bottomGradientView)
+                
         self.view.addSubview(self.contentView)
         self.contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
