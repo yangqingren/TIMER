@@ -10,8 +10,13 @@ import Foundation
 extension String {
     
     static func getAttributedString(text: String?, attributes: [NSAttributedString.Key: Any]) -> NSMutableAttributedString {
-        
         let attributedString = NSMutableAttributedString(string: text ?? "", attributes: attributes)
+        return attributedString
+    }
+    
+    static func getAttributedStringRange(text: String?, attributes: [NSAttributedString.Key: Any]) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: text ?? "")
+        attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.length))
         return attributedString
     }
     

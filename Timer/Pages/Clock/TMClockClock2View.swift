@@ -149,7 +149,7 @@ class TMClockClock2View: TMBaseView {
         if self.ss != sec {
             self.ss = sec
             if self.vcType == .main {
-                TMSoundManager.playSound("pointer")
+                TMSoundManager.playSound(.clock2)
             }
         }
     }

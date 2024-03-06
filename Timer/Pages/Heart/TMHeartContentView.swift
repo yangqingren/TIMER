@@ -113,7 +113,7 @@ class TMHeartContentView: TMBaseView {
         if self.ss != ss {
             self.ss = ss
             if self.vcType == .main {
-                TMSoundManager.playSound("slim")
+                TMSoundManager.playSound(.heart)
             }
             self.heartImageView.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {

@@ -65,7 +65,7 @@ class TMClockClock2ViewController: TMBasePageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.init(r: 237, g: 243, b: 243, a: 1)
+        self.view.backgroundColor = UIColor.white
 
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
@@ -100,7 +100,6 @@ class TMClockClock2ViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
-        self.setupUnlockBanner()
 
         // Do any additional setup after loading the view.
     }

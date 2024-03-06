@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TMUnlockBannerView: UIView {
+class TMUnlockBannerView: UIControl {
 
     lazy var icon: UIImageView = {
         let view = UIImageView()
@@ -19,7 +19,6 @@ class TMUnlockBannerView: UIView {
         let label = UILabel()
         label.textColor = UIColor.init(r: 253, g: 253, b: 253, a: 1)
         label.font = .systemFont(ofSize: 15.sp, weight: .medium)
-        label.text = TMLocalizedString("一次性买断全部")
         return label
     }()
     
@@ -40,6 +39,24 @@ class TMUnlockBannerView: UIView {
             make.left.equalTo(self.icon.snp.right).offset(6.dp)
             make.centerY.equalToSuperview()
         }
+        
+        self.addTarget(self, action: #selector(unlockBannerClick(_:)), for: .touchUpInside)
+        
+        self.setupDisplayPrice()
+    }
+    
+    func setupDisplayPrice() {
+        let text = TMLocalizedString("一次性买断全部")
+        if let displayPrice = TMStoreManager.getDisplayPrice(kTip_TiiMiiPro) {
+            self.titleLabel.text = "\(displayPrice) \(text)"
+        }
+        else {
+            self.titleLabel.text = text
+        }
+    }
+    
+    @objc func unlockBannerClick(_ sender: UIControl) {
+        TMStoreManager.purchaseVip()
     }
     
     static func viewSize() -> CGSize {

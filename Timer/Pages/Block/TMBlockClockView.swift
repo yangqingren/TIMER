@@ -199,7 +199,7 @@ class TMBlockClockView: TMBaseView {
         if self.ss != ss {
             self.ss = ss
             if self.vcType == .main {
-                TMSoundManager.playSound("digit")
+                TMSoundManager.playSound(.block)
             }
         }
     }

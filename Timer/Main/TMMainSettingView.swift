@@ -56,7 +56,7 @@ class TMMainSettingManager: NSObject {
             let horizontal = TMMontionManager.share.autoHV == .H
             UserDefaults.standard.set(horizontal, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.horizontal.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
-            UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
+            UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
         }
         
         var list = [TMMainSettingItem]()
@@ -233,6 +233,21 @@ class TMMainSettingContentView: UIView {
         return switchButton
     }()
     
+    lazy var TiiMiiPorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.init(r: 222, g: 228, b: 234, a: 1)
+        label.textAlignment = .center
+        label.isHidden = true
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
+        shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        label.attributedText = String.getExpansionString(text: "TiiMii Pro", expansion: 0.0, others: [    NSAttributedString.Key.shadow: shadow])
+
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.init(r: 207, g: 216, b: 227, a: 0.5)
@@ -259,6 +274,12 @@ class TMMainSettingContentView: UIView {
         self.titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalToSuperview().offset(25.dp)
+        }
+        
+        self.addSubview(self.TiiMiiPorLabel)
+        self.TiiMiiPorLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-left)
+            make.centerY.equalTo(self.titleLabel)
         }
         
         let top = 22.dp
@@ -332,6 +353,17 @@ class TMMainSettingContentView: UIView {
             make.right.equalToSuperview().offset(-right)
             make.size.equalTo(size)
             make.centerY.equalTo(self.impactLabel)
+        }
+        
+        self.setupTiiMiiPro()
+    }
+    
+    func setupTiiMiiPro() {
+        if TMStoreManager.share.isPro {
+            self.TiiMiiPorLabel.isHidden = false
+        }
+        else {
+            self.TiiMiiPorLabel.isHidden = true
         }
     }
     

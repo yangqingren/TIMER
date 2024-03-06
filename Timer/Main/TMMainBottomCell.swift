@@ -23,7 +23,7 @@ class TMMainBottomCell: UICollectionViewCell {
             return
         }
         self.currItem = item
-        let ratio = kBottomCellSize.width / LEGOScreenWidth
+        let ratio = TMMainBottomView.cellSize().width / LEGOScreenWidth
         let vc = TMMainViewController.getPageVc(item, .bottom)
         if let bwVc = vc as? TMBWClockViewController {
             bwVc.item = item

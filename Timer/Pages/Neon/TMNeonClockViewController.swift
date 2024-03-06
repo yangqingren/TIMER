@@ -90,7 +90,6 @@ class TMNeonClockViewController: TMBasePageViewController {
             make.top.equalTo(self.neonClockView.snp.bottom).offset(20.dp)
         }
 
-        self.setupUnlockBanner()
         self.unlockBanner.alpha = 0.8
         
         // Do any additional setup after loading the view.

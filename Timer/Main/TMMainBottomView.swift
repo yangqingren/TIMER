@@ -8,26 +8,30 @@
 import UIKit
 
 let kBottomCornerRadius = 40.dp
-let kBottomCellSize = CGSize(width: LEGOScreenWidth * 0.2, height: LEGOScreenHeight * 0.2)
+let kBottomSectionInset = 22.dp
+let kBottomLineSpacing = 10.dp
+let kBottomCollectionTop = 44.dp
+let kBottomCollectionBottom = 32.dp
 
 class TMMainCollectionLayout: UICollectionViewFlowLayout {
     
     override init() {
         super.init()
-        self.itemSize = kBottomCellSize
-        self.minimumInteritemSpacing = 0.dp   // 横向间隔
-        self.minimumLineSpacing = 10.dp  // 竖向间隔
-        self.sectionInset = UIEdgeInsets.init(top: 0, left: 22.dp, bottom: 0, right: 22.dp)
+        self.itemSize = TMMainBottomView.cellSize()
+        self.minimumInteritemSpacing = kBottomLineSpacing   // 横向间隔
+        self.minimumLineSpacing = kBottomLineSpacing  // 竖向间隔
+        self.sectionInset = UIEdgeInsets.init(top: 0, left: kBottomSectionInset, bottom: 0, right: kBottomSectionInset)
         self.scrollDirection = .horizontal
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 class TMMainBottomView: TMBaseView {
-    
+        
     lazy var bgView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.init(r: 84, g: 87, b: 90, a: 1)
@@ -49,9 +53,14 @@ class TMMainBottomView: TMBaseView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "探索所有可用主题"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 17.sp, weight: .medium)
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.init(r: 222, g: 228, b: 234, a: 1)
+        label.textAlignment = .center
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
+        shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        label.attributedText = String.getExpansionString(text: TMLocalizedString("探索所有可用主题"), expansion: 0.0, others: [NSAttributedString.Key.shadow: shadow])
         return label
     }()
     
@@ -76,6 +85,27 @@ class TMMainBottomView: TMBaseView {
         view.contentInsetAdjustmentBehavior = .never
         return view
     }()
+
+    lazy var TiiMiiPorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.init(r: 222, g: 228, b: 234, a: 1)
+        label.textAlignment = .center
+        label.isHidden = true
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
+        shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        label.attributedText = String.getExpansionString(text: "TiiMii Pro", expansion: 0.0, others: [    NSAttributedString.Key.shadow: shadow])
+
+        return label
+    }()
+    
+    lazy var proView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "vip_small_icon")
+        return view
+    }()
     
     var didSelect: ((_ item: TMMainVcItem) -> Void)?
 
@@ -90,6 +120,18 @@ class TMMainBottomView: TMBaseView {
             make.top.equalToSuperview().offset(-kBottomCornerRadius)
         }
         
+        self.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(22.dp)
+            make.top.equalToSuperview().offset(22.dp)
+        }
+        
+        self.addSubview(self.collectionView)
+        self.collectionView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(kBottomCollectionTop)
+        }
+        
         self.addSubview(self.shadowView)
         self.shadowView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
@@ -97,16 +139,23 @@ class TMMainBottomView: TMBaseView {
             make.bottom.equalTo(self.snp.top)
         }
         
-        self.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(22.dp)
-            make.top.equalToSuperview().offset(19.dp)
+        self.addSubview(self.TiiMiiPorLabel)
+        self.TiiMiiPorLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-22.dp)
+            make.centerY.equalTo(self.titleLabel.snp.centerY)
         }
         
-        self.addSubview(self.collectionView)
-        self.collectionView.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview()
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(-8.dp)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupTiiMiiPro), name: Notification.Name.kPurchseSuccess, object: nil)
+
+        self.setupTiiMiiPro()
+    }
+    
+    @objc func setupTiiMiiPro() {
+        if TMStoreManager.share.isPro {
+            self.TiiMiiPorLabel.isHidden = false
+        }
+        else {
+            self.TiiMiiPorLabel.isHidden = true
         }
     }
              
@@ -114,8 +163,13 @@ class TMMainBottomView: TMBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    static func cellSize() -> CGSize {
+        let width = floor((LEGOScreenWidth - kBottomSectionInset * 2.0 - 15.dp * 2) / 3.0)
+        return CGSize(width: width, height: width / LEGOScreenWidth * LEGOScreenHeight)
+    }
+    
     static func viewSize() -> CGSize {
-        return CGSize(width: LEGOScreenWidth, height: LEGOScreenHeight * 0.3)
+        return CGSize(width: LEGOScreenWidth, height: TMMainBottomView.cellSize().height + kBottomCollectionTop + kBottomCollectionBottom)
     }
     
     override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {
@@ -140,14 +194,7 @@ class TMMainBottomView: TMBaseView {
 }
 
 extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if abs(self.impactX - scrollView.contentOffset.x) > 0.005 {
-            self.impactX = scrollView.contentOffset.x
-            TMImpactManager.share.impactOccurred(.rigid)
-        }
-    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataArray.count
     }

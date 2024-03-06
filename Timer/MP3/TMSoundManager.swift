@@ -19,17 +19,40 @@ class TMSoundManager: NSObject {
     
     var date = Date()
     
-    static func playSound(_ name: String) {
+    static func playSound(_ type: TMPageMenuType) {
         let now = Date()
         let timeInterval = now.timeIntervalSince(TMSoundManager.share.date)
-        if TMMainSettingManager.getOpenStatus(.sound), timeInterval > 0.7, let topVc = TMGetTopController(), topVc.isKind(of: TMMainViewController.self), let soundURL = Bundle.main.url(forResource: name, withExtension: "wav") {
-            TMSoundManager.share.date = now
-            var soundID: SystemSoundID = 0
-            let _ = AudioServicesCreateSystemSoundID(soundURL as CFURL, &soundID)
-            AudioServicesPlaySystemSound(soundID)
-        }
-        else {
-            print("Sound not play")
+        if TMMainSettingManager.getOpenStatus(.sound), timeInterval > 0.7, let topVc = TMGetTopController(), let topVc = topVc as? TMMainViewController, let page = topVc.pageViewController.viewControllers?.first as? TMBasePageViewController, page.item.type == type {
+            var name = ""
+            switch type {
+            case .bw:
+                name = "flip"
+            case .electron:
+                name = "slim"
+            case .shadow:
+                name = "neon"
+            case .block:
+                name = "digit"
+            case .heart:
+                name = "slim"
+            case .clock:
+                name = "pointer"
+            case .clock2:
+                name = "digit"
+            case .neon:
+                name = "slim"
+            case .flip:
+                name = "flip"
+            }
+            if let soundURL = Bundle.main.url(forResource: name, withExtension: "wav") {
+                TMSoundManager.share.date = now
+                var soundID: SystemSoundID = 0
+                let _ = AudioServicesCreateSystemSoundID(soundURL as CFURL, &soundID)
+                AudioServicesPlaySystemSound(soundID)
+            }
+            else {
+                print("Sound not play 1")
+            }
         }
     }
 }

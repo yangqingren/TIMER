@@ -114,8 +114,6 @@ class TMShadowClockViewController: TMBasePageViewController {
             make.top.equalTo(self.shadowMmView.snp.bottom).offset(35.dp)
         }
         
-        self.setupUnlockBanner()
-
         // Do any additional setup after loading the view.
     }
     

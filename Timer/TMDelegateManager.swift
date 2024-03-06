@@ -31,6 +31,8 @@ class TMDelegateManager: NSObject {
 
     weak var heart: TMBaseViewController?
 
+    weak var flip: TMBaseViewController?
+
     var delegates: [TMBaseViewController] {
         get {
             var array = [TMBaseViewController]()
@@ -60,6 +62,9 @@ class TMDelegateManager: NSObject {
             }
             if let heart = self.heart {
                 array.append(heart)
+            }
+            if let flip = self.flip {
+                array.append(flip)
             }
             return array
         }

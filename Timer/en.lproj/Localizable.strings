@@ -43,4 +43,5 @@
 "计时器" = "Timer";
 
 // vip
-"一次性买断全部" = "Just one time purchase all";
+"一次性买断全部" = "Unlock all at once";
+"加载中..." = "loading...";

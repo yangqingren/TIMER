@@ -57,9 +57,9 @@ class TMShadowBaseView: TMBaseView {
         self.blackFormatLabel.text = text
     }
     
-    var format: TMBWBaseType
+    var format: TMBaseHhMmSsType
 
-    init(frame: CGRect, format: TMBWBaseType, vcType: TMMainVcType) {
+    init(frame: CGRect, format: TMBaseHhMmSsType, vcType: TMMainVcType) {
         self.format = format
         super.init(frame: frame, vcType: vcType)
         
@@ -152,7 +152,7 @@ class TMShadowBaseView: TMBaseView {
                 }
             }
             if self.vcType == .main && self.format == .ss {
-                TMSoundManager.playSound("neon")
+                TMSoundManager.playSound(.shadow)
             }
         }
     }

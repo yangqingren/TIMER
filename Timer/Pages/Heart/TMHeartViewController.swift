@@ -74,7 +74,6 @@ class TMHeartViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
-        self.setupUnlockBanner()
 
         // Do any additional setup after loading the view.
     }

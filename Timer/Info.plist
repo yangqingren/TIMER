@@ -2,12 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>TMTimer.ttf</string>
 		<string>iconfont-8bit-front-Regular.ttf</string>
 		<string>DigitaldreamSkewNarrow.ttf</string>
 		<string>DS-Digital-Bold.ttf</string>
+		<string>FlipClock.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

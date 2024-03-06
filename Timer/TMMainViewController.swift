@@ -23,11 +23,6 @@ let kMenuLeft = 25.dp
 let kMenuBottom = IsPhoneX ? 28.dp : 20.dp
 let kMenuHeightAndBottom = TMPageMenuView.viewSize().height + kMenuBottom
 
-enum TMMainVcType {
-    case main
-    case bottom
-}
-
 class TMMainViewController: TMBaseViewController {
 
     lazy var pageViewController: UIPageViewController = {
@@ -53,6 +48,7 @@ class TMMainViewController: TMBaseViewController {
             TMMainVcItem.init(type: .shadow),
             TMMainVcItem.init(type: .block),
             TMMainVcItem.init(type: .heart),
+            TMMainVcItem.init(type: .flip),
             TMMainVcItem.init(type: .clock),
             TMMainVcItem.init(type: .clock2),
             TMMainVcItem.init(type: .neon)
@@ -80,6 +76,8 @@ class TMMainViewController: TMBaseViewController {
             return TMBlockClockViewController(item, vcType)
         case .heart:
             return TMHeartViewController(item, vcType)
+        case .flip:
+            return TMFlipViewController(item, vcType)
         case .clock:
             return TMClockClockViewController(item, vcType)
         case .clock2:

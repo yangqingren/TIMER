@@ -74,7 +74,7 @@ class TMNeonClockView: TMBaseView {
         if self.text != text {
             self.text = text
             if self.vcType == .main {
-                TMSoundManager.playSound("slim")
+                TMSoundManager.playSound(.neon)
             }
         }
     }

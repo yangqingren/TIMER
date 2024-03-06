@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let nav = UINavigationController.init(rootViewController: vc)
 //        self.window?.rootViewController = nav
                 
+        _ = TMStoreManager.share
+        
         return true
     }
     

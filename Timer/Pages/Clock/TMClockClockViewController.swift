@@ -11,12 +11,12 @@ class TMClockClockViewController: TMBasePageViewController {
 
     lazy var shadowLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.black.withAlphaComponent(0.15)
+        label.font = .init(name: "Gill Sans", size: 16.sp)
+        label.textColor = UIColor.gray
         label.textAlignment = .center
         let shadow = NSShadow()
-        shadow.shadowColor = TMNeonBlue
-        shadow.shadowBlurRadius = 4.dp
+        shadow.shadowColor = UIColor.gray
+        shadow.shadowBlurRadius = 3.dp
         shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
         label.attributedText = String.getExpansionString(text: TIIMII, expansion: 0.3, others: [    NSAttributedString.Key.shadow: shadow])
         return label
@@ -25,7 +25,7 @@ class TMClockClockViewController: TMBasePageViewController {
     lazy var topDateLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.black.withAlphaComponent(0.35)
+        label.textColor = UIColor.gray.withAlphaComponent(1)
         label.textAlignment = .center
         return label
     }()
@@ -86,7 +86,6 @@ class TMClockClockViewController: TMBasePageViewController {
         }
         
         self.setupBatteryView()
-        self.setupUnlockBanner()
 
         // Do any additional setup after loading the view.
     }

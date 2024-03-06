@@ -151,8 +151,6 @@ class TMBlockClockViewController: TMBasePageViewController {
             make.edges.equalToSuperview()
         }
         
-        self.setupUnlockBanner()
-
         // Do any additional setup after loading the view.
     }
     

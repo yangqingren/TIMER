@@ -141,7 +141,7 @@ class TMElectronView: TMBaseView {
         if self.ss != ss {
             self.ss = ss
             if self.vcType == .main {
-                TMSoundManager.playSound("slim")
+                TMSoundManager.playSound(.electron)
             }
             self.dian1.alpha = 1
             self.dian2.alpha = 1

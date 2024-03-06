@@ -42,12 +42,26 @@ class TMBasePageViewController: TMBaseViewController {
         self.transformView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setupUnlockBanner), name: Notification.Name.kPurchseSuccess, object: nil)
+        
+        self.setupDelegate(self)
                         
         // Do any additional setup after loading the view.
     }
     
-    func setupUnlockBanner() {
-        if self.vcType == .main {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func setupUnlockBanner() {
+                
+        self.unlockBanner.setupDisplayPrice()
+        let types: [TMPageMenuType] = [.shadow, .block, .heart, .clock, .clock2, .neon, .flip]
+        if self.vcType == .main && !TMStoreManager.share.isPro && types.contains(self.item.type) {
+            if self.unlockBanner.superview != nil {
+                return
+            }
             self.view.addSubview(self.unlockBanner)
             self.unlockBanner.snp.remakeConstraints { make in
                 make.size.equalTo(TMUnlockBannerView.viewSize())
@@ -63,18 +77,22 @@ class TMBasePageViewController: TMBaseViewController {
                 }
             }
         }
+        else {
+            if self.unlockBanner.superview != nil {
+                self.unlockBanner.removeFromSuperview()
+            }
+        }
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupDelegate(self)
         self.timeUpdates()
         TMMontionManager.share.setupMotionUpdates(duration: 0)
+        self.setupUnlockBanner()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setupDelegate(self)
         if self.vcType == .main {
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiBackgroundColor, object: self.view.backgroundColor)
         }
@@ -82,15 +100,15 @@ class TMBasePageViewController: TMBaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.setupDelegate(nil)
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.setupDelegate(nil)
+
     }
     
-    func setupDelegate(_ vc: TMBasePageViewController?) {
+    func setupDelegate(_ vc: TMBasePageViewController) {
         if self.vcType == .main {
             switch self.item.type {
             case .bw:
@@ -103,6 +121,8 @@ class TMBasePageViewController: TMBaseViewController {
                 TMDelegateManager.share.blcok = vc
             case .heart:
                 TMDelegateManager.share.heart = vc
+            case .flip:
+                TMDelegateManager.share.flip = vc
             case .clock:
                 TMDelegateManager.share.clock = vc
             case .clock2:

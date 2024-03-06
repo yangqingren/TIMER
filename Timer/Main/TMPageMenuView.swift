@@ -242,7 +242,6 @@ class TMPageMenuCell: UICollectionViewCell {
             switch item.type {
             case .bw:
                 self.round.backgroundColor = UIColor.init(r: 242, g: 242, b: 242, a: 0)
-                self.bwRound.isHidden = false
                 let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
                 if subType == .black {
                     self.bwRound.transform = CGAffineTransform.identity.rotated(by: .pi / 180 * 45.0 + .pi)
@@ -252,24 +251,25 @@ class TMPageMenuCell: UICollectionViewCell {
                 }
             case .shadow:
                 self.round.backgroundColor = UIColor.init(r: 116, g: 188, b: 136, a: 1)
-                self.bwRound.isHidden = true
             case .block:
                 self.round.backgroundColor = kBlockClockBlue
-                self.bwRound.isHidden = true
             case .heart:
                 self.round.backgroundColor = UIColor.init(r: 225, g: 152, b: 165, a: 1)
-                self.bwRound.isHidden = true
+            case .flip:
+                self.round.backgroundColor = UIColor.init(r: 37, g: 37, b: 37, a: 1)
             case .clock:
                 self.round.backgroundColor = UIColor.init(r: 231, g: 215, b: 207, a: 1)
-                self.bwRound.isHidden = true
             case .clock2:
                 self.round.backgroundColor = UIColor.init(r: 226, g: 235, b: 245, a: 1)
-                self.bwRound.isHidden = true
             case .electron:
                 self.round.backgroundColor = UIColor.init(r: 186, g: 186, b: 186, a: 1)
-                self.bwRound.isHidden = true
             case .neon:
                 self.round.backgroundColor = .black
+            }
+            if item.type == .bw {
+                self.bwRound.isHidden = false
+            }
+            else {
                 self.bwRound.isHidden = true
             }
             if item.isSelected {
