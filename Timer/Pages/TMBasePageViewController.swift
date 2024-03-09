@@ -55,7 +55,7 @@ class TMBasePageViewController: TMBaseViewController {
     }
     
     @objc func setupUnlockBanner() {
-                
+                        
         self.unlockBanner.setupDisplayPrice()
         let types: [TMPageMenuType] = [.shadow, .block, .heart, .clock, .clock2, .neon, .flip]
         if self.vcType == .main && !TMStoreManager.share.isPro && types.contains(self.item.type) {
@@ -89,6 +89,9 @@ class TMBasePageViewController: TMBaseViewController {
         self.timeUpdates()
         TMMontionManager.share.setupMotionUpdates(duration: 0)
         self.setupUnlockBanner()
+        if self.vcType == .main && self.item.type != .bw {
+            TMStoreManager.share.storeReviewStar()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -13,6 +13,7 @@ enum TMSettingType: String {
     case sound = "sound"
     case impact = "impact"
     case horizontal = "horizontal"
+    case push = "push"
 }
 
 class TMMainSettingItem: NSObject {
@@ -57,6 +58,8 @@ class TMMainSettingManager: NSObject {
             UserDefaults.standard.set(horizontal, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.horizontal.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
+            UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.push.rawValue)")
+
         }
         
         var list = [TMMainSettingItem]()
@@ -120,6 +123,40 @@ class TMMainSettingContentView: UIView {
                 TMMontionManager.share.autoHV = .auto
             }
             NotificationCenter.default.post(name: NSNotification.Name.kNotifiSettingChanged, object: nil)
+        }
+        else if sender.isEqual(self.notificaitonSwitch) {
+            if sender.isOn {
+                TMUmengManager.share.requestNotification { authorized in
+                    DispatchQueue.main.async {
+                        if authorized {
+                            TMMainSettingManager.setOpenStatus(true, .push)
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                                appDelegate.initUMWithOptions(launchOptions: nil)
+                            }
+                        }
+                        else {
+                            TMMainSettingManager.setOpenStatus(false, .push)
+                            sender.isOn = false
+                            let alertVc = UIAlertController.init(title: TMLocalizedString("温馨提示"), message: TMLocalizedString("请在系统设置中，打开 TiiMii 的通知开关"), preferredStyle: .alert)
+                            let close = UIAlertAction(title: TMLocalizedString("取消"), style: .default) { _ in
+                            }
+                            let setting = UIAlertAction(title: TMLocalizedString("去设置"), style: .default) {_ in
+                                if let url = URL.init(string: UIApplication.openSettingsURLString) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                            }
+                            alertVc.addAction(close)
+                            alertVc.addAction(setting)
+                            TMGetTopController()?.present(alertVc, animated: true)
+                        }
+                    }
+                }
+            }
+            else {
+                TMMainSettingManager.setOpenStatus(false, .push)
+                UMessage.unregisterForRemoteNotifications()
+            }
+
         }
     }
     
@@ -233,6 +270,17 @@ class TMMainSettingContentView: UIView {
         return switchButton
     }()
     
+    lazy var notificaitonLabel: UILabel = {
+        let label = self.createTitleLabel()
+        label.text = TMLocalizedString("消息通知")
+        return label
+    }()
+    lazy var notificaitonSwitch: UISwitch = {
+        let switchButton = self.createSwitchButton()
+        switchButton.isOn = TMMainSettingManager.getOpenStatus(.push)
+        return switchButton
+    }()
+    
     lazy var TiiMiiPorLabel: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 16.sp)
@@ -248,7 +296,40 @@ class TMMainSettingContentView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
+    lazy var privacyButton: UIButton = {
+        let button = UIButton(type: .custom)
+        var text = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            text = "VERSION \(appVersion) \(TMLocalizedString("隐私政策"))"
+        }
+        else {
+            text = "\(TMLocalizedString("隐私政策"))"
+        }
+        button.setTitle(text, for: .normal)
+        button.setTitleColor(UIColor.init(r: 10, g: 10, b: 10, a: 10), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12.sp, weight: .regular)
+        button.addTarget(self, action: #selector(privacyButtonClick), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func privacyButtonClick() {
+        if let vc = TMGetTopController() {
+            let web = TMWebViewController()
+            web.modalPresentationStyle = .popover
+            web.url = URL(string: "https://tok-cam.web.app/TiiMii/privacyAgree.html")
+            vc.present(web, animated: true)
+        }
+    }
+    
+    lazy var signLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(r: 10, g: 10, b: 10, a: 10)
+        label.font = .systemFont(ofSize: 12.sp, weight: .regular)
+        label.text = "© 2024 TiiMii Clock Studio"
+        return label
+    }()
+    
+    init(frame: CGRect, from: TMMainSettingFrom) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.init(r: 207, g: 216, b: 227, a: 0.5)
         self.layer.borderColor = UIColor.white.cgColor
@@ -355,6 +436,34 @@ class TMMainSettingContentView: UIView {
             make.centerY.equalTo(self.impactLabel)
         }
         
+        if from == .fromRight {
+            
+            self.addSubview(self.notificaitonLabel)
+            self.notificaitonLabel.snp.makeConstraints { make in
+                make.left.equalToSuperview().offset(left)
+                make.top.equalTo(self.impactLabel.snp.bottom).offset(top)
+            }
+            self.addSubview(self.notificaitonSwitch)
+            self.notificaitonSwitch.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(-right)
+                make.size.equalTo(size)
+                make.centerY.equalTo(self.notificaitonLabel)
+            }
+            
+            self.addSubview(self.signLabel)
+            self.signLabel.snp.makeConstraints { make in
+                make.top.equalTo(self.notificaitonLabel.snp.bottom).offset(15.dp)
+                make.centerX.equalTo(self.snp.centerX)
+            }
+            
+            self.addSubview(self.privacyButton)
+            self.privacyButton.snp.makeConstraints { make in
+                make.top.equalTo(self.signLabel.snp.bottom).offset(2.dp)
+                make.centerX.equalTo(self.snp.centerX)
+            }
+        }
+
+        
         self.setupTiiMiiPro()
     }
     
@@ -367,8 +476,8 @@ class TMMainSettingContentView: UIView {
         }
     }
     
-    static func viewSize() -> CGSize {
-        return CGSize(width: 232.dp, height: 330.dp)
+    static func viewSize(from: TMMainSettingFrom) -> CGSize {
+        return CGSize(width: 232.dp, height: from == .fromLeft ? 330.dp : 420.dp)
     }
     
     required init?(coder: NSCoder) {
@@ -376,12 +485,16 @@ class TMMainSettingContentView: UIView {
     }
 }
 
+enum TMMainSettingFrom {
+    case fromLeft
+    case fromRight
+}
 class TMMainSettingView: UIView {
 
     var closure: (() -> Void)?
     
-    static func show(inView: UIView, originalRect: CGRect, closure: @escaping (() -> Void)) -> TMMainSettingView {
-        let view = TMMainSettingView.init(frame: .zero, inView: inView, originalRect: originalRect)
+    static func show(inView: UIView, from: TMMainSettingFrom, originalRect: CGRect, closure: @escaping (() -> Void)) -> TMMainSettingView {
+        let view = TMMainSettingView.init(frame: .zero, inView: inView, from: from, originalRect: originalRect)
         view.closure = closure
         view.show()
         return view
@@ -399,16 +512,17 @@ class TMMainSettingView: UIView {
     }
             
     lazy var contentView: TMMainSettingContentView = {
-        let view = TMMainSettingContentView()
+        let view = TMMainSettingContentView(frame: .zero, from: self.from)
         return view
     }()
         
     let inView: UIView
     let originalRect: CGRect
-    
-    init(frame: CGRect, inView: UIView, originalRect: CGRect) {
+    let from: TMMainSettingFrom
+    init(frame: CGRect, inView: UIView, from: TMMainSettingFrom, originalRect: CGRect) {
         self.inView = inView
         self.originalRect = originalRect
+        self.from = from
         super.init(frame: frame)
         
         self.inView.addSubview(self)
@@ -426,8 +540,14 @@ class TMMainSettingView: UIView {
         }
         
         self.addSubview(self.contentView)
-        let contentSize = TMMainSettingContentView.viewSize()
-        self.contentView.frame = CGRect(x: self.originalRect.maxX, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)
+        let contentSize = TMMainSettingContentView.viewSize(from: self.from)
+        
+        if self.from == .fromRight {
+            self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)
+        }
+        else {
+            self.contentView.frame = CGRect(x: self.originalRect.maxX, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)
+        }
         
         let rect = CGRect(x: self.originalRect.origin.x - 5.dp, y: self.originalRect.origin.y - 5.dp, width: self.originalRect.size.width + 10.dp, height: self.originalRect.size.height + 10.dp)
         let path = UIBezierPath(rect: UIScreen.main.bounds)
@@ -438,7 +558,12 @@ class TMMainSettingView: UIView {
     }
     
     func show() {
-        self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 0, y: 1))
+        if self.from == .fromLeft {
+            self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 0, y: 1))
+        }
+        else {
+            self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 1, y: 1))
+        }
         self.contentView.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
         self.contentView.alpha = 0
         self.coverView.alpha = 0

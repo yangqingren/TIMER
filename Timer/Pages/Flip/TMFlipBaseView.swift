@@ -155,7 +155,7 @@ class TMFlipBaseView: TMBaseView {
         }
         
         if self.vcType == .main && self.format == .ss {
-            TMSoundManager.playSound(.bw)
+            TMSoundManager.playSound(.flip)
         }
     }
 }

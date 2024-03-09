@@ -9,3 +9,4 @@
 CFBundleDisplayName = "TiiMii Clock";
 
 
+NSUserTrackingUsageDescription = "TiiMii Clock requires you to allow access to the ad identifier to track ads and push the latest version and clock updates.";

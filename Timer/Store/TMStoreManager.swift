@@ -218,11 +218,15 @@ class TMStoreManager: NSObject {
         }
         if let product = product {
             do {
+                TMUmengManager.share.event(id: kUmeng_Purchase_Try, attributes: ["tip": "\(product.id)"])
                 let result = try await product.purchase()
                 switch result {
                 case .success(let verificationResult):
                     if case .verified(let transaction) = verificationResult {
                         await transaction.finish()
+                        if product.price > 0 {
+                            TMUmengManager.share.event(id: kUmeng_Purchase_Success, attributes: ["tip": "\(product.id)"])
+                        }
                         return .success
                     }
                     else {
@@ -243,6 +247,31 @@ class TMStoreManager: NSObject {
         }
         else {
             throw TMPurchaseError.noProduct
+        }
+    }
+    
+    var isReviewStar = false
+    var isReviewStar2 = false
+
+}
+
+extension TMStoreManager {
+    
+    func storeReviewStar() {
+        DispatchQueue.main.async {
+            if !self.isReviewStar {
+                self.isReviewStar = true
+                SKStoreReviewController.requestReview()
+            }
+        }
+    }
+    
+    func storeReviewStar2() {
+        DispatchQueue.main.async {
+            if !self.isReviewStar2 {
+                self.isReviewStar2 = true
+                SKStoreReviewController.requestReview()
+            }
         }
     }
 }

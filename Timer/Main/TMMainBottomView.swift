@@ -107,6 +107,19 @@ class TMMainBottomView: TMBaseView {
         return view
     }()
     
+    lazy var settingButton: LEGOHighlightButton = {
+        let button = LEGOHighlightButton(type: .custom)
+        button.setTitleColor(UIColor.init(r: 222, g: 228, b: 234, a: 1), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16.sp, weight: .regular)
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
+        shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        button.setAttributedTitle(String.getExpansionString(text: TMLocalizedString("设置"), expansion: 0.0, others: [NSAttributedString.Key.shadow: shadow]), for: .normal)
+        button.addTarget(self, action: #selector(settingButtonClick), for: .touchUpInside)
+        return button
+    }()
+    
     var didSelect: ((_ item: TMMainVcItem) -> Void)?
 
     var impactX = 0.0
@@ -139,15 +152,31 @@ class TMMainBottomView: TMBaseView {
             make.bottom.equalTo(self.snp.top)
         }
         
+        self.addSubview(self.settingButton)
+        self.settingButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-22.dp)
+            make.centerY.equalTo(self.titleLabel.snp.centerY)
+        }
+        
         self.addSubview(self.TiiMiiPorLabel)
         self.TiiMiiPorLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-22.dp)
+            make.right.equalTo(self.settingButton.snp.left).offset(IsChinese ? -22.dp : -10.dp)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupTiiMiiPro), name: Notification.Name.kPurchseSuccess, object: nil)
 
         self.setupTiiMiiPro()
+    }
+    
+    @objc func settingButtonClick() {
+        if let vc = TMGetTopController() {
+            let originalRect = self.convert(self.settingButton.frame, to: vc.view)
+            _ = TMMainSettingView.show(inView: vc.view, from: .fromRight, originalRect: originalRect) {[weak self] in
+                guard let `self` = self else { return }
+                
+            }
+        }
     }
     
     @objc func setupTiiMiiPro() {
@@ -165,7 +194,7 @@ class TMMainBottomView: TMBaseView {
     
     static func cellSize() -> CGSize {
         let width = floor((LEGOScreenWidth - kBottomSectionInset * 2.0 - 15.dp * 2) / 3.0)
-        return CGSize(width: width, height: width / LEGOScreenWidth * LEGOScreenHeight)
+        return CGSize(width: width, height: width / LEGOScreenWidth * LEGOScreenHeight + 35.dp)
     }
     
     static func viewSize() -> CGSize {
@@ -215,6 +244,9 @@ extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate
         let item = self.dataArray[indexPath.row]
         self.didSelect?(item)
         self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        if item.type == .shadow {
+            TMStoreManager.share.storeReviewStar2()
+        }
     }
 
 }

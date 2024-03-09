@@ -30,6 +30,13 @@
 "固定横屏" = "Horizontal screen";
 "声音反馈" = "Sound Feedback";
 "震动反馈" = "Impact Feedback";
+"消息通知" = "Notification";
+
+// settting other
+"设置" = "Setting";
+"隐私政策" = "Privacy Policy";
+"请在系统设置中，打开 TiiMii 的通知开关" = "Please turn on the notification in Setting.";
+"取消" = "Cancel";
 
 // activity
 "温馨提示" = "Warm prompt";
@@ -45,3 +52,16 @@
 // vip
 "一次性买断全部" = "Unlock all at once";
 "加载中..." = "loading...";
+
+// name
+"翻页时钟(W)" = "Flip clock (W)";
+"翻页时钟(B)" = "Flip clock (B)";
+"墨水屏表盘" = "Ink screen dial";
+"膨胀时钟" = "Inflation clock";
+"榻榻米方格时钟" = "Tatami square clock";
+"心跳电子时钟" = "Heartbeat clock";
+"翻页时钟" = "Flip clock";
+"真模拟时钟I" = "True analog clock I";
+"真模拟时钟II" = "True analog clock II";
+"夜间霓虹时钟" = "Night neon clock";
+

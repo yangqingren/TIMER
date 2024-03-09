@@ -216,9 +216,13 @@ class TMMainViewController: TMBaseViewController {
             make.centerY.equalTo(self.menuView)
         }
         
-        let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType)) ?? .bw
+        
+        let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType))
+        if type == type {
+            TMUmengManager.share.event(id: kUmeng_Curr_Clock, attributes: ["tip": "\(String(describing: type))"])
+        }
         let subType = TMBwVcTheme.init(rawValue: UserDefaults.standard.integer(forKey: kTMBwVcThemeColor)) ?? .white
-        self.menuView.setupItem(TMMainVcItem.init(type: type, subType), false)
+        self.menuView.setupItem(TMMainVcItem.init(type: type ?? .bw, subType), false)
         self.pageViewController.view.backgroundColor = TMBWClockViewController.getThemeColor(subType, .vcBg)
 
         TMMontionManager.share.startMotionUpdates()
@@ -291,6 +295,7 @@ class TMMainViewController: TMBaseViewController {
     
     func setupMainBrightness(_ brightness: Bool) {
         if brightness {
+            kNeonClockDidApear = true
             self.menuView.contentView.alpha = 0.65
             self.bottomView.alpha = 0.65
             self.upButton.alpha = 0.65
@@ -302,7 +307,10 @@ class TMMainViewController: TMBaseViewController {
             }
         }
         else {
-            UIScreen.main.brightness = 0.5
+            if kNeonClockDidApear {
+                UIScreen.main.brightness = 0.5
+                kNeonClockDidApear = false
+            }
             self.menuView.contentView.alpha = 1
             self.bottomView.alpha = 1
             self.upButton.alpha = 1
@@ -426,6 +434,8 @@ extension TMMainViewController: TMPageMenuViewDelegate {
                 else {
                     self.pageViewController.view.layer.cornerRadius = cornerRadius * abs(self.offsetY / max) * 2
                 }
+            } completion: { _ in
+                TMStoreManager.share.storeReviewStar()
             }
             return
         }
@@ -466,7 +476,7 @@ extension TMMainViewController: TMPageMenuViewDelegate {
         guard let inView = UIApplication.shared.delegate?.window ?? self.view else { return  }
         let originalRect = CGRect(x: sender.frame.minX, y: sender.frame.minY + self.pageViewController.view.transform.ty, width: sender.frame.width, height: sender.frame.height)
         self.settingButton.isSelected = true
-        self.settingView = TMMainSettingView.show(inView: inView, originalRect: originalRect) {[weak self] in
+        self.settingView = TMMainSettingView.show(inView: inView, from: .fromLeft, originalRect: originalRect) {[weak self] in
             guard let `self` = self else { return }
             self.settingButton.isSelected = false
         }

@@ -8,3 +8,4 @@
 
 CFBundleDisplayName = "TiiMii時鐘";
 
+NSUserTrackingUsageDescription = "TiiMii時鐘要求您允許訪問廣告識別字來跟踪廣告並推送最新版本和時鐘更新。";

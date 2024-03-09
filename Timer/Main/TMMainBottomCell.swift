@@ -18,6 +18,15 @@ class TMMainBottomCell: UICollectionViewCell {
     
     var vc: TMBasePageViewController?
     
+    lazy var titleLaebl: UILabel = {
+        let label = UILabel()
+        label.font = .init(name: "Gill Sans", size: 14.sp)
+        label.textColor = UIColor.init(r: 222, g: 228, b: 234, a: 1)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        return label
+    }()
+    
     func setupItem(_ item: TMMainVcItem) {
         if let currItem = self.currItem, currItem.type == item.type {
             return
@@ -40,6 +49,18 @@ class TMMainBottomCell: UICollectionViewCell {
         vc.view.layer.masksToBounds = true
         vc.view.transform = CGAffineTransform.identity.scaledBy(x: ratio, y: ratio)
         self.vc = vc
+        
+        self.contentView.addSubview(self.titleLaebl)
+        self.titleLaebl.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.init(r: 215, g: 225, b: 235, a: 1)
+        shadow.shadowBlurRadius = 3.dp
+        shadow.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.titleLaebl.attributedText = String.getExpansionString(text: item.name, expansion: 0.0, others: [NSAttributedString.Key.shadow: shadow])
     }
     
     required init?(coder: NSCoder) {

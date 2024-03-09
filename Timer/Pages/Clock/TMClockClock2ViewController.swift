@@ -33,7 +33,7 @@ class TMClockClock2ViewController: TMBasePageViewController {
     lazy var topDateLabel2: UILabel = {
         let label = UILabel()
         label.font = .init(name: "Gill Sans", size: 18.sp)
-        label.textColor = UIColor.white
+        label.textColor = UIColor.black
         label.textAlignment = .center
         return label
     }()

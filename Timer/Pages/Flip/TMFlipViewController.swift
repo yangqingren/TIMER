@@ -87,6 +87,7 @@ class TMFlipViewController: TMBasePageViewController {
             make.top.equalTo(self.bwMmView.snp.bottom).offset(kTMFlipBaseSpacingY)
         }
         
+        self.setupBatteryView()
         
         // Do any additional setup after loading the view.
     }

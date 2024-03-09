@@ -18,6 +18,8 @@ enum TMNeonClockNight {
     case night
 }
 
+var kNeonClockDidApear = false
+
 class TMNeonClockViewController: TMBasePageViewController {
             
     lazy var shadowLabel: UILabel = {
