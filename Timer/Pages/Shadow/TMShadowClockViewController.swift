@@ -78,7 +78,12 @@ class TMShadowClockViewController: TMBasePageViewController {
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(44.dp)
-            make.centerY.equalTo(self.view.snp.centerY).offset(-316.dp)
+            if IsPhoneX {
+                make.centerY.equalTo(self.view.snp.centerY).offset(-316.dp)
+            }
+            else {
+                make.top.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop)
+            }
         }
         
         self.view.addSubview(self.topDateLabel)

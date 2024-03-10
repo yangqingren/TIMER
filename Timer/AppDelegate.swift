@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        self.window?.rootViewController = nav
         
         _ = TMStoreManager.share
+        LEGONetworking.startMonitorNetworkStatus()
         
         return true
     }
@@ -49,28 +50,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.initUMWithOptions(launchOptions: nil)
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        if let trigger = notification.request.trigger as? UNPushNotificationTrigger {
-            UMessage.setAutoAlert(false)
-            // 必须加这句代码
-            UMessage.didReceiveRemoteNotification(userInfo)
-        } else {
-            // 应用处于前台时的本地推送接收
-        }
-        completionHandler([.sound, .badge, .alert])
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        if let trigger = response.notification.request.trigger as? UNPushNotificationTrigger {
-            // 必须加这句代码
-            UMessage.didReceiveRemoteNotification(userInfo)
-        } else {
-            // 应用处于后台时的本地推送接收
-        }
-        completionHandler()
-    }
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        let device = NSData(data: deviceToken)
+//        let deviceId = device.description.replacingOccurrences(of:"<", with:"").replacingOccurrences(of:">", with:"").replacingOccurrences(of:" ", with:"")
+//        debugPrint("deviceToken：(deviceId)")
+//        
+//    }
+//    
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        debugPrint("didFailToRegisterForRemoteNotificationsWithError=\(error)")
+//    }
+//    
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        let userInfo = notification.request.content.userInfo
+//        if let trigger = notification.request.trigger as? UNPushNotificationTrigger {
+//            UMessage.setAutoAlert(false)
+//            // 必须加这句代码
+//            UMessage.didReceiveRemoteNotification(userInfo)
+//        } else {
+//            // 应用处于前台时的本地推送接收
+//        }
+//        completionHandler([.sound, .badge, .alert])
+//    }
+//
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        let userInfo = response.notification.request.content.userInfo
+//        if let trigger = response.notification.request.trigger as? UNPushNotificationTrigger {
+//            // 必须加这句代码
+//            UMessage.didReceiveRemoteNotification(userInfo)
+//        } else {
+//            // 应用处于后台时的本地推送接收
+//        }
+//        completionHandler()
+//    }
 }
 
 extension AppDelegate {
@@ -78,20 +90,24 @@ extension AppDelegate {
     func initUMWithOptions(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         let options = launchOptions ?? self.launchOptions
         UNUserNotificationCenter.current().delegate = self
-#if DEBUG
-        
-#else
+//#if DEBUG
+//        
+//#else
         TMUmengManager.share.requestTracking { _ in
             UMConfigure.initWithAppkey("65eb4ad7a7208a5af1b6f09f", channel: "App Store")
             TMUmengManager.share.requestNotification { authorized in
-                if authorized && TMMainSettingManager.getOpenStatus(.push) {
-                    let entity = UMessageRegisterEntity()
-                    // entity.types = UMessageAuthorizationOptionBadge | UMessageAuthorizationOptionSound | UMessageAuthorizationOptionAlert
-                    UMessage.registerForRemoteNotifications(launchOptions: options, entity: entity)
+                DispatchQueue.main.async {
+                    if authorized && TMMainSettingManager.getOpenStatus(.push) {
+                        TMUmengOCManager.register(forRemoteNotifications: options ?? [:])
+                    }
                 }
             }
         }
-#endif
+//#endif
+    }
+    
+    func unregisterForRemoteNotifications() {
+        UMessage.unregisterForRemoteNotifications()
     }
 }
 

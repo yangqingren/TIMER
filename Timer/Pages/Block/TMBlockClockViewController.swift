@@ -126,19 +126,19 @@ class TMBlockClockViewController: TMBasePageViewController {
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20.dp)
-            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
+            make.top.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop)
         }
         
         self.view.addSubview(self.topDateLabel)
         self.topDateLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
+            make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
         self.view.insertSubview(self.topDateLabel2, belowSubview: self.topDateLabel)
         self.topDateLabel2.snp.makeConstraints { make in
             make.centerX.equalToSuperview().offset(1.dp)
-            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
+            make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
         self.bgView.addSubview(self.topGradientView)

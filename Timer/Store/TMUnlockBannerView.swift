@@ -56,6 +56,11 @@ class TMUnlockBannerView: UIControl {
     }
     
     @objc func unlockBannerClick(_ sender: UIControl) {
+        debugPrint("LEGONetworking.getCurrNetworkStatus()=\(LEGONetworking.getCurrNetworkStatus())")
+        if LEGONetworking.getCurrNetworkStatus() == .notConnection  {
+            LGToastView.show(byMessage: TMLocalizedString("网络未连接，请重试"))
+            return
+        }
         TMStoreManager.purchaseVip()
     }
     

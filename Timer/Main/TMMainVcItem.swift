@@ -55,7 +55,7 @@ class TMMainVcItem: NSObject {
         case .clock2:
             name = TMLocalizedString("真模拟时钟II")
         case .neon:
-            name = TMLocalizedString("夜间霓虹时钟")
+            name = TMLocalizedString("编辑霓虹时钟")
         }
     }
 }

@@ -37,6 +37,7 @@
 "隐私政策" = "Privacy Policy";
 "请在系统设置中，打开 TiiMii 的通知开关" = "Please turn on the notification in Setting.";
 "取消" = "Cancel";
+"网络未连接，请重试" = "Internet connection failed.";
 
 // activity
 "温馨提示" = "Warm prompt";
@@ -63,5 +64,5 @@
 "翻页时钟" = "Flip clock";
 "真模拟时钟I" = "True analog clock I";
 "真模拟时钟II" = "True analog clock II";
-"夜间霓虹时钟" = "Night neon clock";
+"编辑霓虹时钟" = "Edit neon Clock";
 

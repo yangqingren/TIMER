@@ -46,7 +46,8 @@ class TMMainSettingManager: NSObject {
             .systemTime,
             .horizontal,
             .sound,
-            .impact
+            .impact,
+            .push
         ]
         
         let inited = UserDefaults.standard.bool(forKey: kTMMainSettingInited)
@@ -59,7 +60,6 @@ class TMMainSettingManager: NSObject {
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.push.rawValue)")
-
         }
         
         var list = [TMMainSettingItem]()
@@ -154,7 +154,9 @@ class TMMainSettingContentView: UIView {
             }
             else {
                 TMMainSettingManager.setOpenStatus(false, .push)
-                UMessage.unregisterForRemoteNotifications()
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.unregisterForRemoteNotifications()
+                }
             }
 
         }
@@ -321,6 +323,23 @@ class TMMainSettingContentView: UIView {
         }
     }
     
+    lazy var icpButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("备案 >", for: .normal)
+        button.setTitleColor(UIColor.init(r: 10, g: 10, b: 10, a: 10), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12.sp, weight: .regular)
+        button.addTarget(self, action: #selector(icpButtonClick), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func icpButtonClick() {
+        if let url = URL(string: "https://beian.miit.gov.cn") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+    
     lazy var signLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.init(r: 10, g: 10, b: 10, a: 10)
@@ -461,6 +480,12 @@ class TMMainSettingContentView: UIView {
                 make.top.equalTo(self.signLabel.snp.bottom).offset(2.dp)
                 make.centerX.equalTo(self.snp.centerX)
             }
+            
+            self.addSubview(self.icpButton)
+            self.icpButton.snp.makeConstraints { make in
+                make.top.equalTo(self.privacyButton.snp.bottom).offset(-4.dp)
+                make.centerX.equalToSuperview()
+            }
         }
 
         
@@ -477,7 +502,7 @@ class TMMainSettingContentView: UIView {
     }
     
     static func viewSize(from: TMMainSettingFrom) -> CGSize {
-        return CGSize(width: 232.dp, height: from == .fromLeft ? 330.dp : 420.dp)
+        return CGSize(width: from == .fromLeft ? 232.dp : 250.dp, height: from == .fromLeft ? 330.dp : 420.dp)
     }
     
     required init?(coder: NSCoder) {
@@ -543,7 +568,7 @@ class TMMainSettingView: UIView {
         let contentSize = TMMainSettingContentView.viewSize(from: self.from)
         
         if self.from == .fromRight {
-            self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)
+            self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width - 10.dp, y: self.originalRect.minY - contentSize.height + 10.dp, width: contentSize.width, height: contentSize.height)
         }
         else {
             self.contentView.frame = CGRect(x: self.originalRect.maxX, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)

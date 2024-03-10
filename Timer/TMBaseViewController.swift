@@ -48,7 +48,7 @@ class TMBaseViewController: UIViewController {
         self.view.addSubview(self.batteryView)
         self.batteryView.snp.makeConstraints { make in
             make.right.equalTo(self.view.safeAreaInsets.left).offset(-20.dp)
-            make.centerY.equalTo(self.view.safeAreaInsets.top).offset(55.dp + 10.dp)
+            make.centerY.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop + 10.dp)
             make.size.equalTo(CGSize(width: 30.dp, height: 30.dp))
         }
     }

@@ -51,7 +51,7 @@ class TMElectronViewController: TMBasePageViewController {
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20.dp)
-            make.top.equalTo(self.view.safeAreaInsets.top).offset(55.dp)
+            make.top.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop)
         }
         
         self.view.addSubview(self.topDateLabel)

@@ -22,6 +22,7 @@ let kTMBwVcThemeColor = "kTMBwVcThemeColor"
 let kMenuLeft = 25.dp
 let kMenuBottom = IsPhoneX ? 28.dp : 20.dp
 let kMenuHeightAndBottom = TMPageMenuView.viewSize().height + kMenuBottom
+let kShadowLabelTop = IsPhoneX ? 55.dp : 23.dp
 
 class TMMainViewController: TMBaseViewController {
 

@@ -34,6 +34,8 @@
 		E83EDB4A2B8A332700AF1492 /* TMClockClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */; };
 		E83EDB4C2B8A338B00AF1492 /* TMClockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB4B2B8A338B00AF1492 /* TMClockClockView.swift */; };
 		E83EDB4E2B8A4E9E00AF1492 /* TMClockTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB4D2B8A4E9E00AF1492 /* TMClockTimeView.swift */; };
+		E84D45F72B9DF30800C7C585 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252652B9CD30700D57B85 /* libsqlite3.tbd */; };
+		E84D45FB2B9E012900C7C585 /* TMUmengOCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D45FA2B9E012900C7C585 /* TMUmengOCManager.m */; };
 		E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8527D662B87418B00CCD428 /* TMBWBaseView.swift */; };
 		E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */; };
 		E856267B2B86E24400053DB9 /* TMWidgetTimer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */; };
@@ -68,6 +70,11 @@
 		E88ED3552B8850370075707F /* DigitaldreamSkewNarrow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E88ED3542B8850370075707F /* DigitaldreamSkewNarrow.ttf */; };
 		E88ED35B2B88818C0075707F /* TMBlockClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED35A2B88818C0075707F /* TMBlockClockViewController.swift */; };
 		E88ED35D2B88920C0075707F /* TMBlockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED35C2B88920C0075707F /* TMBlockClockView.swift */; };
+		E89252622B9CD2F200D57B85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252612B9CD2F200D57B85 /* SystemConfiguration.framework */; };
+		E89252642B9CD2FC00D57B85 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252632B9CD2FC00D57B85 /* CoreTelephony.framework */; };
+		E89252852B9CDC8D00D57B85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252842B9CDC8D00D57B85 /* Foundation.framework */; };
+		E89252872B9CDC9100D57B85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252862B9CDC9100D57B85 /* UIKit.framework */; };
+		E892528A2B9CDCD300D57B85 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252892B9CDCCB00D57B85 /* libc++.tbd */; };
 		E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C068E2B872F4D00E6106F /* TMBaseView.swift */; };
 		E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A095342B8C6836004EE16D /* TMMainBottomView.swift */; };
 		E8A56F302B9448B20083D9B8 /* TMStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */; };
@@ -152,6 +159,8 @@
 		E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClockViewController.swift; sourceTree = "<group>"; };
 		E83EDB4B2B8A338B00AF1492 /* TMClockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClockView.swift; sourceTree = "<group>"; };
 		E83EDB4D2B8A4E9E00AF1492 /* TMClockTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockTimeView.swift; sourceTree = "<group>"; };
+		E84D45F92B9E012900C7C585 /* TMUmengOCManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMUmengOCManager.h; sourceTree = "<group>"; };
+		E84D45FA2B9E012900C7C585 /* TMUmengOCManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMUmengOCManager.m; sourceTree = "<group>"; };
 		E8527D662B87418B00CCD428 /* TMBWBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBWBaseView.swift; sourceTree = "<group>"; };
 		E85626792B86DE9F00053DB9 /* TMWidgetTimer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TMWidgetTimer.ttf; sourceTree = "<group>"; };
 		E856267D2B86E29C00053DB9 /* TMNeonClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMNeonClockViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +201,19 @@
 		E88ED3542B8850370075707F /* DigitaldreamSkewNarrow.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigitaldreamSkewNarrow.ttf; sourceTree = "<group>"; };
 		E88ED35A2B88818C0075707F /* TMBlockClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBlockClockViewController.swift; sourceTree = "<group>"; };
 		E88ED35C2B88920C0075707F /* TMBlockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBlockClockView.swift; sourceTree = "<group>"; };
+		E89252612B9CD2F200D57B85 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E89252632B9CD2FC00D57B85 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E89252652B9CD30700D57B85 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E89252662B9CD31100D57B85 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E89252692B9CD5A100D57B85 /* UMDevice.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UMDevice.xcframework; path = Pods/UMDevice/UMDevice_3.3.0/UMDevice.xcframework; sourceTree = "<group>"; };
+		E892526D2B9CD5AC00D57B85 /* UMCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UMCommon.xcframework; path = Pods/UMCommon/UMCommon_7.4.5/UMCommon.xcframework; sourceTree = "<group>"; };
+		E89252702B9CD62700D57B85 /* UMPush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UMPush.xcframework; path = Pods/UMPush/UMPush/UMPush.xcframework; sourceTree = "<group>"; };
+		E89252792B9CDA8300D57B85 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMCommon.framework; path = Pods/UMCCommon/UMCommon_7.3.7/UMCommon.framework; sourceTree = "<group>"; };
+		E892527D2B9CDA9100D57B85 /* UMPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMPush.framework; path = Pods/UMCPush/UMPush/UMPush.framework; sourceTree = "<group>"; };
+		E89252802B9CDA9F00D57B85 /* UMDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMDevice.framework; path = Pods/UMDevice/UMDevice_2.2.1/UMDevice.framework; sourceTree = "<group>"; };
+		E89252842B9CDC8D00D57B85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E89252862B9CDC9100D57B85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E89252892B9CDCCB00D57B85 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E89C068E2B872F4D00E6106F /* TMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseView.swift; sourceTree = "<group>"; };
 		E8A095342B8C6836004EE16D /* TMMainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainBottomView.swift; sourceTree = "<group>"; };
 		E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMStoreManager.swift; sourceTree = "<group>"; };
@@ -230,10 +252,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84D45F72B9DF30800C7C585 /* libsqlite3.tbd in Frameworks */,
 				E8DF7E342B9C613000F42E87 /* UserNotifications.framework in Frameworks */,
+				E89252852B9CDC8D00D57B85 /* Foundation.framework in Frameworks */,
+				E89252622B9CD2F200D57B85 /* SystemConfiguration.framework in Frameworks */,
 				E8F8086C2B98566B0044689D /* StoreKit.framework in Frameworks */,
 				2AA00B70F738E5448EEE62F6 /* libPods-Timer.a in Frameworks */,
+				E89252642B9CD2FC00D57B85 /* CoreTelephony.framework in Frameworks */,
+				E892528A2B9CDCD300D57B85 /* libc++.tbd in Frameworks */,
 				E863F09A2B93701200FA87C9 /* AudioToolbox.framework in Frameworks */,
+				E89252872B9CDC9100D57B85 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +384,19 @@
 		E81821252B45B89A0022368D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E89252892B9CDCCB00D57B85 /* libc++.tbd */,
+				E89252862B9CDC9100D57B85 /* UIKit.framework */,
+				E89252842B9CDC8D00D57B85 /* Foundation.framework */,
+				E89252802B9CDA9F00D57B85 /* UMDevice.framework */,
+				E892527D2B9CDA9100D57B85 /* UMPush.framework */,
+				E89252792B9CDA8300D57B85 /* UMCommon.framework */,
+				E89252702B9CD62700D57B85 /* UMPush.xcframework */,
+				E892526D2B9CD5AC00D57B85 /* UMCommon.xcframework */,
+				E89252692B9CD5A100D57B85 /* UMDevice.xcframework */,
+				E89252662B9CD31100D57B85 /* libz.tbd */,
+				E89252652B9CD30700D57B85 /* libsqlite3.tbd */,
+				E89252632B9CD2FC00D57B85 /* CoreTelephony.framework */,
+				E89252612B9CD2F200D57B85 /* SystemConfiguration.framework */,
 				E8DF7E332B9C613000F42E87 /* UserNotifications.framework */,
 				E8F8086B2B98566B0044689D /* StoreKit.framework */,
 				E863F0992B93701200FA87C9 /* AudioToolbox.framework */,
@@ -512,6 +553,8 @@
 			children = (
 				E8DF7E292B9B860700F42E87 /* TMUmengManager.swift */,
 				E8DF7E2E2B9C03D800F42E87 /* Timer-Bridging-Header.h */,
+				E84D45F92B9E012900C7C585 /* TMUmengOCManager.h */,
+				E84D45FA2B9E012900C7C585 /* TMUmengOCManager.m */,
 			);
 			path = Umeng;
 			sourceTree = "<group>";
@@ -566,7 +609,7 @@
 				E81820EA2B45B8260022368D /* Frameworks */,
 				E81820EB2B45B8260022368D /* Resources */,
 				E818213A2B45B89B0022368D /* Embed Foundation Extensions */,
-				8B63563EA4DF5DFE604CCA0E /* [CP] Copy Pods Resources */,
+				9F6657B5FABEE9A2650B4180 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -699,7 +742,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B63563EA4DF5DFE604CCA0E /* [CP] Copy Pods Resources */ = {
+		9F6657B5FABEE9A2650B4180 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -756,6 +799,7 @@
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
 				E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */,
 				E8E8691E2B8DFF2200D8C627 /* TMMainSettingView.swift in Sources */,
+				E84D45FB2B9E012900C7C585 /* TMUmengOCManager.m in Sources */,
 				E8790B992B8A21F900B58804 /* TMShadowBaseView.swift in Sources */,
 				E8F808742B9898FC0044689D /* TMFlipBaseView.swift in Sources */,
 				E863F0972B936D6E00FA87C9 /* TMSoundManager.swift in Sources */,
@@ -980,6 +1024,12 @@
 				CURRENT_PROJECT_VERSION = 202403060002;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/UMCCommon/UMCommon_7.3.7",
+					"$(PROJECT_DIR)/Pods/UMCPush/UMPush",
+					"$(PROJECT_DIR)/Pods/UMDevice/UMDevice_2.2.1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -1021,6 +1071,12 @@
 				CURRENT_PROJECT_VERSION = 202403060002;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/UMCCommon/UMCommon_7.3.7",
+					"$(PROJECT_DIR)/Pods/UMCPush/UMPush",
+					"$(PROJECT_DIR)/Pods/UMDevice/UMDevice_2.2.1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
