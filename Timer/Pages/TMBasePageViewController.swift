@@ -55,7 +55,7 @@ class TMBasePageViewController: TMBaseViewController {
     }
     
     @objc func setupUnlockBanner() {
-                        
+                                
         self.unlockBanner.setupDisplayPrice()
         let types: [TMPageMenuType] = [.shadow, .block, .heart, .clock, .clock2, .neon, .flip]
         if self.vcType == .main && !TMStoreManager.share.isPro && types.contains(self.item.type) {
