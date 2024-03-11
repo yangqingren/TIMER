@@ -134,21 +134,70 @@ class TMBWBaseView: TMBaseView {
             self.transform = transform
         }
     }
-        
+    
+    var timeUpdatesEnable = true
+    
     override func timeUpdates() {
         super.timeUpdates()
-        var format = ""
+        
+        if self.timeUpdatesEnable {
+            var format = ""
+            switch self.format {
+            case .hh:
+                format = self.hhFormat
+            case .mm:
+                format = "mm"
+            case .ss:
+                format = "ss"
+            }
+            let text = Date().getDateStringEn(format: format)
+            self.transformPage(String(text.prefix(1)), label: self.timeLabel1)
+            self.transformPage(String(text.suffix(1)), label: self.timeLabel2)
+        }
+    }
+    
+    var random1: Int = Int(arc4random() % 10)
+    var random2: Int = Int(arc4random() % 10)
+    func transformArc4random () {
+        self.transformPage(String("\(random1)".prefix(1)), label: self.timeLabel1)
+        self.transformPage(String("\(random2)".prefix(1)), label: self.timeLabel2)
+        random1 += 1
+        random2 += 1
+        
+
         switch self.format {
         case .hh:
-            format = self.hhFormat
+            if self.hhFormat == "hh" {
+                if random1 > 1 {
+                    random1 = 0
+                }
+                if random2 > 2 {
+                    random2 = 0
+                }
+            }
+            else {
+                if random1 > 2 {
+                    random1 = 0
+                }
+                if random2 > 4 {
+                    random2 = 0
+                }
+            }
         case .mm:
-            format = "mm"
+            if random1 > 6 {
+                random1 = 0
+            }
+            if random2 >= 10 {
+                random2 = 0
+            }
         case .ss:
-            format = "ss"
+            if random1 > 6 {
+                random1 = 0
+            }
+            if random2 >= 10 {
+                random2 = 0
+            }
         }
-        let text = Date().getDateStringEn(format: format)
-        self.transformPage(String(text.prefix(1)), label: self.timeLabel1)
-        self.transformPage(String(text.suffix(1)), label: self.timeLabel2)
     }
     
     func transformPage(_ text: String, label: UILabel) {

@@ -63,6 +63,14 @@ class TMBWClockViewController: TMBasePageViewController {
         view.topLabel.text = TMLocalizedString("秒")
         return view
     }()
+    
+    lazy var longPressGesture: UILongPressGestureRecognizer = {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        gesture.minimumPressDuration = 0.3
+        return gesture
+    }()
+    
+    var timer: Timer?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,8 +110,46 @@ class TMBWClockViewController: TMBasePageViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeVcChanged), name: NSNotification.Name.kNotifiVcThemeChanged, object: nil)
         
+        self.view.addGestureRecognizer(self.longPressGesture)
+        
         self.setupBatteryView()
         self.setupThemeVcChanged()
+    }
+
+    @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            self.startTimer()
+        case .changed:
+            break
+        default:
+            self.stopTimer()
+            break
+        }
+    }
+    
+    func startTimer() {
+        self.stopTimer()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(timerRun), userInfo: nil, repeats: true)
+        self.bwMmView.timeUpdatesEnable = false
+        self.bwHHView.timeUpdatesEnable = false
+        self.bwSsView.timeUpdatesEnable = false
+    }
+    
+    @objc func timerRun() {
+        self.bwMmView.transformArc4random()
+        self.bwHHView.transformArc4random()
+        self.bwSsView.transformArc4random()
+    }
+    
+    func stopTimer() {
+        self.bwMmView.timeUpdatesEnable = true
+        self.bwHHView.timeUpdatesEnable = true
+        self.bwSsView.timeUpdatesEnable = true
+        if let timer = self.timer {
+            timer.invalidate()
+        }
+        self.timer = nil
     }
     
     override func timeUpdates() {

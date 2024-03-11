@@ -220,18 +220,10 @@ class TMBlockClockView: TMBaseView {
             self.dian4.isHidden = true
         }
         
-        if directin == .left {
+        if directin == .left || directin == .right {
             self.dian5.isHidden = false
             self.dian6.isHidden = false
             self.dian7.isHidden = false
-            self.dian8.isHidden = true
-            self.dian9.isHidden = true
-            self.dian10.isHidden = true
-        }
-        else if directin == .right {
-            self.dian5.isHidden = true
-            self.dian6.isHidden = true
-            self.dian7.isHidden = true
             self.dian8.isHidden = false
             self.dian9.isHidden = false
             self.dian10.isHidden = false
