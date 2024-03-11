@@ -8,13 +8,13 @@
 import UIKit
 
 private let kCornerRadius = 14.dp
-let kTMBWBaseViewSpacingY = 22.dp
+let kTMBWBaseViewSpacingY = IsIpad ? 15.dp : 22.dp
 
 class TMBWBaseLabel: UILabel {
     
     init(frame: CGRect, theme: TMBwVcTheme) {
         super.init(frame: frame)
-        self.font = .init(name: "TMTimer", size: 150.sp)
+        self.font = .init(name: "TMTimer", size: IsIpad ? 95.sp : 150.sp)
         self.textAlignment = .center
         self.layer.cornerRadius = kCornerRadius
         self.layer.masksToBounds = true
@@ -31,7 +31,7 @@ class TMBWBaseLabel: UILabel {
     }
     
     override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: 21.dp, left: 0, bottom: 0, right: 0)
+        let insets = UIEdgeInsets(top: IsIpad ? 12.dp : 21.dp, left: 0, bottom: 0, right: 0)
         super.drawText(in: rect.inset(by: insets))
     }
 }
@@ -48,7 +48,7 @@ class TMBWBaseView: TMBaseView {
     
     lazy var topLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "Gill Sans", size: 18.sp)
+        label.font = .init(name: "Gill Sans", size: IsIpad ? 12.sp : 18.sp)
         label.textColor = UIColor.init(r: 205, g: 214, b: 223, a: 1)
         label.textAlignment = .center
         return label
@@ -101,8 +101,14 @@ class TMBWBaseView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMBWBaseViewSpacingY * 2 - 165.dp) / 3.0
-        return CGSize(width: height, height: height)
+        if IsIpad {
+            let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMBWBaseViewSpacingY * 2 - 115.dp) / 3.0
+            return CGSize(width: height, height: height)
+        }
+        else {
+            let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMBWBaseViewSpacingY * 2 - 165.dp) / 3.0
+            return CGSize(width: height, height: height)
+        }
     }
     
     static func subViewSize() -> CGSize {

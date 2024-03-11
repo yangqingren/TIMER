@@ -83,7 +83,7 @@ class TMBWClockViewController: TMBasePageViewController {
         self.bwMmView.snp.makeConstraints { make in
             make.size.equalTo(TMBWBaseView.viewSize())
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(IsIpad ? -4.dp : 0)
         }
         
         self.view.addSubview(self.bwHHView)

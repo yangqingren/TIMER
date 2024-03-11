@@ -70,7 +70,7 @@ class TMElectronViewController: TMBasePageViewController {
         self.contentView.snp.makeConstraints { make in
             make.size.equalTo(TMElectronView.viewSize())
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(IsIpad ? -4.dp : 0)
         }
         
         self.setupBatteryView()

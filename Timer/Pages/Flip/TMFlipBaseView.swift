@@ -8,7 +8,7 @@
 import UIKit
 
 private let kCornerRadius = 14.dp
-let kTMFlipBaseSpacingY = 22.dp
+let kTMFlipBaseSpacingY = IsIpad ? 15.dp : 22.dp
 private let kTMFlipTimeBg = UIColor.init(r: 37, g: 37, b: 37, a: 1)
 
 class TMFlipBaseLabel: UILabel {
@@ -23,7 +23,7 @@ class TMFlipBaseLabel: UILabel {
         super.init(frame: frame)
         self.backgroundColor = kTMFlipTimeBg
         self.textColor = .white
-        self.font = .init(name: "FlipClock", size: 160.sp)
+        self.font = .init(name: "FlipClock", size: IsIpad ? 100.sp : 160.sp)
         self.textAlignment = .center
         self.layer.cornerRadius = kCornerRadius
         self.layer.masksToBounds = true
@@ -75,8 +75,14 @@ class TMFlipBaseView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMFlipBaseSpacingY * 2 - 165.dp) / 3.0
-        return CGSize(width: height, height: height)
+        if IsIpad {
+            let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMFlipBaseSpacingY * 2 - 115.dp) / 3.0
+            return CGSize(width: height, height: height)
+        }
+        else {
+            let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan - kTMFlipBaseSpacingY * 2 - 165.dp) / 3.0
+            return CGSize(width: height, height: height)
+        }
     }
     
     override func motionUpdates(directin: TMMontionDirection, duration: TimeInterval) {

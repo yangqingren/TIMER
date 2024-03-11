@@ -6,6 +6,8 @@
 //
 
 import UIKit
+ 
+private let kFontSize = IsIpad ? 55.sp : 76.sp
 
 class TMHeartImageView: UIImageView {
     
@@ -31,7 +33,7 @@ class TMHeartContentView: TMBaseView {
 
     lazy var heartHHLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "iconfont-8bit-front-Regular", size: 76.sp)
+        label.font = .init(name: "iconfont-8bit-front-Regular", size: kFontSize)
         label.textColor = UIColor.init(r: 38, g: 38, b: 38, a: 1)
         label.textAlignment = .center
         return label
@@ -39,7 +41,7 @@ class TMHeartContentView: TMBaseView {
     
     lazy var heartMmLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "iconfont-8bit-front-Regular", size: 76.sp)
+        label.font = .init(name: "iconfont-8bit-front-Regular", size: kFontSize)
         label.textColor = UIColor.init(r: 38, g: 38, b: 38, a: 1)
         label.textAlignment = .center
         return label
@@ -47,7 +49,7 @@ class TMHeartContentView: TMBaseView {
     
     lazy var heartSsLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "iconfont-8bit-front-Regular", size: 76.sp)
+        label.font = .init(name: "iconfont-8bit-front-Regular", size: kFontSize)
         label.textColor = UIColor.init(r: 38, g: 38, b: 38, a: 1)
         label.textAlignment = .center
         return label
@@ -99,7 +101,7 @@ class TMHeartContentView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        CGSize(width: 136.dp, height: LEGOScreenHeight)
+        CGSize(width: IsIpad ? 100.dp : 136.dp, height: LEGOScreenHeight)
     }
         
     var ss = ""

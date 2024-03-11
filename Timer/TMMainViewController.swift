@@ -20,9 +20,9 @@ let kNotifiBackgroundColor = "kNotifiBackgroundColor"
 let kUserDefaultsVcType = "kUserDefaultsVcType"
 let kTMBwVcThemeColor = "kTMBwVcThemeColor"
 let kMenuLeft = 25.dp
-let kMenuBottom = IsPhoneX ? 28.dp : 20.dp
+let kMenuBottom = IsIpad ? 15.dp : (IsPhoneX ? 28.dp : 20.dp)
 let kMenuHeightAndBottom = TMPageMenuView.viewSize().height + kMenuBottom
-let kShadowLabelTop = IsPhoneX ? 55.dp : 23.dp
+let kShadowLabelTop = IsIpad ? 15.dp : (IsPhoneX ? 55.dp : 23.dp)
 
 class TMMainViewController: TMBaseViewController {
 

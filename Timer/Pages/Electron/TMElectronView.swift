@@ -76,7 +76,7 @@ class TMElectronView: TMBaseView {
             make.size.equalTo(TMElectronBaseView.viewSize())
         }
         
-        let spacing = 0.dp
+        let spacing = IsIpad ? 8.dp : 0.0
         
         self.addSubview(self.electronHHView)
         self.electronHHView.snp.makeConstraints { make in
@@ -92,32 +92,32 @@ class TMElectronView: TMBaseView {
             make.size.equalTo(TMElectronBaseView.viewSize())
         }
         
-        let width = 13.dp
-        let spcaing = 13.dp
+        let width = IsIpad ? 10.dp : 13.dp
+        let spcaingX = IsIpad ? 9.dp : 13.dp
         self.addSubview(self.dian1)
         self.dian1.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: width, height: width))
-            make.right.equalTo(self.snp.centerX).offset(-spcaing)
-            make.centerY.equalTo(self.electronMmView.snp.top).offset(abs(spacing) / 2.0)
+            make.right.equalTo(self.snp.centerX).offset(-spcaingX)
+            make.centerY.equalTo(self.electronMmView.snp.top).offset(-abs(spacing) / 2.0)
         }
         self.addSubview(self.dian2)
         self.dian2.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: width, height: width))
-            make.left.equalTo(self.snp.centerX).offset(spcaing)
-            make.centerY.equalTo(self.electronMmView.snp.top).offset(abs(spacing) / 2.0)
+            make.left.equalTo(self.snp.centerX).offset(spcaingX)
+            make.centerY.equalTo(self.electronMmView.snp.top).offset(-abs(spacing) / 2.0)
         }
 
         self.addSubview(self.dian3)
         self.dian3.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: width, height: width))
-            make.right.equalTo(self.snp.centerX).offset(-spcaing)
-            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(-abs(spacing) / 2.0)
+            make.right.equalTo(self.snp.centerX).offset(-spcaingX)
+            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(abs(spacing) / 2.0)
         }
         self.addSubview(self.dian4)
         self.dian4.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: width, height: width))
-            make.left.equalTo(self.snp.centerX).offset(spcaing)
-            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(-abs(spacing) / 2.0)
+            make.left.equalTo(self.snp.centerX).offset(spcaingX)
+            make.centerY.equalTo(self.electronMmView.snp.bottom).offset(abs(spacing) / 2.0)
         }
     }
     
@@ -126,7 +126,7 @@ class TMElectronView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        let width = LEGOScreenWidth * 0.8
+        let width = IsIpad ? LEGOScreenWidth * 0.55 : LEGOScreenWidth * 0.8
         return CGSize(width: width, height: width / 768.0 * 1408.0)
     }
     
@@ -189,27 +189,28 @@ class TMElectronView: TMBaseView {
 
 }
 
-private let kSpecaing = 1.5.dp
+private let kSpecaing = IsIpad ? 2.dp : 1.5.dp
+private let kFontSize = IsIpad ? 90.sp : 135.sp
 
 class TMElectronBaseView: UIView {
     
     lazy var label1: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.font = .init(name: "DS-Digital-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
         return label
     }()
         
     lazy var label2: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.font = .init(name: "DS-Digital-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: 1)
         return label
     }()
     
     lazy var label3: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.font = .init(name: "DS-Digital-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: kTMElectronAlpha)
         label.text = "8"
         return label
@@ -217,7 +218,7 @@ class TMElectronBaseView: UIView {
         
     lazy var label4: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "DS-Digital-Bold", size: 135.sp)
+        label.font = .init(name: "DS-Digital-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 26, g: 26, b: 26, a: kTMElectronAlpha)
         label.text = "8"
         return label
@@ -269,7 +270,7 @@ class TMElectronBaseView: UIView {
     }
     
     static func viewSize() -> CGSize {
-        let width = LEGOScreenWidth * 0.2 * 2.0 + kSpecaing * 2.0
+        let width = IsIpad ? (LEGOScreenWidth * 0.14 * 2.0 + kSpecaing * 2.0) : (LEGOScreenWidth * 0.2 * 2.0 + kSpecaing * 2.0)
         return CGSize(width: width, height: width)
     }
     

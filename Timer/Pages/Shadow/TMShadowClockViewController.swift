@@ -78,11 +78,11 @@ class TMShadowClockViewController: TMBasePageViewController {
         self.view.addSubview(self.shadowLabel)
         self.shadowLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(44.dp)
-            if IsPhoneX {
-                make.centerY.equalTo(self.view.snp.centerY).offset(-316.dp)
+            if !IsPhoneX || IsIpad {
+                make.top.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop)
             }
             else {
-                make.top.equalTo(self.view.safeAreaInsets.top).offset(kShadowLabelTop)
+                make.centerY.equalTo(self.view.snp.centerY).offset(-316.dp)
             }
         }
         
@@ -98,11 +98,12 @@ class TMShadowClockViewController: TMBasePageViewController {
             make.centerY.equalTo(self.shadowLabel.snp.centerY)
         }
         
+        
         self.view.addSubview(self.shadowMmView)
         self.shadowMmView.snp.makeConstraints { make in
             make.size.equalTo(TMShadowBaseView.viewSize())
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(IsIpad ? 10.dp : 0.0)
         }
         
         self.view.addSubview(self.shadowHHView)

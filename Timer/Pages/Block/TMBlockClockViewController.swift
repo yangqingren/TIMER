@@ -8,7 +8,7 @@
 import UIKit
 
 let kBlockClockBlue = UIColor.init(r: 86, g: 144, b: 232, a: 1)
-let kBlockScale = 0.85
+let kBlockScale = IsIpad ? 0.6 : 0.85
 let kBlockBgSize = CGSize(width: LEGOScreenWidth * kBlockScale, height: LEGOScreenWidth * kBlockScale / 1170.0 * 2488.0)
 let kGradientTop = 100.dp
 let kGradientLeft = kGradientTop / LEGOScreenHeight * LEGOScreenWidth

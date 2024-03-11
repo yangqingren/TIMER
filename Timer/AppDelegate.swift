@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         _ = TMStoreManager.share
         LEGONetworking.startMonitorNetworkStatus()
-        
+                
         return true
     }
     

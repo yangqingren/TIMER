@@ -191,14 +191,19 @@ class TMMainSettingContentView: UIView {
         label.font = IsChinese ? .systemFont(ofSize: 17.sp, weight: .regular) : .systemFont(ofSize: 15.sp, weight: .medium)
         return label
     }
-    
+        
     func createSwitchButton() -> UISwitch {
         let switchButton = UISwitch()
         switchButton.onTintColor = UIColor.init(r: 42, g: 95, b: 215, a: 0.7)
-        switchButton.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        switchButton.layer.borderColor = UIColor.white.cgColor
-        switchButton.layer.borderWidth = 1
-        switchButton.layer.cornerRadius = 30.dp / 2.0
+        if IsIpad {
+            switchButton.transform = CGAffineTransform.identity.scaledBy(x: 2.0, y: 2.0)
+        }
+        else {
+            switchButton.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+            switchButton.layer.borderColor = UIColor.white.cgColor
+            switchButton.layer.borderWidth = 1
+            switchButton.layer.cornerRadius = 30.dp / 2.0
+        }
         switchButton.addTarget(self, action: #selector(switchButtonChanged(_:)), for: .valueChanged)
         return switchButton
     }
@@ -368,7 +373,7 @@ class TMMainSettingContentView: UIView {
         }
         
         let left = 20.dp
-        let right = IsChinese ? 18.dp : 15.dp
+        let right = IsIpad ? (IsChinese ? 22.dp : 18.dp) : (IsChinese ? 18.dp : 15.dp)
         let size = CGSize(width: 50.dp, height: 30.dp)
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { make in
@@ -391,7 +396,9 @@ class TMMainSettingContentView: UIView {
         self.addSubview(self.lockSwitch)
         self.lockSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-right)
-            make.size.equalTo(size)
+            if !IsIpad {
+                make.size.equalTo(size)
+            }
             make.centerY.equalTo(self.lockLabel)
         }
                 
@@ -403,7 +410,9 @@ class TMMainSettingContentView: UIView {
         self.addSubview(self.systemTimeSwitch)
         self.systemTimeSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-right)
-            make.size.equalTo(size)
+            if !IsIpad {
+                make.size.equalTo(size)
+            }
             make.centerY.equalTo(self.systemTimeLabel)
         }
         
@@ -414,7 +423,7 @@ class TMMainSettingContentView: UIView {
         }
         self.addSubview(self.homeButton)
         self.homeButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-right)
+            make.right.equalToSuperview().offset(IsIpad ? -7.dp : -right)
             make.size.equalTo(size)
             make.centerY.equalTo(self.homeLabel)
         }
@@ -427,7 +436,9 @@ class TMMainSettingContentView: UIView {
         self.addSubview(self.horizontalSwitch)
         self.horizontalSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-right)
-            make.size.equalTo(size)
+            if !IsIpad {
+                make.size.equalTo(size)
+            }
             make.centerY.equalTo(self.horizontalLabel)
         }
         
@@ -439,7 +450,9 @@ class TMMainSettingContentView: UIView {
         self.addSubview(self.soundSwitch)
         self.soundSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-right)
-            make.size.equalTo(size)
+            if !IsIpad {
+                make.size.equalTo(size)
+            }
             make.centerY.equalTo(self.soundLabel)
         }
         
@@ -451,7 +464,9 @@ class TMMainSettingContentView: UIView {
         self.addSubview(self.impactSwitch)
         self.impactSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-right)
-            make.size.equalTo(size)
+            if !IsIpad {
+                make.size.equalTo(size)
+            }
             make.centerY.equalTo(self.impactLabel)
         }
         
@@ -465,7 +480,9 @@ class TMMainSettingContentView: UIView {
             self.addSubview(self.notificaitonSwitch)
             self.notificaitonSwitch.snp.makeConstraints { make in
                 make.right.equalToSuperview().offset(-right)
-                make.size.equalTo(size)
+                if !IsIpad {
+                    make.size.equalTo(size)
+                }
                 make.centerY.equalTo(self.notificaitonLabel)
             }
             
@@ -483,7 +500,7 @@ class TMMainSettingContentView: UIView {
             
             self.addSubview(self.icpButton)
             self.icpButton.snp.makeConstraints { make in
-                make.top.equalTo(self.privacyButton.snp.bottom).offset(-4.dp)
+                make.top.equalTo(self.privacyButton.snp.bottom).offset(IsIpad ? 0.0 : -4.dp)
                 make.centerX.equalToSuperview()
             }
         }
@@ -502,7 +519,7 @@ class TMMainSettingContentView: UIView {
     }
     
     static func viewSize(from: TMMainSettingFrom) -> CGSize {
-        return CGSize(width: from == .fromLeft ? 232.dp : 250.dp, height: from == .fromLeft ? 330.dp : 420.dp)
+        return CGSize(width: from == .fromLeft ? 232.dp : 250.dp, height: from == .fromLeft ? 330.dp : 424.dp)
     }
     
     required init?(coder: NSCoder) {
@@ -568,7 +585,12 @@ class TMMainSettingView: UIView {
         let contentSize = TMMainSettingContentView.viewSize(from: self.from)
         
         if self.from == .fromRight {
-            self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width - 10.dp, y: self.originalRect.minY - contentSize.height + 10.dp, width: contentSize.width, height: contentSize.height)
+            if IsIpad {
+                self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width - 10.dp, y: LEGOScreenHeight - contentSize.height - 20.dp, width: contentSize.width, height: contentSize.height)
+            }
+            else {
+                self.contentView.frame = CGRect(x: self.originalRect.minX - contentSize.width - 10.dp, y: self.originalRect.minY - contentSize.height + 10.dp, width: contentSize.width, height: contentSize.height)
+            }
         }
         else {
             self.contentView.frame = CGRect(x: self.originalRect.maxX, y: self.originalRect.minY - contentSize.height, width: contentSize.width, height: contentSize.height)
@@ -587,7 +609,12 @@ class TMMainSettingView: UIView {
             self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 0, y: 1))
         }
         else {
-            self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 1, y: 1))
+            if IsIpad {
+                self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 1, y: 0.5))
+            }
+            else {
+                self.setAnchorPointTo(view: self.contentView, point: CGPoint(x: 1, y: 1))
+            }
         }
         self.contentView.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
         self.contentView.alpha = 0

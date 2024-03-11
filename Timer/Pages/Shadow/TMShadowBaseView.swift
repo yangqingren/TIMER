@@ -7,46 +7,49 @@
 
 import UIKit
 
+private let kFontSize = IsIpad ? 100.sp : 132.sp
+private let kFormatFontSize = IsIpad ? 18.sp : 18.sp
+
 class TMShadowBaseView: TMBaseView {
 
     lazy var label1: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 51, g: 51, b: 51, a: 1)
         return label
     }()
     
     lazy var whiteLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 255, g: 255, b: 255, a: 0.3)
         return label
     }()
     
     lazy var blackLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 132.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFontSize)
         label.textColor = UIColor.init(r: 0, g: 0, b: 0, a: 0.3)
         return label
     }()
     
     lazy var formatLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 18.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFormatFontSize)
         label.textColor = UIColor.init(r: 51, g: 51, b: 51, a: 1)
         return label
     }()
     
     lazy var whiteFormatLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 18.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFormatFontSize)
         label.textColor = UIColor.init(r: 255, g: 255, b: 255, a: 0.3)
         return label
     }()
     
     lazy var blackFormatLabel: UILabel = {
         let label = UILabel()
-        label.font = .init(name: "SinhalaSangamMN-Bold", size: 18.sp)
+        label.font = .init(name: "SinhalaSangamMN-Bold", size: kFormatFontSize)
         label.textColor = UIColor.init(r: 0, g: 0, b: 0, a: 0.3)
         return label
     }()
@@ -66,7 +69,12 @@ class TMShadowBaseView: TMBaseView {
         self.addSubview(self.formatLabel)
         self.formatLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalTo(self.snp.top).offset(0.dp)
+            if IsIpad {
+                make.bottom.equalTo(self.snp.top).offset(0.dp)
+            }
+            else {
+                make.centerY.equalTo(self.snp.top).offset(0.dp)
+            }
         }
         self.insertSubview(self.whiteFormatLabel, belowSubview: self.formatLabel)
         self.whiteFormatLabel.snp.makeConstraints { make in
@@ -100,7 +108,7 @@ class TMShadowBaseView: TMBaseView {
     }
     
     static func viewSize() -> CGSize {
-        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan) / 3.0 - 100.dp
+        let height = (LEGOScreenHeight - LEGONavMargan - LEGOBottomMargan) / 3.0 - (IsIpad ? 70.dp : 100.dp)
         return CGSize(width: height, height: height)
     }
     

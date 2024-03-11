@@ -75,14 +75,14 @@ class TMClockClockViewController: TMBasePageViewController {
         self.clockClockView.snp.makeConstraints { make in
             make.size.equalTo(TMClockClockView.viewSize())
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.view.snp.centerY).offset(-30.dp)
+            make.bottom.equalTo(self.view.snp.centerY).offset(IsIpad ? 20.dp : -30.dp)
         }
         
         self.view.addSubview(self.clockTimeView)
         self.clockTimeView.snp.makeConstraints { make in
             make.size.equalTo(TMClockClockView.viewSize())
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.view.snp.centerY).offset(30.dp)
+            make.top.equalTo(self.view.snp.centerY).offset(IsIpad ? 40.dp : 30.dp)
         }
         
         self.setupBatteryView()

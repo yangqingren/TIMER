@@ -10,6 +10,16 @@ import SnapKit
 
 let TIIMII = "TIIMII"
 
+let IsIpad: Bool = {
+    var IsIpad = false
+    if UIDevice.current.userInterfaceIdiom == .pad {
+        return true
+    }
+    else {
+        return false
+    }
+}()
+
 let IsPhoneX: Bool = {
     var isPhoneX = false
     if #available(iOS 11.0, *) {
@@ -95,7 +105,7 @@ func TMLocalizedString(_ key: String) -> String {
 let LEGOScreenWidth = UIScreen.main.bounds.width
 let LEGOScreenHeight = UIScreen.main.bounds.height
 let LEGOViewRate = LEGOScreenWidth / 375.0
-let LEGONavMargan = IsPhoneX ? 40.0 : 20.0
+let LEGONavMargan = IsIpad ? 15 : (IsPhoneX ? 40.0 : 20.0)
 let LEGOBottomMargan = IsPhoneX ? 34.0 : 0.0
 
 public protocol UIAdapter {
