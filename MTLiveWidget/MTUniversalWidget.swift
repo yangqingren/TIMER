@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct Provider: TimelineProvider {
     
     func placeholder(in context: Context) -> SimpleEntry {
@@ -46,10 +47,12 @@ struct Provider: TimelineProvider {
     }
 }
 
+@available(iOS 16.2, *)
 struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
+@available(iOS 16.2, *)
 struct MTLiveWidgetEntryView : View {
     
     @Environment(\.widgetFamily) var family: WidgetFamily
@@ -135,6 +138,7 @@ struct MTLiveWidgetEntryView : View {
     }
 }
 
+@available(iOS 16.2, *)
 struct MTUniversalWidget: Widget {
     
     let kind: String = "MTLiveWidget"

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AA00B70F738E5448EEE62F6 /* libPods-Timer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */; };
+		B1DD4FA56AD6D517186931C2 /* libPods-MTLiveWidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2113634A5C79386E3887E98 /* libPods-MTLiveWidgetExtension.a */; };
 		E8049DA42B88FA070016E878 /* TMBatteryLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8049DA32B88FA070016E878 /* TMBatteryLevelView.swift */; };
 		E8129D222B8D9B2200F2CB3F /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8129D212B8D9B2200F2CB3F /* launch_icon.png */; };
 		E8129D242B8DC3EB00F2CB3F /* TMMainVcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8129D232B8DC3EB00F2CB3F /* TMMainVcItem.swift */; };
@@ -131,7 +132,9 @@
 /* Begin PBXFileReference section */
 		48AD81F4A9DD813C4847ECF9 /* Pods-Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.debug.xcconfig"; path = "Target Support Files/Pods-Timer/Pods-Timer.debug.xcconfig"; sourceTree = "<group>"; };
 		81778ED9ED8BC79E83D9FBCD /* Pods-Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.release.xcconfig"; path = "Target Support Files/Pods-Timer/Pods-Timer.release.xcconfig"; sourceTree = "<group>"; };
+		A2113634A5C79386E3887E98 /* libPods-MTLiveWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MTLiveWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Timer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90184EAD33EF17EA6C84DD5 /* Pods-MTLiveWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTLiveWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-MTLiveWidgetExtension/Pods-MTLiveWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E8049DA32B88FA070016E878 /* TMBatteryLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBatteryLevelView.swift; sourceTree = "<group>"; };
 		E8129D212B8D9B2200F2CB3F /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
 		E8129D232B8DC3EB00F2CB3F /* TMMainVcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainVcItem.swift; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		E863F0A22B93774600FA87C9 /* slim.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slim.wav; sourceTree = "<group>"; };
 		E863F0A32B93774600FA87C9 /* dida.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dida.wav; sourceTree = "<group>"; };
 		E863F0A42B93774600FA87C9 /* digit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digit.wav; sourceTree = "<group>"; };
+		E86C03A12CE814AFBC1F5A3B /* Pods-MTLiveWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTLiveWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-MTLiveWidgetExtension/Pods-MTLiveWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		E876ABF92B95D9010079A5DA /* TMLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMLoading.swift; sourceTree = "<group>"; };
 		E8790B962B8A211100B58804 /* TMShadowClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMShadowClockViewController.swift; sourceTree = "<group>"; };
 		E8790B982B8A21F900B58804 /* TMShadowBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMShadowBaseView.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			files = (
 				E81821292B45B89A0022368D /* SwiftUI.framework in Frameworks */,
 				E81821272B45B89A0022368D /* WidgetKit.framework in Frameworks */,
+				B1DD4FA56AD6D517186931C2 /* libPods-MTLiveWidgetExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +287,8 @@
 			children = (
 				48AD81F4A9DD813C4847ECF9 /* Pods-Timer.debug.xcconfig */,
 				81778ED9ED8BC79E83D9FBCD /* Pods-Timer.release.xcconfig */,
+				C90184EAD33EF17EA6C84DD5 /* Pods-MTLiveWidgetExtension.debug.xcconfig */,
+				E86C03A12CE814AFBC1F5A3B /* Pods-MTLiveWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -403,6 +410,7 @@
 				E81821262B45B89A0022368D /* WidgetKit.framework */,
 				E81821282B45B89A0022368D /* SwiftUI.framework */,
 				AC6ACFEAC2360161ED934E08 /* libPods-Timer.a */,
+				A2113634A5C79386E3887E98 /* libPods-MTLiveWidgetExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -625,6 +633,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E81821372B45B89B0022368D /* Build configuration list for PBXNativeTarget "MTLiveWidgetExtension" */;
 			buildPhases = (
+				7952B7852EAA62527EAA136A /* [CP] Check Pods Manifest.lock */,
 				E81821202B45B89A0022368D /* Sources */,
 				E81821212B45B89A0022368D /* Frameworks */,
 				E81821222B45B89A0022368D /* Resources */,
@@ -736,6 +745,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Timer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7952B7852EAA62527EAA136A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MTLiveWidgetExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1021,7 +1052,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Timer/Timer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2024030120001;
+				CURRENT_PROJECT_VERSION = 202403120002;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1040,7 +1071,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1069,7 +1100,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Timer/Timer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2024030120001;
+				CURRENT_PROJECT_VERSION = 202403120002;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1088,7 +1119,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1108,6 +1139,7 @@
 		};
 		E81821382B45B89B0022368D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C90184EAD33EF17EA6C84DD5 /* Pods-MTLiveWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1136,6 +1168,7 @@
 		};
 		E81821392B45B89B0022368D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E86C03A12CE814AFBC1F5A3B /* Pods-MTLiveWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;

@@ -9,6 +9,7 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct MTLiveWidgetAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
@@ -19,6 +20,7 @@ struct MTLiveWidgetAttributes: ActivityAttributes {
     var name: String
 }
 
+@available(iOS 16.2, *)
 struct MTLiveAndLockWidget: Widget {
     var body: some WidgetConfiguration {
         
@@ -67,6 +69,7 @@ struct MTLiveAndLockWidget: Widget {
     }
 }
 
+@available(iOS 16.2, *)
 struct TMLockScreenView: View {
     
     let context: ActivityViewContext <MTLiveWidgetAttributes>

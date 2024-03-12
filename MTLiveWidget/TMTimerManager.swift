@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 16.2, *)
 class TMTimerManager: NSObject {
     
     static let share = TMTimerManager()

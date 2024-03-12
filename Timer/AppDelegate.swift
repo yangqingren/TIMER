@@ -9,6 +9,9 @@ import UIKit
 import ActivityKit
 import UserNotifications
 
+@available(iOS 16.2, *)
+var deliveryActivity: Activity<MTLiveWidgetAttributes>?
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -17,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         view.makeKeyAndVisible()
         return view
     }()
-    
-    var deliveryActivity: Activity<MTLiveWidgetAttributes>?
-    
+        
     var timer: Timer?
     
     var timeInterval: Int = 0
@@ -131,11 +132,14 @@ extension AppDelegate {
     //    }
         
         func applicationWillResignActive(_ application: UIApplication) {
-            self.setupLiveAndLockWidger()
+            if #available(iOS 16.2, *) {
+                self.setupLiveAndLockWidger()
+            }
         }
 
-
+        @available(iOS 16.2, *)
         func setupLiveAndLockWidger() {
+
             if TMMainSettingManager.getOpenStatus(.lock) {
                 if let current = Activity<MTLiveWidgetAttributes>.activities.first {
                     Task {
@@ -150,8 +154,8 @@ extension AppDelegate {
                     let state = MTLiveWidgetAttributes.ContentState(date: TMTimerManager.getDate())
                     let content = ActivityContent(state: state, staleDate: .distantFuture)
                     do {
-                        self.deliveryActivity = try Activity.request(attributes: attributes, content: content, pushType: nil)
-                        debugPrint("MTLiveWidget开启成功=\(String(describing: self.deliveryActivity?.id))")
+                        deliveryActivity = try Activity.request(attributes: attributes, content: content, pushType: nil)
+                        debugPrint("MTLiveWidget开启成功=\(String(describing: deliveryActivity?.id))")
                     }
                     catch (let error) {
                         debugPrint("MTLiveWidget开启失败=\(error.localizedDescription)")
