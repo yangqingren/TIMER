@@ -189,6 +189,7 @@ class TMMainSettingContentView: UIView {
         let label = UILabel()
         label.textColor = UIColor.init(r: 10, g: 10, b: 10, a: 10)
         label.font = IsChinese ? .systemFont(ofSize: 17.sp, weight: .regular) : .systemFont(ofSize: 15.sp, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }
         
@@ -330,7 +331,7 @@ class TMMainSettingContentView: UIView {
     
     lazy var icpButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("备案 >", for: .normal)
+        button.setTitle("琼ICP备2023011684号-3A >", for: .normal)
         button.setTitleColor(UIColor.init(r: 10, g: 10, b: 10, a: 10), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12.sp, weight: .regular)
         button.addTarget(self, action: #selector(icpButtonClick), for: .touchUpInside)
@@ -388,10 +389,12 @@ class TMMainSettingContentView: UIView {
         }
         
         let top = 22.dp
+        let height = 20.dp
         self.addSubview(self.lockLabel)
         self.lockLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.titleLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.lockSwitch)
         self.lockSwitch.snp.makeConstraints { make in
@@ -406,6 +409,7 @@ class TMMainSettingContentView: UIView {
         self.systemTimeLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.lockLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.systemTimeSwitch)
         self.systemTimeSwitch.snp.makeConstraints { make in
@@ -420,6 +424,7 @@ class TMMainSettingContentView: UIView {
         self.homeLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.systemTimeLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.homeButton)
         self.homeButton.snp.makeConstraints { make in
@@ -432,6 +437,7 @@ class TMMainSettingContentView: UIView {
         self.horizontalLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.homeLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.horizontalSwitch)
         self.horizontalSwitch.snp.makeConstraints { make in
@@ -446,6 +452,7 @@ class TMMainSettingContentView: UIView {
         self.soundLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.horizontalLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.soundSwitch)
         self.soundSwitch.snp.makeConstraints { make in
@@ -460,6 +467,7 @@ class TMMainSettingContentView: UIView {
         self.impactLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(left)
             make.top.equalTo(self.soundLabel.snp.bottom).offset(top)
+            make.height.equalTo(height)
         }
         self.addSubview(self.impactSwitch)
         self.impactSwitch.snp.makeConstraints { make in
@@ -476,6 +484,7 @@ class TMMainSettingContentView: UIView {
             self.notificaitonLabel.snp.makeConstraints { make in
                 make.left.equalToSuperview().offset(left)
                 make.top.equalTo(self.impactLabel.snp.bottom).offset(top)
+                make.height.equalTo(height)
             }
             self.addSubview(self.notificaitonSwitch)
             self.notificaitonSwitch.snp.makeConstraints { make in
@@ -488,7 +497,7 @@ class TMMainSettingContentView: UIView {
             
             self.addSubview(self.signLabel)
             self.signLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.notificaitonLabel.snp.bottom).offset(15.dp)
+                make.top.equalTo(self.notificaitonLabel.snp.bottom).offset(20.dp)
                 make.centerX.equalTo(self.snp.centerX)
             }
             
@@ -519,7 +528,7 @@ class TMMainSettingContentView: UIView {
     }
     
     static func viewSize(from: TMMainSettingFrom) -> CGSize {
-        return CGSize(width: from == .fromLeft ? 232.dp : 250.dp, height: from == .fromLeft ? 330.dp : 424.dp)
+        return CGSize(width: from == .fromLeft ? 232.dp : 250.dp, height: from == .fromLeft ? 330.dp : 430.dp)
     }
     
     required init?(coder: NSCoder) {
