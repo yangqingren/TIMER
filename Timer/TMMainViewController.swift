@@ -167,6 +167,7 @@ class TMMainViewController: TMBaseViewController {
         super.viewDidLoad()
         // 不息屏
         UIApplication.shared.isIdleTimerDisabled = true
+        self.navigationController?.navigationBar.isHidden = true
         
         self.view.addSubview(self.bottomView)
         self.bottomView.snp.makeConstraints { make in
@@ -217,6 +218,12 @@ class TMMainViewController: TMBaseViewController {
             make.centerY.equalTo(self.menuView)
         }
         
+        self.view.addSubview(TMBgMp3Manager.share.musicButton)
+        TMBgMp3Manager.share.musicButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 54.dp, height: 54.dp))
+            make.right.equalToSuperview().offset(-20.dp)
+            make.centerY.equalTo(self.view.snp.top).offset(LEGOScreenHeight * 0.4)
+        }
         
         let type = TMPageMenuType.init(rawValue: UserDefaults.standard.integer(forKey: kUserDefaultsVcType))
         if type == type {
@@ -291,6 +298,8 @@ class TMMainViewController: TMBaseViewController {
         
         self.view.addGestureRecognizer(self.pan)
         
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -303,6 +312,7 @@ class TMMainViewController: TMBaseViewController {
             self.settingButton.alpha = 0.65
             self.autoHVButton.alpha = 0.65
             self.timerButton.alpha = 0.65
+            TMBgMp3Manager.share.musicButton2.alpha = 0.65
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 UIScreen.main.brightness = 1.0
             }
@@ -318,6 +328,7 @@ class TMMainViewController: TMBaseViewController {
             self.settingButton.alpha = 1
             self.autoHVButton.alpha = 1
             self.timerButton.alpha = 1
+            TMBgMp3Manager.share.musicButton2.alpha = 1
         }
     }
     
@@ -377,6 +388,9 @@ extension TMMainViewController: TMPageMenuViewDelegate {
     }
     
     @objc func panGestureRecognizer(_ pan: UIPanGestureRecognizer) {
+        if TMBgMp3PupouView.isShow {
+            return
+        }
         let location = pan.location(in: self.view)
         let velocity = pan.velocity(in: self.view)
         let max = TMMainBottomView.viewSize().height

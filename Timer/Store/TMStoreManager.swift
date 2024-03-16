@@ -74,6 +74,10 @@ class TMStoreManager: NSObject {
     override init() {
         super.init()
         
+
+    }
+    
+    func requestCurrAndListener() {
         Task {
             for await result in Transaction.currentEntitlements {
                 if case .verified(let transaction) = result {

@@ -30,6 +30,14 @@
 		E818213C2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213D2B45B8B30022368D /* TMTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818213B2B45B8B30022368D /* TMTimerManager.swift */; };
 		E818213F2B45BAFA0022368D /* MTLiveAndLockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818212D2B45B89A0022368D /* MTLiveAndLockWidget.swift */; };
+		E81F53662BA5957600EB5043 /* heavy_rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F535E2BA5957600EB5043 /* heavy_rain.mp3 */; };
+		E81F53672BA5957600EB5043 /* summer_bird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F535F2BA5957600EB5043 /* summer_bird.mp3 */; };
+		E81F53682BA5957600EB5043 /* light_rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53602BA5957600EB5043 /* light_rain.mp3 */; };
+		E81F53692BA5957600EB5043 /* heavy_night.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53612BA5957600EB5043 /* heavy_night.mp3 */; };
+		E81F536A2BA5957600EB5043 /* light_night.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53622BA5957600EB5043 /* light_night.mp3 */; };
+		E81F536B2BA5957600EB5043 /* snow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53632BA5957600EB5043 /* snow.mp3 */; };
+		E81F536C2BA5957600EB5043 /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53642BA5957600EB5043 /* fire.mp3 */; };
+		E81F536D2BA5957600EB5043 /* summer_cicadas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E81F53652BA5957600EB5043 /* summer_cicadas.mp3 */; };
 		E828B3F52B90CB330015BCDA /* TMTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828B3F42B90CB330015BCDA /* TMTimerViewController.swift */; };
 		E828B3F72B90CEA90015BCDA /* TMTimerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828B3F62B90CEA90015BCDA /* TMTimerContentView.swift */; };
 		E83EDB4A2B8A332700AF1492 /* TMClockClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */; };
@@ -77,6 +85,7 @@
 		E89252872B9CDC9100D57B85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252862B9CDC9100D57B85 /* UIKit.framework */; };
 		E892528A2B9CDCD300D57B85 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E89252892B9CDCCB00D57B85 /* libc++.tbd */; };
 		E89C068F2B872F4D00E6106F /* TMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C068E2B872F4D00E6106F /* TMBaseView.swift */; };
+		E8A085E82BA1B2710035869B /* TMBgMusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A085E72BA1B2710035869B /* TMBgMusicButton.swift */; };
 		E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A095342B8C6836004EE16D /* TMMainBottomView.swift */; };
 		E8A56F302B9448B20083D9B8 /* TMStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */; };
 		E8A56F322B947FBB0083D9B8 /* TMUnlockBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A56F312B947FBB0083D9B8 /* TMUnlockBannerView.swift */; };
@@ -88,6 +97,9 @@
 		E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */; };
 		E8D9CF432B9247420020DB0B /* TMClockClock2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9CF422B9247420020DB0B /* TMClockClock2ViewController.swift */; };
 		E8D9CF452B9247850020DB0B /* TMClockClock2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9CF442B9247850020DB0B /* TMClockClock2View.swift */; };
+		E8DA41522BA142DB00711180 /* TMBgMp3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA41512BA142DB00711180 /* TMBgMp3Manager.swift */; };
+		E8DA41542BA1430300711180 /* TMBgMp3PupouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA41532BA1430300711180 /* TMBgMp3PupouView.swift */; };
+		E8DA41562BA146B300711180 /* TMBgMp3Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA41552BA146B300711180 /* TMBgMp3Cell.swift */; };
 		E8DF7E272B9B7CA200F42E87 /* TMWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DF7E262B9B7CA200F42E87 /* TMWebViewController.swift */; };
 		E8DF7E2A2B9B860700F42E87 /* TMUmengManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DF7E292B9B860700F42E87 /* TMUmengManager.swift */; };
 		E8DF7E342B9C613000F42E87 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DF7E332B9C613000F42E87 /* UserNotifications.framework */; };
@@ -157,6 +169,14 @@
 		E81821312B45B89B0022368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E81821332B45B89B0022368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E818213B2B45B8B30022368D /* TMTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerManager.swift; sourceTree = "<group>"; };
+		E81F535E2BA5957600EB5043 /* heavy_rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heavy_rain.mp3; sourceTree = "<group>"; };
+		E81F535F2BA5957600EB5043 /* summer_bird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = summer_bird.mp3; sourceTree = "<group>"; };
+		E81F53602BA5957600EB5043 /* light_rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = light_rain.mp3; sourceTree = "<group>"; };
+		E81F53612BA5957600EB5043 /* heavy_night.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heavy_night.mp3; sourceTree = "<group>"; };
+		E81F53622BA5957600EB5043 /* light_night.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = light_night.mp3; sourceTree = "<group>"; };
+		E81F53632BA5957600EB5043 /* snow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snow.mp3; sourceTree = "<group>"; };
+		E81F53642BA5957600EB5043 /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
+		E81F53652BA5957600EB5043 /* summer_cicadas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = summer_cicadas.mp3; sourceTree = "<group>"; };
 		E828B3F42B90CB330015BCDA /* TMTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerViewController.swift; sourceTree = "<group>"; };
 		E828B3F62B90CEA90015BCDA /* TMTimerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTimerContentView.swift; sourceTree = "<group>"; };
 		E83EDB492B8A332700AF1492 /* TMClockClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClockViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +239,7 @@
 		E89252862B9CDC9100D57B85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E89252892B9CDCCB00D57B85 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E89C068E2B872F4D00E6106F /* TMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBaseView.swift; sourceTree = "<group>"; };
+		E8A085E72BA1B2710035869B /* TMBgMusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBgMusicButton.swift; sourceTree = "<group>"; };
 		E8A095342B8C6836004EE16D /* TMMainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMMainBottomView.swift; sourceTree = "<group>"; };
 		E8A56F2F2B9448B20083D9B8 /* TMStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMStoreManager.swift; sourceTree = "<group>"; };
 		E8A56F312B947FBB0083D9B8 /* TMUnlockBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMUnlockBannerView.swift; sourceTree = "<group>"; };
@@ -230,6 +251,9 @@
 		E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDelegateManager.swift; sourceTree = "<group>"; };
 		E8D9CF422B9247420020DB0B /* TMClockClock2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClock2ViewController.swift; sourceTree = "<group>"; };
 		E8D9CF442B9247850020DB0B /* TMClockClock2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMClockClock2View.swift; sourceTree = "<group>"; };
+		E8DA41512BA142DB00711180 /* TMBgMp3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBgMp3Manager.swift; sourceTree = "<group>"; };
+		E8DA41532BA1430300711180 /* TMBgMp3PupouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBgMp3PupouView.swift; sourceTree = "<group>"; };
+		E8DA41552BA146B300711180 /* TMBgMp3Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMBgMp3Cell.swift; sourceTree = "<group>"; };
 		E8DF7E262B9B7CA200F42E87 /* TMWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMWebViewController.swift; sourceTree = "<group>"; };
 		E8DF7E292B9B860700F42E87 /* TMUmengManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMUmengManager.swift; sourceTree = "<group>"; };
 		E8DF7E2E2B9C03D800F42E87 /* Timer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timer-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -366,13 +390,14 @@
 				E8E8691B2B8DE94500D8C627 /* LEGOHighlightButton.swift */,
 				E8C7CD802B85FD8300A87087 /* TMDelegateManager.swift */,
 				E8F3AE702B85934900B374F1 /* TMMainViewController.swift */,
+				E8DA41012BA1406C00711180 /* BgMp3 */,
 				E8DF7E282B9B85EF00F42E87 /* Umeng */,
 				E8F420DA2B8B61EA001F20EF /* Main */,
 				E8A56F2E2B9448A40083D9B8 /* Store */,
 				E828B3F32B90CB1F0015BCDA /* TimerVc */,
 				E8049DA22B88F9E90016E878 /* Common */,
 				E8153BE92B85AC4100D74130 /* Expand */,
-				E863F0852B936D4A00FA87C9 /* MP3 */,
+				E863F0852B936D4A00FA87C9 /* Sound */,
 				E8153BE62B85AA4F00D74130 /* Font */,
 				E8B635C62B8F28E100D549DC /* Impact */,
 				E8C7CD7D2B85FCAB00A87087 /* Motion */,
@@ -429,6 +454,21 @@
 			path = MTLiveWidget;
 			sourceTree = "<group>";
 		};
+		E81F535D2BA5957600EB5043 /* Mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				E81F535E2BA5957600EB5043 /* heavy_rain.mp3 */,
+				E81F535F2BA5957600EB5043 /* summer_bird.mp3 */,
+				E81F53602BA5957600EB5043 /* light_rain.mp3 */,
+				E81F53612BA5957600EB5043 /* heavy_night.mp3 */,
+				E81F53622BA5957600EB5043 /* light_night.mp3 */,
+				E81F53632BA5957600EB5043 /* snow.mp3 */,
+				E81F53642BA5957600EB5043 /* fire.mp3 */,
+				E81F53652BA5957600EB5043 /* summer_cicadas.mp3 */,
+			);
+			path = Mp3;
+			sourceTree = "<group>";
+		};
 		E828B3F32B90CB1F0015BCDA /* TimerVc */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,7 +518,7 @@
 			path = BW;
 			sourceTree = "<group>";
 		};
-		E863F0852B936D4A00FA87C9 /* MP3 */ = {
+		E863F0852B936D4A00FA87C9 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
 				E863F0962B936D6E00FA87C9 /* TMSoundManager.swift */,
@@ -491,7 +531,7 @@
 				E863F09D2B93774600FA87C9 /* pointer.wav */,
 				E863F0A22B93774600FA87C9 /* slim.wav */,
 			);
-			path = MP3;
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		E889093D2B8D77EB00714237 /* Electron */ = {
@@ -554,6 +594,18 @@
 				E8C7CD7E2B85FCC800A87087 /* TMMontionManager.swift */,
 			);
 			path = Motion;
+			sourceTree = "<group>";
+		};
+		E8DA41012BA1406C00711180 /* BgMp3 */ = {
+			isa = PBXGroup;
+			children = (
+				E8DA41512BA142DB00711180 /* TMBgMp3Manager.swift */,
+				E8DA41532BA1430300711180 /* TMBgMp3PupouView.swift */,
+				E8DA41552BA146B300711180 /* TMBgMp3Cell.swift */,
+				E8A085E72BA1B2710035869B /* TMBgMusicButton.swift */,
+				E81F535D2BA5957600EB5043 /* Mp3 */,
+			);
+			path = BgMp3;
 			sourceTree = "<group>";
 		};
 		E8DF7E282B9B85EF00F42E87 /* Umeng */ = {
@@ -698,18 +750,26 @@
 				E863F0A82B93774600FA87C9 /* kasakii.power.off.wav in Resources */,
 				E81820FD2B45B8270022368D /* LaunchScreen.storyboard in Resources */,
 				E85626882B86E75A00053DB9 /* InfoPlist.strings in Resources */,
+				E81F536A2BA5957600EB5043 /* light_night.mp3 in Resources */,
+				E81F53672BA5957600EB5043 /* summer_bird.mp3 in Resources */,
+				E81F53662BA5957600EB5043 /* heavy_rain.mp3 in Resources */,
 				E863F0A92B93774600FA87C9 /* nixie.wav in Resources */,
 				E863F0AC2B93774600FA87C9 /* digit.wav in Resources */,
 				E88ECBD52B8C912F0025F121 /* iconfont-8bit-front-Regular.ttf in Resources */,
 				E8129D222B8D9B2200F2CB3F /* launch_icon.png in Resources */,
+				E81F536D2BA5957600EB5043 /* summer_cicadas.mp3 in Resources */,
+				E81F53692BA5957600EB5043 /* heavy_night.mp3 in Resources */,
 				E863F0A62B93774600FA87C9 /* flip.wav in Resources */,
+				E81F53682BA5957600EB5043 /* light_rain.mp3 in Resources */,
 				E8153BE82B85AA4F00D74130 /* TMTimer.ttf in Resources */,
 				E863F0AB2B93774600FA87C9 /* dida.wav in Resources */,
 				E856268F2B86E7DD00053DB9 /* Localizable.strings in Resources */,
 				E856267A2B86DE9F00053DB9 /* TMWidgetTimer.ttf in Resources */,
+				E81F536B2BA5957600EB5043 /* snow.mp3 in Resources */,
 				E863F0A52B93774600FA87C9 /* pointer.wav in Resources */,
 				E81820FA2B45B8270022368D /* Assets.xcassets in Resources */,
 				E81820F82B45B8260022368D /* Main.storyboard in Resources */,
+				E81F536C2BA5957600EB5043 /* fire.mp3 in Resources */,
 				E863F0AA2B93774600FA87C9 /* slim.wav in Resources */,
 				E88909492B8D916A00714237 /* launch_white.png in Resources */,
 				E88909432B8D7F7700714237 /* DS-Digital-Bold.ttf in Resources */,
@@ -812,6 +872,8 @@
 				E85626812B86E29C00053DB9 /* TMBWClockViewController.swift in Sources */,
 				E88909412B8D785200714237 /* TMElectronView.swift in Sources */,
 				E8F808762B989A800044689D /* TMBaseEnum.swift in Sources */,
+				E8A085E82BA1B2710035869B /* TMBgMusicButton.swift in Sources */,
+				E8DA41522BA142DB00711180 /* TMBgMp3Manager.swift in Sources */,
 				E8153BE42B85A42F00D74130 /* TMTimerRunManager.swift in Sources */,
 				E8C7CD812B85FD8300A87087 /* TMDelegateManager.swift in Sources */,
 				E85626832B86E2B800053DB9 /* TMNeonClockView.swift in Sources */,
@@ -819,6 +881,7 @@
 				E8A095352B8C6836004EE16D /* TMMainBottomView.swift in Sources */,
 				E8049DA42B88FA070016E878 /* TMBatteryLevelView.swift in Sources */,
 				E828B3F52B90CB330015BCDA /* TMTimerViewController.swift in Sources */,
+				E8DA41542BA1430300711180 /* TMBgMp3PupouView.swift in Sources */,
 				E8D9CF452B9247850020DB0B /* TMClockClock2View.swift in Sources */,
 				E8527D672B87418B00CCD428 /* TMBWBaseView.swift in Sources */,
 				E828B3F72B90CEA90015BCDA /* TMTimerContentView.swift in Sources */,
@@ -828,6 +891,7 @@
 				E8D9CF432B9247420020DB0B /* TMClockClock2ViewController.swift in Sources */,
 				E85626852B86E41800053DB9 /* TMNeonTextFieldView.swift in Sources */,
 				E8F3AE752B85976400B374F1 /* TMBasePageViewController.swift in Sources */,
+				E8DA41562BA146B300711180 /* TMBgMp3Cell.swift in Sources */,
 				E8B635C52B8F0E6500D549DC /* UIColor+Category.swift in Sources */,
 				E8E8691E2B8DFF2200D8C627 /* TMMainSettingView.swift in Sources */,
 				E84D45FB2B9E012900C7C585 /* TMUmengOCManager.m in Sources */,
@@ -1052,7 +1116,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Timer/Timer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202403120002;
+				CURRENT_PROJECT_VERSION = 202403160001;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1068,6 +1132,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1100,7 +1165,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Timer/Timer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202403120002;
+				CURRENT_PROJECT_VERSION = 202403160001;
 				DEVELOPMENT_TEAM = K7Y7L52Z4E;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1116,6 +1181,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

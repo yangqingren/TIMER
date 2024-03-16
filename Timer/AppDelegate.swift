@@ -8,6 +8,7 @@
 import UIKit
 import ActivityKit
 import UserNotifications
+import CoreTelephony
 
 @available(iOS 16.2, *)
 var deliveryActivity: Activity<MTLiveWidgetAttributes>?
@@ -29,6 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     
+    let cellularData = CTCellularData()
+    
+    var networkHappen = false
+    
+    var isLaunchFinish: Bool = UserDefaults.standard.bool(forKey: "kIsLaunchFinish") {
+        didSet {
+            UserDefaults.standard.set(isLaunchFinish, forKey: "kIsLaunchFinish")
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.launchOptions = launchOptions
@@ -41,14 +52,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        let nav = UINavigationController.init(rootViewController: vc)
         //        self.window?.rootViewController = nav
         
-        _ = TMStoreManager.share
+        if !self.isLaunchFinish {
+            self.cellularData.cellularDataRestrictionDidUpdateNotifier = {[weak self] state in
+                guard let `self` = self else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if !self.isLaunchFinish {
+                        self.isLaunchFinish = true
+                        self.initUMWithOptions(launchOptions: nil) {[weak self] in
+                            self?.showBgMp3PupouView()
+                        }
+                    }
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                if !self.isLaunchFinish {
+                    self.isLaunchFinish = true
+                    self.initUMWithOptions(launchOptions: nil) {[weak self] in
+                        self?.showBgMp3PupouView()
+                    }
+                }
+            }
+        }
+        
         LEGONetworking.startMonitorNetworkStatus()
-                
+        TMStoreManager.share.requestCurrAndListener()
+        
         return true
     }
     
+    func showBgMp3PupouView() {
+        if let view = TMGetTopController()?.view {
+            TMBgMp3PupouView.show(inView: view)
+        }
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
-        self.initUMWithOptions(launchOptions: nil)
+        if self.isLaunchFinish {
+            self.initUMWithOptions(launchOptions: nil)
+        }
     }
     
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -88,23 +133,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension AppDelegate {
     
-    func initUMWithOptions(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    func initUMWithOptions(launchOptions: [UIApplication.LaunchOptionsKey: Any]?, compete: (() -> Void)? = nil) {
         let options = launchOptions ?? self.launchOptions
         UNUserNotificationCenter.current().delegate = self
-//#if DEBUG
-//        
-//#else
         TMUmengManager.share.requestTracking { _ in
-            UMConfigure.initWithAppkey("65eb4ad7a7208a5af1b6f09f", channel: "App Store")
+            TMUmengManager.share.initWithAppkey()
             TMUmengManager.share.requestNotification { authorized in
                 DispatchQueue.main.async {
                     if authorized && TMMainSettingManager.getOpenStatus(.push) {
-                        TMUmengOCManager.register(forRemoteNotifications: options ?? [:])
+                        TMUmengManager.share.registerForRemoteNotifications(launchOptions: options)
                     }
+                    compete?()
                 }
             }
         }
-//#endif
     }
     
     func unregisterForRemoteNotifications() {

@@ -17,6 +17,23 @@ class TMUmengManager: NSObject {
     
     static let share = TMUmengManager()
     
+    func initWithAppkey() {
+#if DEBUG
+
+#else
+        UMConfigure.initWithAppkey("65eb4ad7a7208a5af1b6f09f", channel: "App Store")
+#endif
+
+    }
+    
+    func registerForRemoteNotifications(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+#if DEBUG
+
+#else
+        TMUmengOCManager.register(forRemoteNotifications: launchOptions ?? [:])
+#endif
+    }
+    
     func event(id: String, attributes: [String : String]? = nil) {
         
 #if DEBUG
@@ -37,6 +54,7 @@ class TMUmengManager: NSObject {
         switch status {
         case .notDetermined:
             ATTrackingManager.requestTrackingAuthorization { status in
+                debugPrint("requestTrackingAuthorization=\(status)")
                 if status == .authorized {
                     complete(true)
                 }

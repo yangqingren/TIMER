@@ -236,7 +236,9 @@ extension TMMainBottomView: UICollectionViewDataSource, UICollectionViewDelegate
             return cell
         }
         else {
-            return UICollectionViewCell()
+            let cell = TMMainBottomCell()
+            cell.setupItem(item)
+            return cell
         }
     }
     

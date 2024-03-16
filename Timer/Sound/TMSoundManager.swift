@@ -20,6 +20,7 @@ class TMSoundManager: NSObject {
     var date = Date()
     
     static func playSound(_ type: TMPageMenuType) {
+        
         let now = Date()
         let timeInterval = now.timeIntervalSince(TMSoundManager.share.date)
         if TMMainSettingManager.getOpenStatus(.sound), timeInterval > 0.7, let topVc = TMGetTopController(), let topVc = topVc as? TMMainViewController, let page = topVc.pageViewController.viewControllers?.first as? TMBasePageViewController, page.item.type == type {

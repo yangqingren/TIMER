@@ -57,7 +57,7 @@ class TMMainSettingManager: NSObject {
             UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.systemTime.rawValue)")
             let horizontal = TMMontionManager.share.autoHV == .H
             UserDefaults.standard.set(horizontal, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.horizontal.rawValue)")
-            UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
+            UserDefaults.standard.set(false, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.sound.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.impact.rawValue)")
             UserDefaults.standard.set(true, forKey: "\(kTMMainSettingPrefix)\(TMSettingType.push.rawValue)")
         }

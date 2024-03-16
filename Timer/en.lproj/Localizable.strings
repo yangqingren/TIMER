@@ -66,3 +66,15 @@
 "真模拟时钟II" = "True analog clock II";
 "编辑霓虹时钟" = "Edit neon Clock";
 
+// bg music
+"正在播放" = "Playing";
+"未在播放" = "Not playing";
+"白噪音 - 背景音乐" = "White Noise - Background music";
+"轻雨" = "Light rain";
+"沥雨" = "Leaching rain";
+"夏日蝉鸣" = "Summer cicada";
+"夏日鸟语" = "Summer bird";
+"入夜" = "Light night";
+"深夜" = "Heavy night";
+"火🔥" = "Fire🔥";
+"雪❄️" = "Snow❄️";
